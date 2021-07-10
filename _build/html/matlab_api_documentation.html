@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Matlab API Documentation &mdash; User Manual - bossdevice research 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> User Manual - bossdevice research
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_introduction_to_bossdevice_research.html">Introduction to bossdevice research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_setup_bossdevice_research.html">Setup bossdevice research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_setup_biosignal_amplifier.html">Setup biosignal Amplifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_api_documentation.html">Matlab API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_demo_scripts.html">Demo Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_downloads_n_dependencies.html">Downloads &amp; Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_issues_bugs_requests.html">Issues, Bugs and Requests</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">User Manual - bossdevice research</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Matlab API Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/matlab_api_documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="matlab-api-documentation">
+<h1>Matlab API Documentation<a class="headerlink" href="#matlab-api-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Matlab API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-bossdevice">Getting started with bossdevice</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-with-biosignal-amplifier">Connecting with Biosignal Amplifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-with-control-pc">Connecting with Control PC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-with-stimulator">Connecting with Stimulator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The bossdevice research is a real-time digital signal processor consisting of hardware and software algorithms. It is designed to read-in a real-time raw data stream from a biosignal amplifier (electroencephalography, EEG), to continuously analyze the data and to detect patterns in this data based on oscillations in different frequencies. When such a pattern is detected, the device indicates this through a standard output port. This enables a stimulation device (such as a sound generator) to be triggered in response to a specific biosignal pattern occurring. The device can be programmed by the user to detect different patterns.</p>
+<p>The bossdevice research is not a medical device. It may not be used outside of research and it may not be used in trials involving patients. It is not intended as an accessory to a medical device or to control a medical device. It may only be connected to a stimulation device if the stimulation device provides an input port for the purpose of receiving information regarding the desired timing of stimulation. Whether or not a stimulus is then generated in response to a signal from the bossdevice is determined by the stimulation device.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="getting-started-with-bossdevice">
+<h2>Getting started with bossdevice<a class="headerlink" href="#getting-started-with-bossdevice" title="Permalink to this headline">¶</a></h2>
+<p>— add some lines here about getting statrted then</p>
+<div class="section" id="connecting-with-biosignal-amplifier">
+<h3>Connecting with Biosignal Amplifier<a class="headerlink" href="#connecting-with-biosignal-amplifier" title="Permalink to this headline">¶</a></h3>
+<p>The input of the bossdevice i.e. the EEG data is provided by connecting the Biosignal Amplifier (EEG device e.g. Bittium’s NeurOne or Brain Product’s actiCHamp) with the bossdevice using a standard LAN Cable. Search the “REAL TIME OUT” LAN port at the back plate of your EEG device and connect it to the “REAL TIME IN” LAN port at the back plate of the BOSS Device.</p>
+</div>
+<div class="section" id="connecting-with-control-pc">
+<h3>Connecting with Control PC<a class="headerlink" href="#connecting-with-control-pc" title="Permalink to this headline">¶</a></h3>
+<p>The “Control PC” LAN port at the backplate of the BOSS Device is connected to any LAN/Ethernet port on the backplate of Control PC. Then in order to open the network IP address, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>On Microsoft Windows 7/8/10 Click Start Menu &gt; Control Panel &gt; Network and Sharing Centre or Network and Internet &gt; Network and Sharing Centre.</p></li>
+<li><p>Click Change adapter settings.</p></li>
+</ol>
+<p>3. Right-click on Local Area Connection corresponding to LAN/Ethernet port where the “Control PC” LAN cable is connected and click Properties.
+figure
+4. Select Internet Protocol Version 4 (TCP/IPv4) and click Properties.
+figure
+5. Select Use the following IP address. Then enter the following IP address, Subnet mask, Default gateway, and DNS server.</p>
+<p>IP Address:                      10.10.10.100</p>
+<p>Subnet mask:                  255.255.255.0</p>
+<p>Default gateway:               10.10.11.88</p>
+<p>DNS server:                     10.10.11.68
+figure
+Click OK and OK on your way out of the wizard.</p>
+</div>
+<div class="section" id="connecting-with-stimulator">
+<h3>Connecting with Stimulator<a class="headerlink" href="#connecting-with-stimulator" title="Permalink to this headline">¶</a></h3>
+<p>The BOSS device can send up to 4 TTL trigger signals to connected TMS devices (output). Search the “TRIGGER OUT 1-4” BNC ports at back plate of the BOSS device and connect it to the “Trigger In” BNC port of the Stimulator.
+fig
+Figure: Back plate view of bossdevice (see the BNC output ports 1-4 named as TRIGGER OUT 1 till 4)</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sync2brain GmbH.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

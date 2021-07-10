@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Setup biosignal Amplifier &mdash; User Manual - bossdevice research 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Matlab API Documentation" href="4_api_documentation.html" />
+    <link rel="prev" title="Setup bossdevice research" href="2_setup_bossdevice_research.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> User Manual - bossdevice research
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction_to_bossdevice_research.html">Introduction to bossdevice research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_setup_bossdevice_research.html">Setup bossdevice research</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setup biosignal Amplifier</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4_api_documentation.html">Matlab API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_demo_scripts.html">Demo Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_downloads_n_dependencies.html">Downloads &amp; Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_issues_bugs_requests.html">Issues, Bugs and Requests</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">User Manual - bossdevice research</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Setup biosignal Amplifier</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/3_setup_biosignal_amplifier.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setup-biosignal-amplifier">
+<h1>Setup biosignal Amplifier<a class="headerlink" href="#setup-biosignal-amplifier" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setup biosignal Amplifier</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bittium-neurone">Bittium NeurOne</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#software-version">Software Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-version">Firmware Version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#real-time-out-channels">Real Time Out Channels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="bittium-neurone">
+<h2>Bittium NeurOne<a class="headerlink" href="#bittium-neurone" title="Permalink to this headline">¶</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>bossdevice research accepts a 5kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out of NeurOne must be 5kHz.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In your NeurOne protocol, keep all the EEG channels on the top and other Aux/bipolar/EMG/ECG channels at the bottom.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If two 32 channels preamplifiers are used, do not use the Aux/bipolar inputs/EMG/ECG channels numberd from 33-40, but only the last 8 of the 2nd amplifier i.e. 73 to 80. Similar pattern applies to other combinition of preamplifiers.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>bossdevice research can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels.</p>
+</div>
+<div class="section" id="software-version">
+<h3>Software Version<a class="headerlink" href="#software-version" title="Permalink to this headline">¶</a></h3>
+<p>The NeurOne software version should be v1.5.1 or higher.</p>
+<div class="figure align-center">
+<img alt="_images/Figure8_N1.png" src="_images/Figure8_N1.png" />
+</div>
+</div>
+<div class="section" id="firmware-version">
+<h3>Firmware Version<a class="headerlink" href="#firmware-version" title="Permalink to this headline">¶</a></h3>
+<p>The firmware version should be 1.4.30 or higher.</p>
+</div>
+<div class="section" id="real-time-out-channels">
+<h3>Real Time Out Channels<a class="headerlink" href="#real-time-out-channels" title="Permalink to this headline">¶</a></h3>
+<p>The Target UDP Port should be changed to 25000 from default of 50000, and the rest of details as shown in the figure below.</p>
+<div class="figure align-center">
+<img alt="_images/Figure9_N1.png" src="_images/Figure9_N1.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="4_api_documentation.html" class="btn btn-neutral float-right" title="Matlab API Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="2_setup_bossdevice_research.html" class="btn btn-neutral float-left" title="Setup bossdevice research" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sync2brain GmbH.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Demo Scripts &mdash; User Manual - bossdevice research 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Downloads &amp; Dependencies" href="6_downloads_n_dependencies.html" />
+    <link rel="prev" title="Matlab API Documentation" href="4_api_documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> User Manual - bossdevice research
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction_to_bossdevice_research.html">Introduction to bossdevice research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_setup_bossdevice_research.html">Setup bossdevice research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_setup_biosignal_amplifier.html">Setup biosignal Amplifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_api_documentation.html">Matlab API Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Demo Scripts</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="6_downloads_n_dependencies.html">Downloads &amp; Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_issues_bugs_requests.html">Issues, Bugs and Requests</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">User Manual - bossdevice research</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Demo Scripts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/5_demo_scripts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="demo-scripts">
+<h1>Demo Scripts<a class="headerlink" href="#demo-scripts" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Demo Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#open-loop-jittered-stimulation">Open Loop Jittered Stimulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mu-rhythm-phase-locked-triggering">mu-Rhythm Phase Locked Triggering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#phase-triggered-plasticity-protocol">Phase Triggered Plasticity Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#real-time-oscillation-amplitude-threshold-tracking">Real-Time Oscillation Amplitude Threshold Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#phase-prediction-error-measurement">Phase Prediction Error Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loop-latency-measurement">Loop Latency Measurement</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="open-loop-jittered-stimulation">
+<h2>Open Loop Jittered Stimulation<a class="headerlink" href="#open-loop-jittered-stimulation" title="Permalink to this headline">¶</a></h2>
+<p>This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus</p>
+<p>Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">NumberOfTrials</span><span class="p">=</span><span class="mi">10</span><span class="p">;</span>
+ <span class="n">ITI</span><span class="p">=[</span><span class="mi">4</span> <span class="mi">6</span><span class="p">];</span> <span class="c">%ITI is seconds - a random number between these two values</span>
+ <span class="c">%% Initializing bossdevice research API</span>
+ <span class="n">bd</span><span class="p">=</span><span class="n">bossdevice</span><span class="p">;</span>
+ <span class="c">%% Approach 1 - For Loop Based Open Loop Stimulation</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]);</span> <span class="c">%Configuring Trigger Sequence in [Time Port Marker] format</span>
+ <span class="n">for</span> <span class="s">TrialNumber=1:NumberOfTrials</span>
+     <span class="n">bd</span><span class="p">.</span><span class="n">manualTrigger</span>
+     <span class="nb">disp</span><span class="p">([</span><span class="s">&#39;Triggered Trial #&#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">TrialNumber</span><span class="p">)])</span>
+     <span class="n">min_inter_trig_interval</span><span class="p">=</span> <span class="n">ITI</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span> <span class="p">(</span><span class="n">ITI</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">ITI</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.*</span><span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c">%Assigning New Random ITI for this Trial to the bossdevice research</span>
+     <span class="n">pause</span><span class="p">(</span><span class="n">min_inter_trig_interval</span><span class="p">)</span> <span class="c">%Wait for next trial start</span>
+ <span class="n">end</span>
+ <span class="s">disp(&#39;Trials Completed&#39;)</span>
+ <span class="c">%% Approach 2 - bossdevice research Sequence Generator Based Open Loop Stimulation</span>
+ <span class="n">time_port_marker_sequence</span><span class="p">=[];</span>
+ <span class="n">Time</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="n">time_port_marker_sequence</span><span class="p">(</span><span class="n">NumberOfTrials</span><span class="p">,</span><span class="mi">3</span><span class="p">)=</span><span class="mi">0</span><span class="p">;</span> <span class="c">%Pre filling the array</span>
+ <span class="n">for</span> <span class="s">TrialNumber=1:NumberOfTrials</span>
+     <span class="n">Time</span><span class="p">=</span><span class="n">Time</span><span class="o">+</span><span class="n">ITI</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span> <span class="p">(</span><span class="n">ITI</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">ITI</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.*</span><span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c">%Generating Sequence of Jittered ITIs for all Trials</span>
+     <span class="n">Port</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span> <span class="c">%In order to generatre trigger always on first port , use 2 for 2nd port and 3 for third port</span>
+     <span class="n">Marker</span><span class="p">=</span><span class="n">TrialNumber</span><span class="p">;</span>
+     <span class="n">time_port_marker_sequence</span><span class="p">(</span><span class="n">TrialNumber</span><span class="p">,:)=[</span><span class="n">Time</span> <span class="n">Port</span> <span class="n">Marker</span><span class="p">];</span>
+ <span class="n">end</span>
+ <span class="s">bd.configure_time_port_marker(time_port_marker_sequence)</span><span class="p">;</span> <span class="c">%Assigning Pregenerated sequence to the bossdevice research</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">manualTrigger</span> <span class="c">% Triggering the bossdevice research to start sequence TTL Output Generation</span>
+ <span class="nb">disp</span><span class="p">(</span><span class="s">&#39;Trigger Sequence Started by bossdevice research&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="mu-rhythm-phase-locked-triggering">
+<h2>mu-Rhythm Phase Locked Triggering<a class="headerlink" href="#mu-rhythm-phase-locked-triggering" title="Permalink to this headline">¶</a></h2>
+<p>This demo script uses bossdevice to deliver mu Rising or Falling Flank Phase locked Trigger outputs
+Resources: 1) bossdevice Switched On
+2) bossdevice Open Source MATLAB API
+3) Biosignal Amplifier streaming atleast 5 EEG Channels
+4) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">no_of_trials</span><span class="p">=</span><span class="mi">10</span><span class="p">;</span>
+ <span class="n">minimium_inter_trigger_interval</span><span class="p">=</span><span class="mi">5</span><span class="p">;</span> <span class="c">%s</span>
+ <span class="n">phase</span><span class="p">=[</span><span class="o">+</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span><span class="nb">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">];</span> <span class="c">%[falling_flank rising_flank]</span>
+ <span class="n">phase_tolerance</span><span class="p">=</span><span class="nb">pi</span><span class="o">/</span><span class="mi">40</span><span class="p">;</span>
+ <span class="n">individual_peak_frequency</span><span class="p">=</span><span class="mi">11</span><span class="p">;</span> <span class="c">% Hz</span>
+ <span class="n">bandpassfilter_order</span><span class="p">=</span> <span class="mi">75</span><span class="p">;</span>
+ <span class="n">eeg_channels</span><span class="p">=</span><span class="mi">5</span><span class="p">;</span> <span class="c">%Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor</span>
+ <span class="n">spatial_filter_weights</span><span class="p">=[</span><span class="mi">1</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span> <span class="c">%Column Vector of Spatial Filter Indexed wrt corrosponding Channels</span>
+
+ <span class="n">time</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="n">plasticity_protocol_sequence</span><span class="p">=[];</span>
+
+ <span class="c">%% Initializing bossdevice research API</span>
+ <span class="n">bd</span><span class="p">=</span><span class="n">bossdevice</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">sample_and_hold_period</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">calibration_mode</span> <span class="p">=</span> <span class="s">&#39;no&#39;</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">armed</span> <span class="p">=</span> <span class="s">&#39;no&#39;</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">sample_and_hold_period</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+ <span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="n">eeg_channels</span><span class="p">;</span>
+
+ <span class="c">%% Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha</span>
+ <span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">firls</span><span class="p">(</span><span class="n">bandpassfilter_order</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="p">(</span><span class="n">individual_peak_frequency</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span><span class="mi">2</span> <span class="o">+</span><span class="mi">5</span><span class="p">])</span> <span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">/</span><span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span> <span class="p">);</span>
+
+ <span class="c">%% Setting Filters on bossdevice research</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">spatial_filter_weights</span><span class="p">=</span><span class="n">spatial_filter_weights</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">bpf_fir_coeffs</span><span class="p">;</span>
+
+ <span class="c">%% Controlling bossdevice research for mu Alpha Phase Locked Triggering</span>
+ <span class="n">condition_index</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="k">while</span> <span class="p">(</span><span class="n">condition_index</span> <span class="o">&lt;=</span> <span class="n">no_of_trials</span><span class="p">)</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">bb</span><span class="p">.</span><span class="n">armed</span><span class="p">,</span> <span class="s">&#39;no&#39;</span><span class="p">))</span>
+         <span class="n">bb</span><span class="p">.</span><span class="n">triggers_remaining</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+         <span class="n">bb</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_target</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phase</span><span class="p">(</span><span class="n">randi</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">phase</span><span class="p">),</span> <span class="mi">1</span><span class="p">));</span>
+         <span class="n">bb</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phase_tolerance</span><span class="p">;</span>
+         <span class="n">bb</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+         <span class="n">bb</span><span class="p">.</span><span class="n">min_inter_trig_interval</span> <span class="p">=</span> <span class="n">minimium_inter_trigger_interval</span><span class="p">;</span>
+         <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+         <span class="n">bb</span><span class="p">.</span><span class="n">arm</span><span class="p">;</span>
+     <span class="n">end</span>
+     <span class="s">%</span> <span class="s">trigger</span> <span class="s">has</span> <span class="s">been</span> <span class="s">executed,</span> <span class="s">move</span> <span class="s">to</span> <span class="s">the</span> <span class="s">next</span> <span class="s">condition</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">bb</span><span class="p">.</span><span class="n">triggers_remaining</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+         <span class="n">condition_index</span> <span class="p">=</span> <span class="n">condition_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+         <span class="n">bb</span><span class="p">.</span><span class="n">disarm</span><span class="p">;</span>
+         <span class="nb">disp</span> <span class="p">([</span><span class="s">&#39;Triggered around &#39;</span> <span class="p">(</span><span class="n">num2str</span><span class="p">(</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">bb</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_target</span><span class="p">(</span><span class="mi">1</span><span class="p">))))</span> <span class="s">&#39; degrees Phase angle.&#39;</span><span class="p">])</span>
+         <span class="n">pause</span><span class="p">(</span><span class="n">minimium_inter_trigger_interval</span><span class="p">)</span>
+     <span class="n">end</span>
+     <span class="s">pause(0.01)</span><span class="p">;</span>
+ <span class="n">end</span>
+
+ <span class="s">%%</span> <span class="s">End</span>
+ <span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Protocol has been completed&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="phase-triggered-plasticity-protocol">
+<h2>Phase Triggered Plasticity Protocol<a class="headerlink" href="#phase-triggered-plasticity-protocol" title="Permalink to this headline">¶</a></h2>
+<p>This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus</p>
+<p>Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">no_of_trials</span><span class="p">=</span><span class="mi">25</span><span class="p">;</span>
+ <span class="n">no_of_pulses</span><span class="p">=</span><span class="mi">100</span><span class="p">;</span>
+ <span class="n">pulse_frequency</span><span class="p">=</span><span class="mi">100</span><span class="p">;</span> <span class="c">%Hz</span>
+ <span class="n">minimium_inter_trigger_interval</span><span class="p">=</span><span class="mi">5</span><span class="p">;</span> <span class="c">%s</span>
+ <span class="n">phase</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span> <span class="c">%peak</span>
+ <span class="n">phase_tolerance</span><span class="p">=</span><span class="nb">pi</span><span class="o">/</span><span class="mi">40</span><span class="p">;</span>
+ <span class="n">individual_peak_frequency</span><span class="p">=</span><span class="mi">11</span><span class="p">;</span> <span class="c">% Hz</span>
+ <span class="n">bandpassfilter_order</span><span class="p">=</span> <span class="mi">75</span><span class="p">;</span>
+ <span class="n">eeg_channels</span><span class="p">=</span><span class="mi">5</span><span class="p">;</span> <span class="c">%Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor</span>
+ <span class="n">spatial_filter_weights</span><span class="p">=[</span><span class="mi">1</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span> <span class="c">%Column Vector of Spatial Filter Indexed wrt corrosponding Channels</span>
+
+ <span class="n">time</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="n">plasticity_protocol_sequence</span><span class="p">=[];</span>
+
+ <span class="c">%% Initializing bossdevice research API</span>
+ <span class="n">bd</span><span class="p">=</span><span class="n">bossdevice</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">sample_and_hold_period</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">calibration_mode</span> <span class="p">=</span> <span class="s">&#39;no&#39;</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">armed</span> <span class="p">=</span> <span class="s">&#39;no&#39;</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">sample_and_hold_period</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+ <span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="n">eeg_channels</span><span class="p">;</span>
+
+ <span class="c">%% Preparing a Plasticity Protocol Seqeuence for bossdevice research</span>
+ <span class="n">plasticity_protocol_sequence</span><span class="p">(</span><span class="n">no_of_pulses</span><span class="p">,</span><span class="mi">3</span><span class="p">)=</span><span class="mi">0</span><span class="p">;</span> <span class="c">%Pre filling the array</span>
+ <span class="n">for</span> <span class="s">iPulse=1:no_of_pulses</span>
+     <span class="n">time</span><span class="p">=</span><span class="n">time</span><span class="o">+</span><span class="mf">0.01</span><span class="p">;</span>
+     <span class="n">port</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
+     <span class="n">marker</span><span class="p">=</span><span class="n">iPulse</span><span class="p">;</span>
+     <span class="n">plasticity_protocol_sequence</span><span class="p">(</span><span class="n">iPulse</span><span class="p">,:)=[</span><span class="n">time</span> <span class="n">port</span> <span class="n">marker</span><span class="p">];</span>
+ <span class="n">end</span>
+
+ <span class="s">%%</span> <span class="s">Preparing</span> <span class="s">an</span> <span class="s">Individual</span> <span class="s">Peak</span> <span class="s">Frequency</span> <span class="s">based</span> <span class="s">Band</span> <span class="s">Pass</span> <span class="s">Filter</span> <span class="s">for</span> <span class="s">mu</span> <span class="s">Alpha</span>
+ <span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">firls</span><span class="p">(</span><span class="n">bandpassfilter_order</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="p">(</span><span class="n">individual_peak_frequency</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span><span class="mi">2</span> <span class="o">+</span><span class="mi">5</span><span class="p">])</span> <span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">/</span><span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span> <span class="p">);</span>
+
+ <span class="c">%% Setting Filters on bossdevice research</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">spatial_filter_weights</span><span class="p">=</span><span class="n">spatial_filter_weights</span><span class="p">;</span>
+ <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">bpf_fir_coeffs</span><span class="p">;</span>
+
+
+
+ <span class="c">%% For plasticitz, we have the same condition, multiple times, we can run everything on the device:</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">triggers_remaining</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_target</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phase</span><span class="p">;</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phase_tolerance</span><span class="p">;</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">(</span><span class="n">plasticity_protocol_sequence</span><span class="p">)</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">min_inter_trig_interval</span> <span class="p">=</span> <span class="n">minimium_inter_trigger_interval</span><span class="p">;</span>
+         <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">arm</span><span class="p">;</span>
+
+         <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;\nSystem running, pulses remaining: %03i&#39;</span><span class="p">,</span> <span class="n">bd</span><span class="p">.</span><span class="n">triggers_remaining</span><span class="p">)</span>
+         <span class="k">while</span> <span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">triggers_remaining</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+             <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;\b\b\b%03i&#39;</span><span class="p">,</span> <span class="n">bd</span><span class="p">.</span><span class="n">triggers_remaining</span><span class="p">);</span>
+             <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+         <span class="n">end</span>
+         <span class="s">fprintf(&#39;\b\b\bDone\n&#39;)</span>
+
+
+ <span class="c">%% Controlling bossdevice research for mu Alpha Phase Locked Triggering % this could be for excitability, where we have interleaved different conditions</span>
+ <span class="n">condition_index</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+ <span class="k">while</span> <span class="p">(</span><span class="n">condition_index</span> <span class="o">&lt;=</span> <span class="n">no_of_trials</span><span class="p">)</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">armed</span><span class="p">,</span> <span class="s">&#39;no&#39;</span><span class="p">))</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">triggers_remaining</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_target</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phase</span><span class="p">;</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phase_tolerance</span><span class="p">;</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">(</span><span class="n">plasticity_protocol_sequence</span><span class="p">)</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">min_inter_trig_interval</span> <span class="p">=</span> <span class="n">minimium_inter_trigger_interval</span><span class="p">;</span>
+         <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">arm</span><span class="p">;</span>
+     <span class="n">end</span>
+     <span class="s">%</span> <span class="s">trigger</span> <span class="s">has</span> <span class="s">been</span> <span class="s">executed,</span> <span class="s">move</span> <span class="s">to</span> <span class="s">the</span> <span class="s">next</span> <span class="s">condition</span>
+     <span class="k">if</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">triggers_remaining</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+         <span class="n">condition_index</span> <span class="p">=</span> <span class="n">condition_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+         <span class="n">bd</span><span class="p">.</span><span class="n">disarm</span><span class="p">;</span>
+         <span class="n">disp</span> <span class="s">Triggered!</span>
+         <span class="n">pause</span><span class="p">(</span><span class="n">minimium_inter_trigger_interval</span><span class="p">)</span>
+     <span class="n">end</span>
+     <span class="s">pause(0.01)</span><span class="p">;</span>
+ <span class="n">end</span>
+
+ <span class="s">%%</span> <span class="s">End</span>
+ <span class="nb">disp</span> <span class="p">(</span><span class="s">&#39;Plasticity Protocol has been completed&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="real-time-oscillation-amplitude-threshold-tracking">
+<h2>Real-Time Oscillation Amplitude Threshold Tracking<a class="headerlink" href="#real-time-oscillation-amplitude-threshold-tracking" title="Permalink to this headline">¶</a></h2>
+<p>This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus</p>
+<p>Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">no_of_trials</span><span class="p">=</span><span class="mi">25</span><span class="p">;</span>
+<span class="n">minimium_inter_trigger_interval</span><span class="p">=</span><span class="mi">4</span><span class="p">;</span> <span class="c">%s</span>
+<span class="n">phase</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span> <span class="c">%[positive]</span>
+<span class="n">phase_tolerance</span><span class="p">=</span><span class="nb">pi</span><span class="o">/</span><span class="mi">40</span><span class="p">;</span>
+<span class="n">amplitude_threshold</span><span class="p">=[</span><span class="mi">25</span> <span class="mi">75</span><span class="p">];</span> <span class="c">%[min max] in percentile</span>
+<span class="n">amplitude_assignment_period</span><span class="p">=</span><span class="mi">60</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span> <span class="c">%s</span>
+<span class="n">individual_peak_frequency</span><span class="p">=</span><span class="mi">11</span><span class="p">;</span> <span class="c">% Hz</span>
+<span class="n">bandpassfilter_order</span><span class="p">=</span> <span class="mi">75</span><span class="p">;</span>
+<span class="n">eeg_channels</span><span class="p">=</span><span class="mi">5</span><span class="p">;</span> <span class="c">%Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor</span>
+<span class="n">spatial_filter_weights</span><span class="p">=[</span><span class="mi">1</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span> <span class="c">%Column Vector of Spatial Filter Indexed wrt corrosponding Channels</span>
+<span class="n">time</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">plasticity_protocol_sequence</span><span class="p">=[];</span>
+
+<span class="c">%% Initializing bossdevice research API</span>
+<span class="n">bd</span><span class="p">=</span><span class="n">bossdevice</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">sample_and_hold_period</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">calibration_mode</span> <span class="p">=</span> <span class="s">&#39;no&#39;</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">armed</span> <span class="p">=</span> <span class="s">&#39;no&#39;</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">sample_and_hold_period</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">ignore</span><span class="p">;</span> <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="n">eeg_channels</span><span class="p">;</span>
+
+<span class="c">%% Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha</span>
+<span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">firls</span><span class="p">(</span><span class="n">bandpassfilter_order</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="p">(</span><span class="n">individual_peak_frequency</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span><span class="mi">2</span> <span class="o">+</span><span class="mi">5</span><span class="p">])</span> <span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">/</span><span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span> <span class="p">);</span>
+
+<span class="c">%% Setting Filters on bossdevice research</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">spatial_filter_weights</span><span class="p">=</span><span class="n">spatial_filter_weights</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">bpf_fir_coeffs</span><span class="p">;</span>
+
+<span class="c">%% Configuring Real-Time Scopes for Amplitude Tracking</span>
+<span class="n">AMP_TRACING_SCOPES_IDS</span> <span class="p">=</span> <span class="p">[</span><span class="mi">101</span> <span class="mi">102</span><span class="p">];</span>
+
+<span class="c">% remove any pre-existing scopes with these ids</span>
+<span class="k">for</span> <span class="n">id</span> <span class="p">=</span> <span class="n">AMP_TRACING_SCOPES_IDS</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">find</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">.</span><span class="n">Scopes</span> <span class="o">==</span> <span class="n">id</span><span class="p">))</span>
+        <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;\nRemoving scope %i&#39;</span><span class="p">,</span> <span class="n">id</span><span class="p">)</span>
+        <span class="n">remscope</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="n">id</span><span class="p">);</span>
+    <span class="n">end</span>
+<span class="s">end</span>
+
+<span class="n">sig_id_amp</span> <span class="p">=</span> <span class="n">getsignalid</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;OSC/alpha/IA&#39;</span><span class="p">);</span> <span class="c">%amplitude</span>
+<span class="n">sig_id_qly</span> <span class="p">=</span> <span class="n">getsignalid</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;QLY/Logical Operator2&#39;</span><span class="p">);</span> <span class="c">%eeg_is_clean</span>
+
+<span class="n">sc</span> <span class="p">=</span> <span class="n">addscope</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;host&#39;</span><span class="p">,</span> <span class="n">AMP_TRACING_SCOPES_IDS</span><span class="p">);</span>
+<span class="n">addsignal</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="p">[</span><span class="n">sig_id_amp</span> <span class="n">sig_id_qly</span><span class="p">]);</span>
+
+<span class="n">sc</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">NumSamples</span> <span class="p">=</span> <span class="mi">500</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">Decimation</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">TriggerSample</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">sc</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">NumSamples</span> <span class="p">=</span> <span class="mi">500</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">Decimation</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">TriggerSample</span> <span class="p">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">sc</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">TriggerMode</span> <span class="p">=</span> <span class="s">&#39;Scope&#39;</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">TriggerScope</span> <span class="p">=</span> <span class="n">AMP_TRACING_SCOPES_IDS</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">sc</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">TriggerMode</span> <span class="p">=</span> <span class="s">&#39;Scope&#39;</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">TriggerScope</span> <span class="p">=</span> <span class="n">AMP_TRACING_SCOPES_IDS</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="n">start</span><span class="p">(</span><span class="n">sc</span><span class="p">);</span> <span class="c">% now they are ready for being triggered</span>
+
+<span class="n">activeScope</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">mAmplitudeScopeCircBufTotalBlocks</span> <span class="p">=</span> <span class="n">amplitude_assignment_period</span><span class="p">;</span>
+<span class="n">mAmplitudeScopeCircBufCurrentBlock</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">mAmplitudeScopeCircBuf</span> <span class="p">=</span> <span class="p">[];</span>
+<span class="n">hAmplitudeHistoryAxes</span> <span class="p">=</span> <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">hAmplitudeDistributionAxes</span> <span class="p">=</span> <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="n">trigger</span><span class="p">(</span><span class="n">sc</span><span class="p">(</span><span class="n">activeScope</span><span class="p">));</span>
+
+<span class="c">%% Controlling bossdevice research for mu Alpha Phase Locked Triggering</span>
+<span class="n">condition_index</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">condition_index</span> <span class="o">&lt;=</span> <span class="n">no_of_trials</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">sc</span><span class="p">(</span><span class="n">activeScope</span><span class="p">).</span><span class="n">Status</span><span class="p">,</span> <span class="s">&#39;Finished&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="c">...</span>
+            <span class="n">strcmp</span><span class="p">(</span><span class="n">sc</span><span class="p">(</span><span class="n">activeScope</span><span class="p">).</span><span class="n">Status</span><span class="p">,</span> <span class="s">&#39;Interrupted&#39;</span><span class="p">))</span>
+
+        <span class="n">time</span> <span class="p">=</span> <span class="n">sc</span><span class="p">(</span><span class="n">activeScope</span><span class="p">).</span><span class="n">Time</span><span class="p">;</span>
+        <span class="n">data</span> <span class="p">=</span> <span class="n">sc</span><span class="p">(</span><span class="n">activeScope</span><span class="p">).</span><span class="n">Data</span><span class="p">;</span>
+        <span class="n">plot</span><span class="p">(</span><span class="n">hAmplitudeHistoryAxes</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">));</span>
+
+        <span class="n">fprintf</span><span class="p">([</span><span class="s">&#39;Restarting Scope &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">activeScope</span><span class="p">)]);</span>
+
+        <span class="c">% Restart this scope.</span>
+        <span class="n">start</span><span class="p">(</span><span class="n">sc</span><span class="p">(</span><span class="n">activeScope</span><span class="p">));</span>
+
+        <span class="c">% Switch to the next scope.</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">activeScope</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">activeScope</span> <span class="p">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">else</span>
+            <span class="s">activeScope</span> <span class="s">=</span> <span class="s">1</span><span class="p">;</span>
+        <span class="n">end</span>
+
+        <span class="s">%</span> <span class="s">append</span> <span class="s">data</span> <span class="s">in</span> <span class="s">circular</span> <span class="s">buffer</span>
+        <span class="n">mAmplitudeScopeCircBuf</span><span class="p">{</span><span class="n">mAmplitudeScopeCircBufCurrentBlock</span><span class="p">}</span> <span class="p">=</span> <span class="n">data</span><span class="o">&#39;</span><span class="p">;</span>
+
+        <span class="n">maxmindata</span> <span class="p">=</span> <span class="n">cell2mat</span><span class="p">(</span><span class="n">cellfun</span><span class="p">(@(</span><span class="n">data</span><span class="p">)</span> <span class="n">quantile</span><span class="p">(</span><span class="n">data</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">data</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="n">amplitude_threshold</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span> <span class="n">amplitude_threshold</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">])</span><span class="o">&#39;</span><span class="p">,</span> <span class="n">mAmplitudeScopeCircBuf</span><span class="p">,</span> <span class="s">&#39;UniformOutput&#39;</span><span class="p">,</span> <span class="n">false</span><span class="p">))</span><span class="o">&#39;</span><span class="p">;</span>
+        <span class="n">maxmindata</span> <span class="p">=</span> <span class="nb">circshift</span><span class="p">(</span><span class="n">maxmindata</span><span class="p">,</span> <span class="n">mAmplitudeScopeCircBufCurrentBlock</span><span class="p">);</span>
+        <span class="n">plot</span><span class="p">(</span><span class="n">hAmplitudeHistoryAxes</span><span class="p">,</span> <span class="n">maxmindata</span><span class="p">)</span>
+        <span class="n">xlim</span><span class="p">(</span><span class="n">hAmplitudeHistoryAxes</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span> <span class="n">mAmplitudeScopeCircBufTotalBlocks</span><span class="p">])</span>
+        <span class="n">set</span><span class="p">(</span><span class="n">hAmplitudeHistoryAxes</span><span class="p">,</span> <span class="s">&#39;Xdir&#39;</span><span class="p">,</span> <span class="s">&#39;reverse&#39;</span><span class="p">)</span>
+
+        <span class="n">circular_buffer_data</span> <span class="p">=</span> <span class="n">cell2mat</span><span class="p">(</span><span class="n">mAmplitudeScopeCircBuf</span><span class="p">);</span>
+
+        <span class="c">% Switch to the next data block</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">mAmplitudeScopeCircBufCurrentBlock</span> <span class="o">&lt;</span> <span class="n">mAmplitudeScopeCircBufTotalBlocks</span><span class="p">)</span>
+            <span class="n">mAmplitudeScopeCircBufCurrentBlock</span> <span class="p">=</span> <span class="n">mAmplitudeScopeCircBufCurrentBlock</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">else</span>
+            <span class="s">mAmplitudeScopeCircBufCurrentBlock</span> <span class="s">=</span> <span class="s">1</span><span class="p">;</span>
+        <span class="n">end</span>
+
+        <span class="s">%tic</span>
+
+        <span class="c">% remove post-stimulus data</span>
+        <span class="n">amplitude_clean</span> <span class="p">=</span> <span class="n">circular_buffer_data</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">circular_buffer_data</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+
+        <span class="c">% calculate percentiles</span>
+        <span class="n">amplitude_sorted</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">amplitude_clean</span><span class="p">);</span>
+        <span class="n">plot</span><span class="p">(</span><span class="n">hAmplitudeDistributionAxes</span><span class="p">,</span> <span class="n">amplitude_sorted</span><span class="p">)</span>
+
+        <span class="n">amp_lower</span> <span class="p">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">amplitude_clean</span><span class="p">,</span> <span class="n">amplitude_threshold</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span> <span class="c">% TODO: INCLUDE THIS IN INFO STRUCT</span>
+        <span class="n">amp_upper</span> <span class="p">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">amplitude_clean</span><span class="p">,</span> <span class="n">amplitude_threshold</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span> <span class="c">% TODO: INCLUDE THIS IN INFO STRUCT</span>
+
+        <span class="n">hold</span><span class="p">(</span><span class="n">hAmplitudeDistributionAxes</span><span class="p">,</span> <span class="s">&#39;on&#39;</span><span class="p">)</span>
+        <span class="n">plot</span><span class="p">(</span><span class="n">hAmplitudeDistributionAxes</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span> <span class="nb">length</span><span class="p">(</span><span class="n">amplitude_clean</span><span class="p">)],</span> <span class="p">[</span><span class="n">amp_lower</span> <span class="n">amp_upper</span><span class="p">;</span> <span class="n">amp_lower</span> <span class="s">amp_upper])</span><span class="p">;</span>
+        <span class="n">hold</span><span class="p">(</span><span class="n">hAmplitudeDistributionAxes</span><span class="p">,</span> <span class="s">&#39;off&#39;</span><span class="p">)</span>
+
+        <span class="n">if</span> <span class="s">length(amplitude_clean)</span> <span class="s">&gt;</span> <span class="s">1</span>
+            <span class="n">xlim</span><span class="p">(</span><span class="n">hAmplitudeDistributionAxes</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span> <span class="nb">length</span><span class="p">(</span><span class="n">amplitude_clean</span><span class="p">)]);</span>
+        <span class="n">end</span>
+        <span class="s">if</span> <span class="s">(amplitude_sorted(end)</span> <span class="s">&gt;</span> <span class="s">amplitude_sorted(1))</span>
+            <span class="n">ylim</span><span class="p">(</span><span class="n">hAmplitudeDistributionAxes</span><span class="p">,</span> <span class="p">[</span><span class="n">amplitude_sorted</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">amplitude_sorted</span><span class="p">(</span><span class="k">end</span><span class="p">)]);</span>
+        <span class="n">end</span>
+
+        <span class="s">%toc</span>
+
+        <span class="c">% set amplitude threshold</span>
+        <span class="n">mDbsp</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">amplitude_min</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">amp_lower</span><span class="p">;</span>
+        <span class="n">mDbsp</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">amplitude_max</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">amp_upper</span><span class="p">;</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">amplitude_min</span><span class="p">(</span><span class="mi">1</span><span class="p">)=</span><span class="n">amp_lower</span><span class="p">;</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">amplitude_max</span><span class="p">(</span><span class="mi">1</span><span class="p">)=</span><span class="n">amp_upper</span><span class="p">;</span>
+        <span class="n">title</span><span class="p">(</span><span class="n">hAmplitudeDistributionAxes</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;Min Amplitude: &#39;</span><span class="p">,</span> <span class="n">num2str</span><span class="p">(</span><span class="n">amp_lower</span><span class="p">)]);</span>
+
+    <span class="n">end</span> <span class="s">%</span> <span class="s">handle</span> <span class="s">the</span> <span class="s">amplitude</span> <span class="s">tracking</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">armed</span><span class="p">,</span> <span class="s">&#39;no&#39;</span><span class="p">))</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">triggers_remaining</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_target</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phase</span><span class="p">(</span><span class="n">randi</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">phase</span><span class="p">),</span> <span class="mi">1</span><span class="p">));</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">phase_tolerance</span><span class="p">;</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">(([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">min_inter_trig_interval</span> <span class="p">=</span> <span class="n">minimium_inter_trigger_interval</span><span class="p">;</span>
+        <span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">arm</span><span class="p">;</span>
+    <span class="n">end</span>
+    <span class="s">%</span> <span class="s">trigger</span> <span class="s">has</span> <span class="s">been</span> <span class="s">executed,</span> <span class="s">move</span> <span class="s">to</span> <span class="s">the</span> <span class="s">next</span> <span class="s">condition</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">triggers_remaining</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">condition_index</span> <span class="p">=</span> <span class="n">condition_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">bd</span><span class="p">.</span><span class="n">disarm</span><span class="p">;</span>
+        <span class="n">disp</span> <span class="s">Triggered!</span>
+    <span class="n">end</span>
+    <span class="s">pause(0.01)</span><span class="p">;</span>
+<span class="n">end</span>
+
+<span class="s">%%</span> <span class="s">End</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="phase-prediction-error-measurement">
+<h2>Phase Prediction Error Measurement<a class="headerlink" href="#phase-prediction-error-measurement" title="Permalink to this headline">¶</a></h2>
+<p>This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus</p>
+<p>Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">ang_diff</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="nb">angle</span><span class="p">(</span><span class="nb">exp</span><span class="p">(</span>1<span class="nb">i</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">./</span><span class="nb">exp</span><span class="p">(</span>1<span class="nb">i</span><span class="o">*</span><span class="n">y</span><span class="p">));</span>
+<span class="n">ang_var</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="mi">1</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="nb">exp</span><span class="p">(</span>1<span class="nb">i</span><span class="o">*</span><span class="n">x</span><span class="p">)));</span>
+<span class="c">%ang_var2dev = @(v) sqrt(2*v); % circstat preferred formula uses angular deviation (bounded from 0 to sqrt(2)) which is sqrt(2*(1-r))</span>
+<span class="n">ang_var2dev</span> <span class="p">=</span> <span class="p">@(</span><span class="n">v</span><span class="p">)</span> <span class="nb">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nb">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">v</span><span class="p">));</span> <span class="c">% formula for circular standard deviation is sqrt(-2*ln(r))</span>
+
+<span class="c">%%  Initializing bossdevice research API</span>
+<span class="n">bb</span> <span class="p">=</span> <span class="n">bossdevice</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">aux_channels</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">spatial_filter_weights</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">offset_samples</span> <span class="p">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c">%this depends on the loop-delay</span>
+
+<span class="c">%% Setting Filters to bossdevice research</span>
+<span class="c">% this allows calibrating the oscillation analysis to an individual peak frequency</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">firls</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">6</span> <span class="mi">9</span> <span class="mi">13</span> <span class="mi">16</span> <span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">/</span><span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]);</span>
+<span class="c">%fvtool(bd.alpha.bpf_fir_coeffs, &#39;Fs&#39;, 500) % visualize filter</span>
+
+<span class="c">%% Configuring a scope to acquire data</span>
+<span class="n">sc</span> <span class="p">=</span> <span class="n">addscope</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;host&#39;</span><span class="p">,</span> <span class="mi">101</span><span class="p">);</span>
+<span class="n">addsignal</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">getsignalid</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;SPF/Matrix Multiply&#39;</span><span class="p">));</span> <span class="c">% this signals goes into the oscillation analysis</span>
+<span class="n">addsignal</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">getsignalid</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;OSC/alpha/IP&#39;</span><span class="p">));</span> <span class="c">% instantaneous phase estimate for alpha</span>
+
+<span class="n">sc</span><span class="p">.</span><span class="n">NumSamples</span> <span class="p">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">5000</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">Decimation</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;\nAcquiring data ...&#39;</span><span class="p">),</span> <span class="n">start</span><span class="p">(</span><span class="n">sc</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="n">Status</span><span class="p">,</span> <span class="s">&#39;Acquiring&#39;</span><span class="p">)),</span> <span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">),</span> <span class="n">pause</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="k">end</span>
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39; done&#39;</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="p">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">ip_estimate_causal</span> <span class="p">=</span> <span class="n">sc</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="k">end</span><span class="p">);</span>
+<span class="n">fs</span> <span class="p">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">mean</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="n">Time</span><span class="p">));</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;\nDetermining phase using standard non-causal methods ...&#39;</span><span class="p">)</span>
+<span class="c">% demean</span>
+<span class="n">data</span> <span class="p">=</span> <span class="n">data</span> <span class="o">-</span> <span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="c">% zero phase band-pass filter</span>
+<span class="n">D</span> <span class="p">=</span> <span class="n">designfilt</span><span class="p">(</span><span class="s">&#39;bandpassfir&#39;</span><span class="p">,</span> <span class="s">&#39;FilterOrder&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">fs</span><span class="p">),</span> <span class="s">&#39;CutoffFrequency1&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="s">&#39;CutoffFrequency2&#39;</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="s">&#39;SampleRate&#39;</span><span class="p">,</span> <span class="n">fs</span><span class="p">);</span>
+<span class="n">data</span> <span class="p">=</span> <span class="n">filtfilt</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">data</span><span class="p">);</span> <span class="c">%demean</span>
+
+<span class="n">ip_estimate_noncausal</span> <span class="p">=</span> <span class="nb">angle</span><span class="p">(</span><span class="n">hilbert</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+<span class="n">phase_error</span> <span class="p">=</span> <span class="n">ang_diff</span><span class="p">(</span><span class="n">ip_estimate_noncausal</span><span class="p">,</span> <span class="n">ip_estimate_causal</span><span class="p">);</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;\n&#39;</span><span class="p">)</span>
+
+<span class="c">%% Visualize</span>
+<span class="n">figure</span>
+<span class="s">ax1</span> <span class="s">=</span> <span class="s">subplot(2,2,1)</span><span class="p">;</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="n">Time</span><span class="o">-</span><span class="n">sc</span><span class="p">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="n">sc</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="n">data</span><span class="p">])</span>
+<span class="n">ax2</span> <span class="p">=</span> <span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="n">Time</span><span class="o">-</span><span class="n">sc</span><span class="p">.</span><span class="n">Time</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="n">ip_estimate_causal</span> <span class="n">ip_estimate_noncausal</span><span class="p">])</span>
+<span class="n">linkaxes</span><span class="p">([</span><span class="n">ax1</span> <span class="n">ax2</span><span class="p">],</span> <span class="s">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">polaraxes</span><span class="p">);</span>
+<span class="n">polarhistogram</span><span class="p">(</span><span class="n">phase_error</span><span class="p">,</span> <span class="s">&#39;Normalization&#39;</span><span class="p">,</span> <span class="s">&#39;probability&#39;</span><span class="p">,</span> <span class="s">&#39;BinWidth&#39;</span><span class="p">,</span> <span class="nb">pi</span><span class="o">/</span><span class="mi">36</span><span class="p">);</span>
+<span class="n">title</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;circular standard deviation = %.1f°&#39;</span><span class="p">,</span> <span class="n">rad2deg</span><span class="p">(</span><span class="n">ang_var2dev</span><span class="p">(</span><span class="n">ang_var</span><span class="p">(</span><span class="n">phase_error</span><span class="p">)))))</span>
+
+<span class="c">% remove the scope</span>
+<span class="n">remscope</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="loop-latency-measurement">
+<h2>Loop Latency Measurement<a class="headerlink" href="#loop-latency-measurement" title="Permalink to this headline">¶</a></h2>
+<p>This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus</p>
+<p>Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span> <span class="p">=</span> <span class="n">bossdevice</span><span class="p">;</span>
+
+<span class="c">%% Configuring Scope</span>
+<span class="n">sc</span> <span class="p">=</span> <span class="n">addscope</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;host&#39;</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+
+<span class="n">mrk_signal_id</span> <span class="p">=</span> <span class="n">getsignalid</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;UDP/raw_mrk&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">int32</span><span class="p">([</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">]);</span>
+
+<span class="n">addsignal</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">mrk_signal_id</span><span class="p">);</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">NumSamples</span> <span class="p">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">NumPrePostSamples</span> <span class="p">=</span> <span class="o">-</span><span class="mi">50</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">Decimation</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">TriggerMode</span> <span class="p">=</span> <span class="s">&#39;Signal&#39;</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">TriggerSignal</span> <span class="p">=</span> <span class="n">getsignalid</span><span class="p">(</span><span class="n">bd</span><span class="p">.</span><span class="n">tg</span><span class="p">,</span> <span class="s">&#39;gen_running&#39;</span><span class="p">);</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">TriggerLevel</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="n">sc</span><span class="p">.</span><span class="n">TriggerSlope</span> <span class="p">=</span> <span class="s">&#39;Rising&#39;</span><span class="p">;</span>
+
+<span class="c">%% Generating Trigger</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;\nTesting... &#39;</span><span class="p">)</span>
+<span class="n">start</span><span class="p">(</span><span class="n">sc</span><span class="p">);</span>
+<span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span> <span class="c">% give the scope time to pre-aquire</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="n">Status</span><span class="p">,</span> <span class="s">&#39;Ready for being Triggered&#39;</span><span class="p">));</span>
+
+<span class="n">s</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+<span class="n">s</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c">% fill with zeros (TODO: this should be done in the API)</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">generator_sequence</span> <span class="p">=</span> <span class="n">s</span><span class="p">;</span>
+
+<span class="n">bd</span><span class="p">.</span><span class="n">manualTrigger</span><span class="p">;</span>
+
+<span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="n">Status</span><span class="p">,</span> <span class="s">&#39;Finished&#39;</span><span class="p">))</span>
+
+<span class="n">fprintf</span><span class="p">(</span><span class="s">&#39;loop delay is %2.1f ms\n&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">find</span><span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="n">Data</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">50</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="6_downloads_n_dependencies.html" class="btn btn-neutral float-right" title="Downloads &amp; Dependencies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="4_api_documentation.html" class="btn btn-neutral float-left" title="Matlab API Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sync2brain GmbH.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
