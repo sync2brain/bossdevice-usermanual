@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Matlab API Documentation &mdash; User Manual - bossdevice research 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Demo Scripts" href="5_demo_scripts.html" />
+    <link rel="prev" title="Setup biosignal Amplifier" href="3_setup_biosignal_amplifier.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> User Manual - bossdevice research
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_introduction_to_bossdevice_research.html">Introduction to bossdevice research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_setup_bossdevice_research.html">Setup bossdevice research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_setup_biosignal_amplifier.html">Setup biosignal Amplifier</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Matlab API Documentation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5_demo_scripts.html">Demo Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_downloads_n_dependencies.html">Downloads &amp; Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_issues_bugs_requests.html">Issues, Bugs and Requests</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">User Manual - bossdevice research</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Matlab API Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/4_api_documentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="matlab-api-documentation">
+<h1>Matlab API Documentation<a class="headerlink" href="#matlab-api-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Matlab API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sendpulse">sendPulse</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#manualtrigger">manualTrigger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-time-port-marker">configure_time_port_marker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#stop">stop</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#eeg-channels">eeg_channels</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#aux-channels">aux_channels</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">aux_channels</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id21">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#phase-target">phase_target</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id24">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#phase-plusminus">phase_plusminus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id26">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#amplitude-min">amplitude_min</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id30">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id31">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#amplitude-max">amplitude_max</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lpf-fir-coeffs">lpf_fir_coeffs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id35">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id36">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sampling-rates">Sampling Rates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id37">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#bpf-fir-coeffs">bpf_fir_coeffs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id38">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id40">Sampling Rates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id41">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#arm">arm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id42">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id43">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id44">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#disarm">disarm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id45">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id46">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id47">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-and-hold-period">sample_and_hold_period</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id48">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id49">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id50">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>The bossdevice API is a set of low-level functions that allows user to control the BOSS device in a user-friendly programmable manner. The combined execution of such low level functions allows the bossdevice to perform certain high level tasks that could be amongst but not limited to generating various number of trigger outputs, timed in a certain fashion, triggering at a certain Phase of an ongoing EEG Oscillation and guided by the Oscillation Amplitude Thresholds.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Please downloaded Matlab 2021a, Simulink Real-Time and Simulink Coder Adds-On from Matlab toolboxes, download the repository from master branch as detailed on “Downloads &amp; Dependencies” chapter of the user manual. Add the bossdevice firmware and repository to the search path of Matlab 2021a. Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and Matlab 2021a is confused about choosing one therefore it is recommended to change the current directory of Matlab 2021a to the correct path of bossdevice latest API.</p>
+</div>
+<div class="section" id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>BOSS Device API can be initialized as a MATLAB Class object and provides access to its methods and functions to generate various trigger outputs and define multiple brain states upon which the predefined triggers to be released.</p>
+</div>
+<div class="section" id="syntax">
+<h3>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">MATLAB_class_object</span><span class="p">]</span> <span class="p">=</span> <span class="n">bossdevice</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">=</span><span class="n">bossdevice</span><span class="p">;</span> <span class="c">% &quot;bd&quot; class object is created in MATLAB workspace</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="sendpulse">
+<h2>sendPulse<a class="headerlink" href="#sendpulse" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>sendPulse method of the bossdevice class allows you to generate 1 pulse at a specified Output port (out of 4) of the bossdevice.</p>
+</div>
+<div class="section" id="id2">
+<h3>Syntax<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">sendPulse</span><span class="p">([</span><span class="n">bossdevice_port_number</span><span class="p">])</span> <span class="c">% [bossdevice_port_number] is non-zero positive integer less than or equal to 4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">sendPulse</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c">% delivers a single pulse at the Output port 1</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">sendPulse</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c">% delivers a single pulse at the Output port 3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="manualtrigger">
+<h2>manualTrigger<a class="headerlink" href="#manualtrigger" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>Description<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>manualTrigger method of bossdevice allows you to deliver a pre-built sequence of up to 1500 triggers where each trigger is timed relative to the onset of manualTrigger command, delivers on a specified Output port and also delivers an 8-bit marker assigned to each trigger as well.
+The pre-built sequence is generated using another command (see below: configure_time_port_marker) however the bossdevice starts delivering the pulses configured before when manualTrigger method is executed.</p>
+</div>
+<div class="section" id="id5">
+<h3>Syntax<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">manualTrigger</span> <span class="c">% start the previously configured trigger sequences in [time port marker] style.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h3>Example<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">manualTrigger</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="configure-time-port-marker">
+<h2>configure_time_port_marker<a class="headerlink" href="#configure-time-port-marker" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h3>Description<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>configure_time_port_marker method of bossdevice allows you to prepare a sequence of triggers in [time port marker] vector style. Maximum of 1500 triggers can be loaded onto this configuration method. In order to prepare a single trigger in [time port marker] style, just give input argument as [0 1 1] vector.
+Each trigger in this vector has three elements , first index being time, second index being the port number of bossdevice to deliver the output pulse and the last index being the 8-bit event marker to be generated and written to the Biosignal processor for respective trigger.</p>
+</div>
+<div class="section" id="id8">
+<h3>Syntax<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="n">trigger_sequence_vector</span><span class="p">]</span>
+<span class="c">% [trigger_sequence vector] is an Nx3 vector , whereas N is number of triggers and the three elements being the time onset, port number and event marker</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>Example<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">144</span><span class="p">])</span> <span class="c">%configures a trigger sequence in which the pulse will be delivered 2 seconds after the manualTrigger command execution, on the 3rd port and event writes 144 marker on the Biosignal processor</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="mi">3</span> <span class="mi">3</span> <span class="mi">144</span><span class="p">;</span><span class="n">4</span> <span class="s">2</span> <span class="s">128])</span>  <span class="s">%configures</span> <span class="s">2</span> <span class="s">trigger</span> <span class="s">sequence</span> <span class="s">in</span> <span class="s">which</span> <span class="s">the</span> <span class="s">first</span> <span class="s">pulse</span> <span class="s">will</span> <span class="s">be</span> <span class="s">delivered</span> <span class="s">3</span> <span class="s">seconds</span> <span class="s">after</span> <span class="s">the</span> <span class="s">manualTrigger</span> <span class="s">command</span> <span class="s">execution,</span> <span class="s">on</span> <span class="s">the</span> <span class="s">3rd</span> <span class="s">port</span> <span class="s">and</span> <span class="s">will</span> <span class="s">writes</span> <span class="s">144</span> <span class="s">marker</span> <span class="s">on</span> <span class="s">the</span> <span class="s">Biosignal</span> <span class="s">processor,</span> <span class="s">and</span> <span class="s">then</span> <span class="s">the</span> <span class="s">second</span> <span class="s">pulse</span> <span class="s">will</span> <span class="s">be</span> <span class="s">delivered</span> <span class="s">4</span> <span class="s">seconds</span> <span class="s">after</span> <span class="s">the</span> <span class="s">manualTrigger</span> <span class="s">command</span> <span class="s">execution,</span> <span class="s">on</span> <span class="s">the</span> <span class="s">2nd</span> <span class="s">port</span> <span class="s">and</span> <span class="s">writes</span> <span class="s">128</span> <span class="s">event</span> <span class="s">marker</span> <span class="s">on</span> <span class="s">the</span> <span class="s">Biosignal</span> <span class="s">processor,</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="stop">
+<h2>stop<a class="headerlink" href="#stop" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h3>Description<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>Quite often stopping of the trigger sequence is required before the sequence ends. the stop method allows you to stop further generation and delivery of any sequence loaded onto the trigger generator of the bossdevice.
+The last configured sequence can again be started by using “manualTrigger” method after the stop command.</p>
+</div>
+<div class="section" id="id11">
+<h3>Syntax<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">stop</span> <span class="c">% stops the generation of output triggers from bossdevice however the class object remain intact.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>Example<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">stop</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="eeg-channels">
+<h2>eeg_channels<a class="headerlink" href="#eeg-channels" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h3>Description<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>bossdevice can work on maximum of 128 EEG channels, however the minimum number of channels required to work with EEG associated features of bossdevice have been kept flexible and can be defined as in number of EEG cannnels being streamed from your Biosignal Processor.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id14">
+<h3>Syntax<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=[</span><span class="n">number_of_streaming_eeg_channels</span><span class="p">]</span> <span class="c">% [number_of_streaming_eeg_channels] is an integer from 1 up till 128.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>Example<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="mi">32</span><span class="p">;</span> <span class="c">% informing bossbox that 32 EEG channels are being streamed frm your Biosignal Processor</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="mi">64</span><span class="p">;</span> <span class="c">% informing bossbox that 64 EEG channels are being streamed frm your Biosignal Processor</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="mi">128</span><span class="p">;</span> <span class="c">% informing bossbox that 128 EEG channels are being streamed frm your Biosignal Processor</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="mi">5</span><span class="p">;</span> <span class="c">% informing bossbox that 5 EEG channels are being streamed frm your Biosignal Processor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="aux-channels">
+<h2>aux_channels<a class="headerlink" href="#aux-channels" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id16">
+<h3>Description<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>bossdevice can work on maximum of 8 Auxiliary/Biopolar/EMG channels, however the minimum number of channels required to work with Auxiliary Channels associated features of bossdevice have been kept flexible and can be defined as in number of Aux cannnels being streamed from your Biosignal Processor.</p>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Auxiliary channels should always be the last 8 or N channels in your Protocol of Biosignal Processor otherwise bossdevice will assume them to be EEG channels</p>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>Syntax<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">aux_channels</span><span class="p">=[</span><span class="n">number_of_streaming_aux_channels</span><span class="p">]</span> <span class="c">% [number_of_streaming_eeg_channels] is an integer from 1 up till 8.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>Example<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="mi">8</span><span class="p">;</span> <span class="c">% informing bossbox that 8 aux/Emg/Bipolar channels are being streamed frm your Biosignal Processor</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">eeg_channels</span><span class="p">=</span><span class="mi">2</span><span class="p">;</span> <span class="c">% informing bossbox that 2 aux/EMG/Bipolar channels are being</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="id19">
+<h2>aux_channels<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id20">
+<h3>Description<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Spatial filtering of the signals is an important step before commencing real-time brain states detection. The bossdevice allows to specify two different spatially filtered channels and can detect brain states (based on the target phase &amp; amplitude) for both of these spatial filtered channels in parallel. If any one of them is specified then the other one is ignored and assigned 0 weights. The index of eeg_channels being streamed from the Biosignal processor e.g. ActiCHamp or NeurOne corrosponds to the index of the weights matrix explained below.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id21">
+<h3>Syntax<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">spatial_filter_weights</span><span class="p">=[</span><span class="n">weights_for_both_channels</span><span class="p">]</span>
+<span class="c">%[weights_for_both_channels] is a Nx2 matrix where N is Number of EEG channels specified before (see eeg_channels) and the first column is first spatially filtered channel, similarly the second column is the second channel. Each element of the column vector is a &quot;normalized weight&quot; w.r.t. particular column such that the sum of all weights of a particular channel is zero.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h3>Example<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% assume that there are 5 EEG channels</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">spatial_filter_weights</span><span class="p">=[</span><span class="mi">0</span><span class="p">;</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">;</span> <span class="mi">0</span><span class="p">];</span> <span class="c">% the channel 1 will be assigned the given weights and all the eeg_channels for 2nd spatially filtered channel would have 0 weights.</span>
+<span class="c">% assume that there are 3 EEG channels</span>
+<span class="n">bd</span><span class="p">.</span><span class="n">spatial_filter_weights</span><span class="p">=[</span><span class="mi">0</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">;</span> <span class="n">1</span> <span class="s">1</span><span class="p">;</span> <span class="n">0</span> <span class="s">-0.5]</span><span class="p">;</span> <span class="c">% the channel 1 will be assigned the weights given on first column and channel 2 will be assigned the weights given on 2nd column.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="phase-target">
+<h2>phase_target<a class="headerlink" href="#phase-target" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id23">
+<h3>Description<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>bossdevice contains 3 built in Oscillatory phase prediction models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time phase detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel. This method allows to define a target phase in radians for a particular frequency band.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id24">
+<h3>Syntax<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_target</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">phase_angle_in_radians</span> <span class="c">% sets target phase of Alpha Oscillation</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">phase_target</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">phase_angle_in_radians</span> <span class="c">% sets target phase of Theta Oscillation</span>
+<span class="n">obj</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">phase_target</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">phase_angle_in_radians</span> <span class="c">% sets target phase of Beta Oscillation</span>
+<span class="c">% [spatial_filter_channel_number] is an integer having value 1 or 2.</span>
+<span class="c">% [phase_angle_in_radians] is 0 for Peak, pi for Trough, -pi/2 for Rising Flank &amp; +pi/2 for Falling Flank</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="id51">
+<img alt="_images/Figure10_phases.png" src="_images/Figure10_phases.png" />
+<p class="caption"><span class="caption-text">Radian values of several target phases in bossdevice research</span><a class="headerlink" href="#id51" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="id25">
+<h3>Example<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_target</span><span class="p">(</span><span class="mi">1</span><span class="p">)=</span><span class="mi">0</span><span class="p">;</span> <span class="c">% bossdevice is loaded to detect peak (0 radians) from first spatially filtered channel  with the assumption that the Oscillation is in Alpha frequency band</span>
+<span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">phase_target</span><span class="p">(</span><span class="mi">2</span><span class="p">)=</span><span class="nb">pi</span><span class="p">;</span> <span class="c">% bossdevice is loaded to detect trough(pi radians) from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="phase-plusminus">
+<h2>phase_plusminus<a class="headerlink" href="#phase-plusminus" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id26">
+<h3>Description<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Defining absolute target phase angles in order to detect a brain state is often prone to error mainly due to the resolution of data obtained after sampling rate transition. In order to overcome this digitization resolution error another parameter has to be defined such that the vicinities of the target phase shall be made clear to the detection algorithm. For an instance, while detecting a 0 radians phase, the phase vector would probably look like this [-0.001324 -0.00234 0.00243 0.004324], and since none of them are mathematically equivalent to zero therefore in order to not allow to skip such Oscillatory Peak events and to increase the accuracy of the phase detection, a tolerance value is to be provided.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id27">
+<h3>Syntax<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">phase_tolerance_in_radians</span> <span class="c">% sets target phase tolerance of Alpha Oscillation</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">phase_tolerance_in_radians</span> <span class="c">% sets target phase tolerance of Theta Oscillation</span>
+<span class="n">obj</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">phase_tolerance_in_radians</span> <span class="c">% sets target phase of Beta Oscillation</span>
+<span class="c">% [spatial_filter_channel_number] is an integer having value 1 or 2.</span>
+<span class="c">%Note: While targeting a random phase, the tolerance could go as high as possible i.e. pi radians or Nxpi radians e.g. 2pi etc</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h3>Example<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">(</span><span class="mi">1</span><span class="p">)=</span><span class="nb">pi</span><span class="o">/</span><span class="mi">40</span><span class="p">;</span> <span class="c">% bossdevice is loaded to detect the setted target phase with a tolerance of pi/40 radians from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band</span>
+<span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">phase_plusminus</span><span class="p">(</span><span class="mi">2</span><span class="p">)=</span><span class="nb">pi</span><span class="o">/</span><span class="mi">70</span><span class="p">;</span> <span class="c">% ossdevice is loaded to detect the setted target phase with a tolerance of pi/70 radians from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="amplitude-min">
+<h2>amplitude_min<a class="headerlink" href="#amplitude-min" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id29">
+<h3>Description<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Defining minimum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define minimum amplitude threshold in micro volts that must be reached along with other brain state associated conditions such as maximum amplitude, phase target, and phase tolerance in order to be able to declare the brain state as detected and trigger further sequence of events. bossdevice contains 3 built in Oscillatory minimum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time minimum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id30">
+<h3>Syntax<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">amplitude_min</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">min_amplitude_microV</span> <span class="c">% sets minimum amplitude threshold of Alpha Oscillation</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">amplitude_min</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">min_amplitude_microV</span> <span class="c">% sets minimum amplitude threshold of Theta Oscillation</span>
+<span class="n">obj</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">amplitude_min</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">min_amplitude_microV</span> <span class="c">% sets minimum amplitude threshold of Beta Oscillation</span>
+<span class="c">% [spatial_filter_channel_number] is an integer having value 1 or 2.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id31">
+<h3>Example<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">amplitude_min</span><span class="p">(</span><span class="mi">1</span><span class="p">)=</span><span class="mi">1000</span><span class="p">;</span> <span class="c">% bossdevice is loaded to monitor the specified minimum amplitude threshold from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band</span>
+<span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">amplitude_min</span><span class="p">(</span><span class="mi">2</span><span class="p">)=</span><span class="mf">1e5</span><span class="p">;</span> <span class="c">% bossdevice is loaded to monitor the specified minimum amplitude threshold from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="amplitude-max">
+<h2>amplitude_max<a class="headerlink" href="#amplitude-max" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id32">
+<h3>Description<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Defining maximum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define maximum amplitude threshold in micro volts that must be not be reached in order to be able to declare the brain state as detected and trigger further sequence of events. The bossdevice contains 3 built in Oscillatory maximum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time maximum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id33">
+<h3>Syntax<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">amplitude_max</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">max_amplitude_microV</span> <span class="c">% sets maximum amplitude threshold of Alpha Oscillation</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">amplitude_max</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">max_amplitude_microV</span> <span class="c">% sets maximum amplitude threshold of Theta Oscillation</span>
+<span class="n">obj</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">amplitude_max</span><span class="p">([</span><span class="n">spatial_filter_channel_number</span><span class="p">])=</span><span class="n">max_amplitude_microV</span> <span class="c">% sets maximum amplitude threshold of Beta Oscillation</span>
+<span class="c">% [spatial_filter_channel_number] is an integer having value 1 or 2.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id34">
+<h3>Example<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">amplitude_max</span><span class="p">(</span><span class="mi">1</span><span class="p">)=</span><span class="mi">1000</span><span class="p">;</span> <span class="c">% bossdevice is loaded to monitor the specified maximum amplitude threshold from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band</span>
+<span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">amplitude_max</span><span class="p">(</span><span class="mi">2</span><span class="p">)=</span><span class="mf">1e5</span><span class="p">;</span> <span class="c">% bossdevice is loaded to monitor the specified maximum amplitude threshold from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="lpf-fir-coeffs">
+<h2>lpf_fir_coeffs<a class="headerlink" href="#lpf-fir-coeffs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id35">
+<h3>Description<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Spatially filtered channel’s signals described in the “spatial_filter_weights” function are passed through a low pass FIR filter for anti-aliasing. The coefficients of this filter can be specified using this function provided that the filter has an order of 100 at maximum.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id36">
+<h3>Syntax<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">lpf_fir_coeffs</span> <span class="p">=</span> <span class="p">[</span><span class="n">filter_coefficients</span><span class="p">];</span> <span class="c">%for Alpha</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">lpf_fir_coeffs</span> <span class="p">=</span> <span class="p">[</span><span class="n">filter_coefficients</span><span class="p">];</span> <span class="c">%for Theta</span>
+<span class="n">obj</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">lpf_fir_coeffs</span> <span class="p">=</span> <span class="p">[</span><span class="n">filter_coefficients</span><span class="p">];</span> <span class="c">%for Beta</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sampling-rates">
+<h3>Sampling Rates<a class="headerlink" href="#sampling-rates" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Oscillation</span>         <span class="s">Sampling</span> <span class="s">Rate</span>
+<span class="n">Alpha</span> <span class="p">(</span><span class="mi">8</span><span class="o">-</span><span class="mi">14</span> <span class="n">Hz</span><span class="p">)</span>         <span class="mi">500</span> <span class="n">Hz</span>
+<span class="n">Theta</span> <span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="mi">8</span> <span class="n">Hz</span><span class="p">)</span>          <span class="mi">250</span> <span class="n">Hz</span>
+<span class="n">Beta</span><span class="p">(</span><span class="mi">14</span><span class="o">-</span><span class="mi">30</span> <span class="n">Hz</span><span class="p">)</span>          <span class="mi">1000</span> <span class="n">Hz</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id37">
+<h3>Example<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">lpf_fir_coeffs</span> <span class="p">=</span>  <span class="p">[</span><span class="n">filter_coefficients</span><span class="p">];</span>
+<span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">lpf_fir_coeffs</span> <span class="p">=</span>  <span class="p">[</span><span class="n">filter_coefficients</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="bpf-fir-coeffs">
+<h2>bpf_fir_coeffs<a class="headerlink" href="#bpf-fir-coeffs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id38">
+<h3>Description<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Low pass filtered channel’s signal described in the “lpf_fir_coeffs” function is then pass through an FIR Band Pass filter. The coefficients of this filter can be specified using this function provided that the filter has an order of 100 at maximum.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id39">
+<h3>Syntax<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="p">[</span><span class="n">filter_coefficients</span><span class="p">];</span> <span class="c">%for Alpha</span>
+<span class="n">obj</span><span class="p">.</span><span class="n">theta</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="p">[</span><span class="n">filter_coefficients</span><span class="p">];</span> <span class="c">%for Theta</span>
+<span class="n">obj</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="p">[</span><span class="n">filter_coefficients</span><span class="p">];</span> <span class="c">%for Beta</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id40">
+<h3>Sampling Rates<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Oscillation</span>         <span class="s">Sampling</span> <span class="s">Rate</span>
+<span class="n">Alpha</span> <span class="p">(</span><span class="mi">8</span><span class="o">-</span><span class="mi">14</span> <span class="n">Hz</span><span class="p">)</span>         <span class="mi">500</span> <span class="n">Hz</span>
+<span class="n">Theta</span> <span class="p">(</span><span class="mi">4</span><span class="o">-</span><span class="mi">8</span> <span class="n">Hz</span><span class="p">)</span>          <span class="mi">250</span> <span class="n">Hz</span>
+<span class="n">Beta</span><span class="p">(</span><span class="mi">14</span><span class="o">-</span><span class="mi">30</span> <span class="n">Hz</span><span class="p">)</span>          <span class="mi">1000</span> <span class="n">Hz</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id41">
+<h3>Example<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">alpha</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">firls</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="p">(</span><span class="mi">11</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span><span class="mi">2</span> <span class="o">+</span><span class="mi">5</span><span class="p">])</span> <span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">/</span><span class="p">(</span><span class="mi">500</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span> <span class="p">);</span> <span class="c">%creates FIR Band Pass filter of order &quot;80&quot; , around peak frequency of 11 Hz and assigned it to Alpha model of bossdevice</span>
+<span class="n">bd</span><span class="p">.</span><span class="nb">beta</span><span class="p">.</span><span class="n">bpf_fir_coeffs</span> <span class="p">=</span> <span class="n">firls</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="p">(</span><span class="mi">19</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span> <span class="o">-</span><span class="mi">2</span> <span class="o">+</span><span class="mi">2</span> <span class="o">+</span><span class="mi">5</span><span class="p">])</span> <span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">/</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span> <span class="p">);</span> <span class="c">%creates FIR Band Pass filter of order &quot;100&quot; , around peak frequency of 19 Hz and assigned it to Beta model of bossdevice</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="arm">
+<h2>arm<a class="headerlink" href="#arm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id42">
+<h3>Description<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
+<p>Arming bossdevice would allow bossdevice to actively search for the Brain states already set into it and generate the trigger sequence configured using “configure_time_port_marker” upon every instance of detection.</p>
+</div>
+<div class="section" id="id43">
+<h3>Syntax<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">armed</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id44">
+<h3>Example<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">armed</span><span class="p">;</span> <span class="c">% will set bossdevice to detect the specified brain states and trigger sequence</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="disarm">
+<h2>disarm<a class="headerlink" href="#disarm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id45">
+<h3>Description<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
+<p>Disarming bossdevice would allow bossdevice to stop search for the Brain states already by now “Armed’ into it and immediately stops the generation of the trigger sequence configured using “configure_time_port_marker” .</p>
+</div>
+<div class="section" id="id46">
+<h3>Syntax<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">disarm</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id47">
+<h3>Example<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">disarm</span><span class="p">;</span> <span class="c">% will stop bossdevice to detect the specified brain states and stop ongoing trigger sequence</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="sample-and-hold-period">
+<h2>sample_and_hold_period<a class="headerlink" href="#sample-and-hold-period" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id48">
+<h3>Description<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
+<p>Upon an artifactual trigger event such as Trans-cranial Magnetic Stimulation (TMS) pulse artifact etc., the data gets distorted and is accumulated with a lot of noise, in order to hold the samples for a specified period of time, sample and hold period method can be helpful. This is also helpful to keep the visual output of the bossdevice clean and tidy.</p>
+</div>
+<div class="section" id="id49">
+<h3>Syntax<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">sample_and_hold_period</span> <span class="p">=</span> <span class="p">[</span><span class="n">no_of_sample_to_hold</span><span class="p">];</span> <span class="c">% no_of_sample_to_hold are calculated at the rate of 5KHz</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id50">
+<h3>Example<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">sample_and_hold_period</span> <span class="p">=</span> <span class="mi">500</span><span class="p">;</span> <span class="c">% hold the samples for 100 ms</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="5_demo_scripts.html" class="btn btn-neutral float-right" title="Demo Scripts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="3_setup_biosignal_amplifier.html" class="btn btn-neutral float-left" title="Setup biosignal Amplifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, sync2brain GmbH.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
