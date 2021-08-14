@@ -10,16 +10,22 @@ Introduction to bossdevice research
 ============================================
 
 
-The bossdevice research is a real-time digital signal processor consisting of hardware and software algorithms. It is designed to read-in a real-time raw data stream from a biosignal amplifier (electroencephalography, EEG), to continuously analyze the data and to detect patterns in this data based on oscillations in different frequencies. When such a pattern is detected, the device indicates this through a standard output port. This enables a stimulation device (such as a sound generator) to be triggered in response to a specific biosignal pattern occurring. The device can be programmed by the user to detect different patterns.
+bossdevice RESEARCH is a real-time digital signal processor consisting of hardware and software algorithms. It is designed to read-in a real-time raw data stream from a biosignal amplifier (electroencephalography, EEG), to continuously analyze this data and to detect patterns based on oscillations in different frequencies. When such a specific bio-signal pattern is detected, the device indicates this through a standard output port. This enables a connected device to know with millisecond accuracy when a specific bio-signal pattern occurs. 
 
 .. important::
 
-    The bossdevice research is not a medical device. It may not be used outside of research and it may not be used in trials involving patients. It is not intended as an accessory to a medical device or to control a medical device. It may only be connected to a stimulation device if the stimulation device provides an input port for the purpose of receiving information regarding the desired timing of stimulation. Whether or not a stimulus is then generated in response to a signal from the bossdevice is determined by the stimulation device.
-
+    bossdevice RESEARCH is not a medical device. It may not be used outside of research
+    and it may not be used in trials involving patients. It is not intended as an accessory
+    to a medical device or to control a medical device. It may only be connected to a
+    medical device through a connection that is not considered a “control” connection
+    but only an information transmission. What the connected device does in response
+    to information received from the bossdevice is determined by the connected device
+    only.
 
 
 .. figure:: figures/Fig1_bossdeviceandneurone.png
     :align: center
 
-    The bossdevice research placed along with Bittim NeurOne biosignal amplifier.
+    The bossdevice research placed along with Bittium NeurOne biosignal amplifier.
 
+.. toctree::

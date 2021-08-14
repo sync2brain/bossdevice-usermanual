@@ -429,3 +429,5 @@ Example
 
     bd.sample_and_hold_period = 500; % hold the samples for 100 ms  
 ----
+
+.. toctree::

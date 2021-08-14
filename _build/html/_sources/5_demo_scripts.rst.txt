@@ -503,3 +503,5 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
     fprintf('loop delay is %2.1f ms\n', (find(sc.Data(:,1), 1)-50)/5)
 
 ----
+
+.. toctree::

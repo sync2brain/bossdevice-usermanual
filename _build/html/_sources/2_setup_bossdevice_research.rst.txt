@@ -16,7 +16,7 @@ Setup bossdevice research
 
 
 
-The bossdevice plugs into a compatible EEG amplifier on the input side and generates a fuzzy logic based binary signal on the output side. It reads a real-time biosignal data stream and generates trigger signal when a pre-defined EEG-state is detected. The bossdevice is programmable from Matlab and enables complex experiments to be fully automated. Setting up the device involves several steps and the next sections descibre their details. 
+The bossdevice plugs into a compatible EEG amplifier on the input side and generates a fuzzy logic based binary signal on the output side. It reads a real-time biosignal data stream and generates a  signal when a pre-defined EEG-state is detected. The bossdevice is programmable from Matlab and enables complex experiments to be fully automated. Setting up the device involves several steps and the next sections descibre their details. 
 
 Connecting with Biosignal Amplifier
 ====================================
@@ -66,14 +66,14 @@ Similar approach can also be used on Linux/MAC OS to setup the requried IP netwo
 
 Connecting with Synchronizing Devices
 ====================================
-The bossdevice research can send up to 4 TTL trigger signals to connected synchronizing devices from its output port. Search the “TRIGGER OUT 1-4” BNC ports at back plate of the bossdevice research and connect it to the BNC ports of your intended device.
+The bossdevice research can send up to 4 TTL output signals to connected synchronizing devices from its output port. Search the TTL OUT 1-4” BNC ports at back plate of the bossdevice research and connect it to the BNC ports of your intended device.
 
 .. figure:: figures/Figure6_ttlports.png
     :align: center
 
-    Ports available on the bossdevice (see the BNC output ports 1-4 named as TRIGGER OUT 1 till 4).
+    Ports available on the bossdevice (see the BNC output ports 1-4 named as TTL OUT 1 till 4).
 
-In addition to the TTL output the 8 bit trigger LPT marker ports can also be connected to the bossdevice research for a numerical input or can also be output from bossdevice research to write synchronizing markers to the raw EEG data or for any other purpose.
+In addition to the TTL output the 8 bit LPT marker ports can also be connected to the bossdevice research for a numerical input or can also be output from bossdevice research to write synchronizing markers to the raw EEG data or for any other purpose.
 
 .. figure:: figures/Figure7_markersport.png
     :align: center
@@ -105,3 +105,4 @@ Switching ON and OFF
 Since the device is all setup, the device can be switched on using the push button at on of the sides of bossdevice. When switched off, the LED present on the button is not illuminated while when it is switched on, a blue LED is illuminated.
 
 
+.. toctree::

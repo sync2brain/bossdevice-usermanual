@@ -56,3 +56,5 @@ The Target UDP Port should be changed to 25000 from default of 50000, and the re
     :align: center
 
      On the Real Time Channels tab of NeurOne protocol, go to the Settings and then set the Target UDP Port and Send Triggers as Channels, copy all the settings as shown in this figure to the respective NeuroOne protocol.
+
+.. toctree::

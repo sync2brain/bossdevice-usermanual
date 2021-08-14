@@ -56,3 +56,6 @@ Requirements:
 .. important::
 
     Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and MATLAB is confused about choosing one therefore it is recommended to change the current directory of MATLAB to the correct path of bossdevice latest API.
+
+
+.. toctree::

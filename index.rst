@@ -11,10 +11,12 @@ User Manual - bossdevice research
 
 
 .. toctree::
+   :numbered:
    :caption: Table of Contents
    :titlesonly:
 
    1_introduction_to_bossdevice_research
+   1b_GettingStartedCheckList
    2_setup_bossdevice_research
    3_setup_biosignal_amplifier
    4_api_documentation
