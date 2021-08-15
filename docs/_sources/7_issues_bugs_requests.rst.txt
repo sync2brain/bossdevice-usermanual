@@ -46,3 +46,5 @@ Use Case Scenarios
 .. important::
 
     Use cases, previous research papers that might have implemented those methods or a brief description about the feature requests can help our developers to create the smartest solution for you.
+
+.. toctree::
