@@ -14,11 +14,11 @@ Demo Scripts
    5_demo_scripts
 
 
-Open Loop Jittered Stimulation
+Open Loop Jittered TTL Output
 ===============================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output.
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 .. code-block:: matlab
 
@@ -26,43 +26,42 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
     ITI=[4 6]; %ITI is seconds - a random number between these two values
     %% Initializing bossdevice research API 
     bd=bossdevice;
-    %% Approach 1 - For Loop Based Open Loop Stimulation
-    bd.configure_time_port_marker([0 1 1]); %Configuring Trigger Sequence in [Time Port Marker] format  
+    %% Approach 1 - For Loop Based Open Loop TTL output generation
+    bd.configure_time_port_marker([0 1 1]); %Configuring TTL output Sequence in [Time Port Marker] format  
     for TrialNumber=1:NumberOfTrials
-        bd.manualTrigger
-        disp(['Triggered Trial #' num2str(TrialNumber)])
-        min_inter_trig_interval= ITI(1)+ (ITI(2)-ITI(1)).*rand(1,1); %Assigning New Random ITI for this Trial to the bossdevice research
-        pause(min_inter_trig_interval) %Wait for next trial start
+        bd.manualPulse
+        disp(['Generated Trial #' num2str(TrialNumber)])
+        min_inter_pulse_interval= ITI(1)+ (ITI(2)-ITI(1)).*rand(1,1); %Assigning New Random ITI for this Trial to the bossdevice research
+        pause(min_inter_pulse_interval) %Wait for next trial start
     end
     disp('Trials Completed')
-    %% Approach 2 - bossdevice research Sequence Generator Based Open Loop Stimulation
+    %% Approach 2 - bossdevice research Sequence Generator Based Open Loop TTL output
     time_port_marker_sequence=[];
     Time=0;
     time_port_marker_sequence(NumberOfTrials,3)=0; %Pre filling the array 
     for TrialNumber=1:NumberOfTrials
         Time=Time+ITI(1)+ (ITI(2)-ITI(1)).*rand(1,1); %Generating Sequence of Jittered ITIs for all Trials 
-        Port=1; %In order to generatre trigger always on first port , use 2 for 2nd port and 3 for third port
+        Port=1; %In order to generatre TTL output always on first port , use 2 for 2nd port and 3 for third port
         Marker=TrialNumber; 
         time_port_marker_sequence(TrialNumber,:)=[Time Port Marker];
     end
     bd.configure_time_port_marker(time_port_marker_sequence); %Assigning Pregenerated sequence to the bossdevice research 
-    bd.manualTrigger % Triggering the bossdevice research to start sequence TTL Output Generation
-    disp('Trigger Sequence Started by bossdevice research')
+    bd.manualPulse % Generating the TTL output of the bossdevice research to start sequence TTL Output Generation
+    disp('TTL output Sequence Started by bossdevice research')
 
 -----
 
-mu-Rhythm Phase Locked Triggering
+mu-Rhythm Phase Locked TTL Output
 =================================
-This demo script uses bossdevice to deliver mu Rising or Falling Flank Phase locked Trigger outputs
+This demo script uses bossdevice to deliver mu Rising or Falling Flank Phase locked TTL outputs
 Resources: 1) bossdevice Switched On
 2) bossdevice Open Source MATLAB API
 3) Biosignal Amplifier streaming atleast 5 EEG Channels
-4) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
 
 .. code-block:: matlab
 
    no_of_trials=10;
-    minimium_inter_trigger_interval=5; %s
+    minimium_inter_pulse_interval=5; %s
     phase=[+pi/2 -pi/2]; %[falling_flank rising_flank]
     phase_tolerance=pi/40; 
     individual_peak_frequency=11; % Hz
@@ -91,24 +90,24 @@ Resources: 1) bossdevice Switched On
     bd.spatial_filter_weights=spatial_filter_weights;
     bd.alpha.bpf_fir_coeffs = bpf_fir_coeffs;
 
-    %% Controlling bossdevice research for mu Alpha Phase Locked Triggering
+    %% Controlling bossdevice research for mu Alpha Phase Locked TTL Output
     condition_index=0;
     while (condition_index <= no_of_trials)
         if(strcmp(bb.armed, 'no'))
-            bb.triggers_remaining = 1;
+            bb.pulses_remaining = 1;
             bb.alpha.phase_target(1) = phase(randi(1:numel(phase), 1));
             bb.alpha.phase_plusminus(1) = phase_tolerance;
             bb.configure_time_port_marker(([0, 1, 0]))
-            bb.min_inter_trig_interval = minimium_inter_trigger_interval;
+            bb.min_inter_pulse_interval = minimium_inter_pulse_interval;
             pause(0.1)
             bb.arm;
         end
         % trigger has been executed, move to the next condition
-        if(bb.triggers_remaining == 0)
+        if(bb.pulses_remaining == 0)
             condition_index = condition_index + 1;
             bb.disarm;
             disp (['Triggered around ' (num2str(rad2deg(bb.alpha.phase_target(1)))) ' degrees Phase angle.'])
-            pause(minimium_inter_trigger_interval)
+            pause(minimium_inter_pulse_interval)
         end
         pause(0.01);
     end
@@ -118,18 +117,18 @@ Resources: 1) bossdevice Switched On
 
 -----
 
-Phase Triggered Plasticity Protocol
+Phase Locked Plasticity Protocol
 ===================================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loopTTL output
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 .. code-block:: matlab
 
    no_of_trials=25;
     no_of_pulses=100; 
     pulse_frequency=100; %Hz
-    minimium_inter_trigger_interval=5; %s
+    minimium_inter_pulse_interval=5; %s
     phase=0; %peak
     phase_tolerance=pi/40; 
     individual_peak_frequency=11; % Hz
@@ -170,40 +169,40 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 
     %% For plasticitz, we have the same condition, multiple times, we can run everything on the device:
-            bd.triggers_remaining = 100;
+            bd.pulses_remaining = 100;
             bd.alpha.phase_target(1) = phase;
             bd.alpha.phase_plusminus(1) = phase_tolerance;
             bd.configure_time_port_marker(plasticity_protocol_sequence)
-            bd.min_inter_trig_interval = minimium_inter_trigger_interval;
+            bd.min_inter_pulse_interval = minimium_inter_pulse_interval;
             pause(0.1)
             bd.arm;
 
-            fprintf('\nSystem running, pulses remaining: %03i', bd.triggers_remaining)
-            while (bd.triggers_remaining > 0)
-                fprintf('\b\b\b%03i', bd.triggers_remaining);
+            fprintf('\nSystem running, pulses remaining: %03i', bd.pulses_remaining)
+            while (bd.pulses_remaining > 0)
+                fprintf('\b\b\b%03i', bd.pulses_remaining);
                 pause(0.1)
             end
             fprintf('\b\b\bDone\n')
 
 
-    %% Controlling bossdevice research for mu Alpha Phase Locked Triggering % this could be for excitability, where we have interleaved different conditions
+    %% Controlling bossdevice research for mu Alpha Phase Locked TTL Ouput % this could be for excitability, where we have interleaved different conditions
     condition_index=0;
     while (condition_index <= no_of_trials)
         if(strcmp(bd.armed, 'no'))
-            bd.triggers_remaining = 1;
+            bd.pulses_remaining = 1;
             bd.alpha.phase_target(1) = phase;
             bd.alpha.phase_plusminus(1) = phase_tolerance;
             bd.configure_time_port_marker(plasticity_protocol_sequence)
-            bd.min_inter_trig_interval = minimium_inter_trigger_interval;
+            bd.min_inter_pulse_interval = minimium_inter_pulse_interval;
             pause(0.1)
             bd.arm;
         end
-        % trigger has been executed, move to the next condition
-        if(bd.triggers_remaining == 0)
+        % TTL output has been generated, move to the next condition
+        if(bd.pulses_remaining == 0)
             condition_index = condition_index + 1;
             bd.disarm;
-            disp Triggered!
-            pause(minimium_inter_trigger_interval)
+            disp TTL_Output_Generated!
+            pause(minimium_inter_pulse_interval)
         end
         pause(0.01);
     end
@@ -215,14 +214,14 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 Real-Time Oscillation Amplitude Threshold Tracking
 ==================================================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 .. code-block:: matlab
 
     no_of_trials=25;
-    minimium_inter_trigger_interval=4; %s
+    minimium_inter_pulse_interval=4; %s
     phase=0; %[positive]
     phase_tolerance=pi/40;
     amplitude_threshold=[25 75]; %[min max] in percentile
@@ -283,7 +282,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
     sc(2).TriggerMode = 'Scope';
     sc(2).TriggerScope = AMP_TRACING_SCOPES_IDS(1);
 
-    start(sc); % now they are ready for being triggered
+    start(sc); % now they are ready for TTL output generation
 
     activeScope = 1;
     mAmplitudeScopeCircBufTotalBlocks = amplitude_assignment_period;
@@ -294,7 +293,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
     trigger(sc(activeScope));
 
-    %% Controlling bossdevice research for mu Alpha Phase Locked Triggering
+    %% Controlling bossdevice research for mu Alpha Phase Locked TTL Output
     condition_index=0;
     while (condition_index <= no_of_trials)
         if (strcmp(sc(activeScope).Status, 'Finished') || ...
@@ -336,7 +335,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
             
             %tic
             
-            % remove post-stimulus data
+            % remove post-TTL pulse data
             amplitude_clean = circular_buffer_data(1, circular_buffer_data(2,:) == 1);
             
             % calculate percentiles
@@ -368,19 +367,19 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
             
         end % handle the amplitude tracking
         if(strcmp(bd.armed, 'no'))
-            bd.triggers_remaining = 1;
+            bd.pulses_remaining = 1;
             bd.alpha.phase_target(1) = phase(randi(1:numel(phase), 1));
             bd.alpha.phase_plusminus(1) = phase_tolerance;
             bd.configure_time_port_marker(([0, 1, 0]))
-            bd.min_inter_trig_interval = minimium_inter_trigger_interval;
+            bd.min_inter_pulse_interval = minimium_inter_pulse_interval;
             pause(0.1)
             bd.arm;
         end
-        % trigger has been executed, move to the next condition
-        if(bd.triggers_remaining == 0)
+        % TTL output has been generated, move to the next condition
+        if(bd.pulses_remaining == 0)
             condition_index = condition_index + 1;
             bd.disarm;
-            disp Triggered!
+            disp TTL_Output_Has_Been_Generated!
         end
         pause(0.01);
     end
@@ -391,9 +390,9 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 Phase Prediction Error Measurement
 ==================================================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 .. code-block:: matlab
 
@@ -462,9 +461,9 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 Loop Latency Measurement
 ==================================================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 .. code-block:: matlab
     
@@ -484,18 +483,18 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
     sc.TriggerLevel = 0.5;
     sc.TriggerSlope = 'Rising';
 
-    %% Generating Trigger
+    %% Generating TTL Output
 
     fprintf('\nTesting... ')
     start(sc);
     pause(0.1); % give the scope time to pre-aquire
-    assert(strcmp(sc.Status, 'Ready for being Triggered'));
+    assert(strcmp(sc.Status, 'Ready for TTL Output generation'));
 
     s = [0, 1, 0];
     s(1000,3) = 0; % fill with zeros (TODO: this should be done in the API)
     bd.generator_sequence = s;
 
-    bd.manualTrigger;
+    bd.;
 
     pause(0.1)
     assert(strcmp(sc.Status, 'Finished'))

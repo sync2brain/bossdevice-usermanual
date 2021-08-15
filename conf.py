@@ -19,11 +19,11 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'User Manual - bossdevice research'
-copyright = '2021, sync2brain GmbH'
+copyright = 'Version 15-08-2021, sync2brain GmbH'
 author = 'sync2brain GmbH'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+release = '15-08-2021'
 
 
 # -- General configuration ---------------------------------------------------

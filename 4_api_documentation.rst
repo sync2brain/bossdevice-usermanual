@@ -13,18 +13,18 @@ Matlab API Documentation
 
    4_api_documentation
 
-The bossdevice API is a set of low-level functions that allows user to control the BOSS device in a user-friendly programmable manner. The combined execution of such low level functions allows the bossdevice to perform certain high level tasks that could be amongst but not limited to generating various number of trigger outputs, timed in a certain fashion, triggering at a certain Phase of an ongoing EEG Oscillation and guided by the Oscillation Amplitude Thresholds.
+The bossdevice API is a set of low-level functions that allows user to control the bossdevice in a user-friendly programmable manner. The combined execution of such low level functions allows the bossdevice to perform certain high level tasks that could be amongst but not limited to generating various number and combination of TTL outputs, timed in a certain fashion, TTL output at a certain Phase of an ongoing EEG Oscillation and guided by the Oscillation Amplitude Thresholds.
 
 .. important::
 
-    Please downloaded Matlab 2021a, Simulink Real-Time and Simulink Coder Adds-On from Matlab toolboxes, download the repository from master branch as detailed on "Downloads & Dependencies" chapter of the user manual. Add the bossdevice firmware and repository to the search path of Matlab 2021a. Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and Matlab 2021a is confused about choosing one therefore it is recommended to change the current directory of Matlab 2021a to the correct path of bossdevice latest API.
+    Please downloaded Matlab 2021a, Simulink Real-Time and Simulink Coder, Simulink and MATLAB Coder Adds-On from Matlab toolboxes, download the repository from master branch as detailed on "Downloads & Dependencies" chapter of the user manual. Add the bossdevice firmware and repository to the search path of Matlab 2021a. Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and Matlab 2021a is confused about choosing one therefore it is recommended to change the current directory of Matlab 2021a to the correct path of bossdevice latest API.
 
 
 Initialization
 ===============================
 Description
 -----------
-BOSS Device API can be initialized as a MATLAB Class object and provides access to its methods and functions to generate various trigger outputs and define multiple brain states upon which the predefined triggers to be released. 
+The bossdevice API can be initialized as a MATLAB Class object and provides access to its methods and functions to generate various TTL outputs and define multiple brain states upon which the predefined TTL output sequence to be released. 
 
 Syntax
 ------
@@ -47,7 +47,7 @@ sendPulse
 
 Description
 -----------
-sendPulse method of the bossdevice class allows you to generate 1 pulse at a specified Output port (out of 4) of the bossdevice.
+sendPulse method of the bossdevice class allows you to generate 1 TTL pusle at a specified Output port (out of 4) of the bossdevice.
 
 Syntax
 ------
@@ -64,24 +64,24 @@ Example
 
 ----
 
-manualTrigger
+manualPulse
 ===============================
 Description
 -----------
-manualTrigger method of bossdevice allows you to deliver a pre-built sequence of up to 1500 triggers where each trigger is timed relative to the onset of manualTrigger command, delivers on a specified Output port and also delivers an 8-bit marker assigned to each trigger as well.
-The pre-built sequence is generated using another command (see below: configure_time_port_marker) however the bossdevice starts delivering the pulses configured before when manualTrigger method is executed.
+manualPulse method of bossdevice allows you to deliver a pre-built sequence of up to 1500 TTL outputs where each TTL output is timed relative to the onset of manualPulse command, delivers on a specified Output port and also delivers an 8-bit marker assigned to each TTL output as well.
+The pre-built sequence is generated using another command (see below: configure_time_port_marker) however the bossdevice starts delivering the pulses configured before when manualPulse method is executed.
 
 Syntax
 ------
 .. code-block:: matlab
 
-    obj.manualTrigger % start the previously configured trigger sequences in [time port marker] style.
+    obj.manualPulse % start the previously configured TTL pulse sequences in [time port marker] style.
 
 Example
 -------
 .. code-block:: matlab
 
-    bd.manualTrigger
+    bd.manualPulse
 
 ----
 
@@ -89,22 +89,22 @@ configure_time_port_marker
 ===============================
 Description
 -----------
-configure_time_port_marker method of bossdevice allows you to prepare a sequence of triggers in [time port marker] vector style. Maximum of 1500 triggers can be loaded onto this configuration method. In order to prepare a single trigger in [time port marker] style, just give input argument as [0 1 1] vector.
-Each trigger in this vector has three elements , first index being time, second index being the port number of bossdevice to deliver the output pulse and the last index being the 8-bit event marker to be generated and written to the Biosignal processor for respective trigger.
+configure_time_port_marker method of bossdevice allows you to prepare a sequence of TTL output in [time port marker] vector style. Maximum of 1500 TTL outputs can be loaded onto this configuration method. In order to prepare a single TTL output in [time port marker] style, just give input argument as [0 1 1] vector.
+Each TTL output in this vector has three elements , first index being time, second index being the port number of bossdevice to deliver the output pulse and the last index being the 8-bit event marker to be generated and written to the Biosignal processor for respective TTL output.
 
 Syntax
 ------
 .. code-block:: matlab
 
-    obj.configure_time_port_marker([trigger_sequence_vector]
-    % [trigger_sequence vector] is an Nx3 vector , whereas N is number of triggers and the three elements being the time onset, port number and event marker
+    obj.configure_time_port_marker([ttloutput_sequence_vector]
+    % [ttloutput_sequence vector] is an Nx3 vector , whereas N is number of TTL outputs and the three elements being the time onset, port number and event marker
 
 Example
 -------
 .. code-block:: matlab
 
-    bd.configure_time_port_marker([2 3 144]) %configures a trigger sequence in which the pulse will be delivered 2 seconds after the manualTrigger command execution, on the 3rd port and event writes 144 marker on the Biosignal processor
-    bd.configure_time_port_marker([3 3 144;4 2 128])  %configures 2 trigger sequence in which the first pulse will be delivered 3 seconds after the manualTrigger command execution, on the 3rd port and will writes 144 marker on the Biosignal processor, and then the second pulse will be delivered 4 seconds after the manualTrigger command execution, on the 2nd port and writes 128 event marker on the Biosignal processor,
+    bd.configure_time_port_marker([2 3 144]) %configures a TTL output sequence in which the pulse will be delivered 2 seconds after the manualPulse command execution, on the 3rd port and event writes 144 marker on the Biosignal processor
+    bd.configure_time_port_marker([3 3 144;4 2 128])  %configures 2 TTL output sequences in which the first pulse will be delivered 3 seconds after the manualPulse command execution, on the 3rd port and will writes 144 marker on the Biosignal processor, and then the second pulse will be delivered 4 seconds after the manualPulse command execution, on the 2nd port and writes 128 event marker on the Biosignal processor,
 
 ----
 
@@ -112,14 +112,14 @@ stop
 ===============================
 Description
 -----------
-Quite often stopping of the trigger sequence is required before the sequence ends. the stop method allows you to stop further generation and delivery of any sequence loaded onto the trigger generator of the bossdevice.
-The last configured sequence can again be started by using “manualTrigger” method after the stop command.
+Quite often stopping the TTL output sequence is required before the already conigured and long sequence ends. The stop method allows you to stop further generation and delivery of any sequence loaded onto the TTL output generator of the bossdevice.
+The last configured sequence can again be started by using “manualPulse” method after the stop command.
 
 Syntax
 ------
 .. code-block:: matlab
 
-    obj.stop % stops the generation of output triggers from bossdevice however the class object remain intact.
+    obj.stop % stops the generation of output TTL pulses from bossdevice however the class object remain intact.
 
 
 Example
@@ -264,7 +264,7 @@ amplitude_min
 ===============================
 Description
 -----------
- Defining minimum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define minimum amplitude threshold in micro volts that must be reached along with other brain state associated conditions such as maximum amplitude, phase target, and phase tolerance in order to be able to declare the brain state as detected and trigger further sequence of events. bossdevice contains 3 built in Oscillatory minimum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time minimum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.
+ Defining minimum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define minimum amplitude threshold in micro volts that must be reached along with other brain state associated conditions such as maximum amplitude, phase target, and phase tolerance in order to be able to declare the brain state as detected and generate TTL output sequence. The bossdevice contains 3 built in Oscillatory minimum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time minimum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.
 
 Syntax
 ------
@@ -288,7 +288,7 @@ amplitude_max
 ===============================
 Description
 -----------
- Defining maximum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define maximum amplitude threshold in micro volts that must be not be reached in order to be able to declare the brain state as detected and trigger further sequence of events. The bossdevice contains 3 built in Oscillatory maximum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time maximum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.
+ Defining maximum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define maximum amplitude threshold in micro volts that must be not be reached in order to be able to declare the brain state as detected and generare TTL output sequence. The bossdevice contains 3 built in Oscillatory maximum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time maximum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.
 
 Syntax
 ------
@@ -374,7 +374,7 @@ arm
 ===============================
 Description
 -----------
-Arming bossdevice would allow bossdevice to actively search for the Brain states already set into it and generate the trigger sequence configured using “configure_time_port_marker” upon every instance of detection.
+Arming bossdevice would allow bossdevice to actively search for the Brain states already set into it and generate the TTL output sequence configured using “configure_time_port_marker” upon every instance of detection.
 
 Syntax
 ------
@@ -387,14 +387,14 @@ Example
 -------
 .. code-block:: matlab
 
-    bd.armed; % will set bossdevice to detect the specified brain states and trigger sequence 
+    bd.armed; % will set bossdevice to detect the specified brain states and TTL output sequence 
 ----
 
 disarm
 ===============================
 Description
 -----------
-Disarming bossdevice would allow bossdevice to stop search for the Brain states already by now “Armed’ into it and immediately stops the generation of the trigger sequence configured using “configure_time_port_marker” .
+Disarming bossdevice would allow bossdevice to stop search for the Brain states already by now “Armed’ into it and immediately stops the generation of the planned TTL output sequence configured using “configure_time_port_marker” .
 
 Syntax
 ------
@@ -407,14 +407,14 @@ Example
 -------
 .. code-block:: matlab
 
-    bd.disarm; % will stop bossdevice to detect the specified brain states and stop ongoing trigger sequence 
+    bd.disarm; % will stop bossdevice to detect the specified brain states and stop ongoing TTL output sequence 
 ----
 
 sample_and_hold_period
 ===============================
 Description
 -----------
-Upon an artifactual trigger event such as Trans-cranial Magnetic Stimulation (TMS) pulse artifact etc., the data gets distorted and is accumulated with a lot of noise, in order to hold the samples for a specified period of time, sample and hold period method can be helpful. This is also helpful to keep the visual output of the bossdevice clean and tidy.
+Upon an artifactual event such as pulse artifact etc., the data gets distorted and is accumulated with a lot of noise, in order to hold the samples for a specified period of time, sample and hold period method can be helpful. 
 
 Syntax
 ------
@@ -428,6 +428,25 @@ Example
 .. code-block:: matlab
 
     bd.sample_and_hold_period = 500; % hold the samples for 100 ms  
+----
+
+min_inter_pulse_interval
+===============================
+Description
+-----------
+Minimum inter pulse interval allows you to define the time period for which the bossdevice should wait before generating another TTL output.
+
+Syntax
+------
+.. code-block:: matlab
+
+    obj.min_inter_pulse_interval = [time_in_secodns]; % Seconds to wait before generating another TTL output
+
+Example
+-------
+.. code-block:: matlab
+
+    obj.min_inter_pulse_interval = 2; % bossdevivce will wait for 2 seconds before generating any TTL output 
 ----
 
 .. toctree::

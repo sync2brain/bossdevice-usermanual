@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>5. Matlab API Documentation &mdash; User Manual - bossdevice research 1.0.0 documentation</title>
+  <title>5. Matlab API Documentation &mdash; User Manual - bossdevice research 15-08-2021 documentation</title>
   
 
   
@@ -87,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_introduction_to_bossdevice_research.html">1. Introduction to bossdevice research</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1b_GettingStartedCheckList.html">2. Getting Started - Checklist</a></li>
@@ -183,7 +183,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id3">5.2.3. Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#manualtrigger">5.3. manualTrigger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#manualpulse">5.3. manualPulse</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id4">5.3.1. Description</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">5.3.2. Syntax</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">5.3.3. Example</a></li>
@@ -272,7 +272,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#sample-and-hold-period">5.17. sample_and_hold_period</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id48">5.17.1. Description</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id49">5.17.2. Syntax</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id50">5.17.3. Example</a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="#id50">5.17.3. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#min-inter-pulse-interval">5.18. min_inter_pulse_interval</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id51">5.18.1. Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id52">5.18.2. Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id53">5.18.3. Example</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -281,16 +287,16 @@
 </li>
 </ul>
 </div>
-<p>The bossdevice API is a set of low-level functions that allows user to control the BOSS device in a user-friendly programmable manner. The combined execution of such low level functions allows the bossdevice to perform certain high level tasks that could be amongst but not limited to generating various number of trigger outputs, timed in a certain fashion, triggering at a certain Phase of an ongoing EEG Oscillation and guided by the Oscillation Amplitude Thresholds.</p>
+<p>The bossdevice API is a set of low-level functions that allows user to control the bossdevice in a user-friendly programmable manner. The combined execution of such low level functions allows the bossdevice to perform certain high level tasks that could be amongst but not limited to generating various number and combination of TTL outputs, timed in a certain fashion, TTL output at a certain Phase of an ongoing EEG Oscillation and guided by the Oscillation Amplitude Thresholds.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Please downloaded Matlab 2021a, Simulink Real-Time and Simulink Coder Adds-On from Matlab toolboxes, download the repository from master branch as detailed on “Downloads &amp; Dependencies” chapter of the user manual. Add the bossdevice firmware and repository to the search path of Matlab 2021a. Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and Matlab 2021a is confused about choosing one therefore it is recommended to change the current directory of Matlab 2021a to the correct path of bossdevice latest API.</p>
+<p>Please downloaded Matlab 2021a, Simulink Real-Time and Simulink Coder, Simulink and MATLAB Coder Adds-On from Matlab toolboxes, download the repository from master branch as detailed on “Downloads &amp; Dependencies” chapter of the user manual. Add the bossdevice firmware and repository to the search path of Matlab 2021a. Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and Matlab 2021a is confused about choosing one therefore it is recommended to change the current directory of Matlab 2021a to the correct path of bossdevice latest API.</p>
 </div>
 <div class="section" id="initialization">
 <h2><span class="section-number">5.1. </span>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="description">
 <h3><span class="section-number">5.1.1. </span>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
-<p>BOSS Device API can be initialized as a MATLAB Class object and provides access to its methods and functions to generate various trigger outputs and define multiple brain states upon which the predefined triggers to be released.</p>
+<p>The bossdevice API can be initialized as a MATLAB Class object and provides access to its methods and functions to generate various TTL outputs and define multiple brain states upon which the predefined TTL output sequence to be released.</p>
 </div>
 <div class="section" id="syntax">
 <h3><span class="section-number">5.1.2. </span>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h3>
@@ -310,7 +316,7 @@
 <h2><span class="section-number">5.2. </span>sendPulse<a class="headerlink" href="#sendpulse" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3><span class="section-number">5.2.1. </span>Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>sendPulse method of the bossdevice class allows you to generate 1 pulse at a specified Output port (out of 4) of the bossdevice.</p>
+<p>sendPulse method of the bossdevice class allows you to generate 1 TTL pusle at a specified Output port (out of 4) of the bossdevice.</p>
 </div>
 <div class="section" id="id2">
 <h3><span class="section-number">5.2.2. </span>Syntax<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
@@ -327,22 +333,22 @@
 </div>
 </div>
 <hr class="docutils" />
-<div class="section" id="manualtrigger">
-<h2><span class="section-number">5.3. </span>manualTrigger<a class="headerlink" href="#manualtrigger" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="manualpulse">
+<h2><span class="section-number">5.3. </span>manualPulse<a class="headerlink" href="#manualpulse" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id4">
 <h3><span class="section-number">5.3.1. </span>Description<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>manualTrigger method of bossdevice allows you to deliver a pre-built sequence of up to 1500 triggers where each trigger is timed relative to the onset of manualTrigger command, delivers on a specified Output port and also delivers an 8-bit marker assigned to each trigger as well.
-The pre-built sequence is generated using another command (see below: configure_time_port_marker) however the bossdevice starts delivering the pulses configured before when manualTrigger method is executed.</p>
+<p>manualPulse method of bossdevice allows you to deliver a pre-built sequence of up to 1500 TTL outputs where each TTL output is timed relative to the onset of manualPulse command, delivers on a specified Output port and also delivers an 8-bit marker assigned to each TTL output as well.
+The pre-built sequence is generated using another command (see below: configure_time_port_marker) however the bossdevice starts delivering the pulses configured before when manualPulse method is executed.</p>
 </div>
 <div class="section" id="id5">
 <h3><span class="section-number">5.3.2. </span>Syntax<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">manualTrigger</span><span class="w"> </span><span class="c">% start the previously configured trigger sequences in [time port marker] style.</span><span class="w"></span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">manualPulse</span><span class="w"> </span><span class="c">% start the previously configured TTL pulse sequences in [time port marker] style.</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id6">
 <h3><span class="section-number">5.3.3. </span>Example<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">manualTrigger</span><span class="w"></span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">manualPulse</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -352,20 +358,20 @@ The pre-built sequence is generated using another command (see below: configure_
 <h2><span class="section-number">5.4. </span>configure_time_port_marker<a class="headerlink" href="#configure-time-port-marker" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id7">
 <h3><span class="section-number">5.4.1. </span>Description<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<p>configure_time_port_marker method of bossdevice allows you to prepare a sequence of triggers in [time port marker] vector style. Maximum of 1500 triggers can be loaded onto this configuration method. In order to prepare a single trigger in [time port marker] style, just give input argument as [0 1 1] vector.
-Each trigger in this vector has three elements , first index being time, second index being the port number of bossdevice to deliver the output pulse and the last index being the 8-bit event marker to be generated and written to the Biosignal processor for respective trigger.</p>
+<p>configure_time_port_marker method of bossdevice allows you to prepare a sequence of TTL output in [time port marker] vector style. Maximum of 1500 TTL outputs can be loaded onto this configuration method. In order to prepare a single TTL output in [time port marker] style, just give input argument as [0 1 1] vector.
+Each TTL output in this vector has three elements , first index being time, second index being the port number of bossdevice to deliver the output pulse and the last index being the 8-bit event marker to be generated and written to the Biosignal processor for respective TTL output.</p>
 </div>
 <div class="section" id="id8">
 <h3><span class="section-number">5.4.2. </span>Syntax<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="n">trigger_sequence_vector</span><span class="p">]</span><span class="w"></span>
-<span class="c">% [trigger_sequence vector] is an Nx3 vector , whereas N is number of triggers and the three elements being the time onset, port number and event marker</span><span class="w"></span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="n">ttloutput_sequence_vector</span><span class="p">]</span><span class="w"></span>
+<span class="c">% [ttloutput_sequence vector] is an Nx3 vector , whereas N is number of TTL outputs and the three elements being the time onset, port number and event marker</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="id9">
 <h3><span class="section-number">5.4.3. </span>Example<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">144</span><span class="p">])</span><span class="w"> </span><span class="c">%configures a trigger sequence in which the pulse will be delivered 2 seconds after the manualTrigger command execution, on the 3rd port and event writes 144 marker on the Biosignal processor</span><span class="w"></span>
-<span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="mi">3</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">144</span><span class="p">;</span><span class="n">4</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">128])</span><span class="w">  </span><span class="s">%configures</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">trigger</span><span class="w"> </span><span class="s">sequence</span><span class="w"> </span><span class="s">in</span><span class="w"> </span><span class="s">which</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">first</span><span class="w"> </span><span class="s">pulse</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="s">delivered</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">seconds</span><span class="w"> </span><span class="s">after</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">manualTrigger</span><span class="w"> </span><span class="s">command</span><span class="w"> </span><span class="s">execution,</span><span class="w"> </span><span class="s">on</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">3rd</span><span class="w"> </span><span class="s">port</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">writes</span><span class="w"> </span><span class="s">144</span><span class="w"> </span><span class="s">marker</span><span class="w"> </span><span class="s">on</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">Biosignal</span><span class="w"> </span><span class="s">processor,</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">then</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">second</span><span class="w"> </span><span class="s">pulse</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="s">delivered</span><span class="w"> </span><span class="s">4</span><span class="w"> </span><span class="s">seconds</span><span class="w"> </span><span class="s">after</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">manualTrigger</span><span class="w"> </span><span class="s">command</span><span class="w"> </span><span class="s">execution,</span><span class="w"> </span><span class="s">on</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">2nd</span><span class="w"> </span><span class="s">port</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">writes</span><span class="w"> </span><span class="s">128</span><span class="w"> </span><span class="s">event</span><span class="w"> </span><span class="s">marker</span><span class="w"> </span><span class="s">on</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">Biosignal</span><span class="w"> </span><span class="s">processor,</span><span class="w"></span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">144</span><span class="p">])</span><span class="w"> </span><span class="c">%configures a TTL output sequence in which the pulse will be delivered 2 seconds after the manualPulse command execution, on the 3rd port and event writes 144 marker on the Biosignal processor</span><span class="w"></span>
+<span class="n">bd</span><span class="p">.</span><span class="n">configure_time_port_marker</span><span class="p">([</span><span class="mi">3</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">144</span><span class="p">;</span><span class="n">4</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">128])</span><span class="w">  </span><span class="s">%configures</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">TTL</span><span class="w"> </span><span class="s">output</span><span class="w"> </span><span class="s">sequences</span><span class="w"> </span><span class="s">in</span><span class="w"> </span><span class="s">which</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">first</span><span class="w"> </span><span class="s">pulse</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="s">delivered</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">seconds</span><span class="w"> </span><span class="s">after</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">manualPulse</span><span class="w"> </span><span class="s">command</span><span class="w"> </span><span class="s">execution,</span><span class="w"> </span><span class="s">on</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">3rd</span><span class="w"> </span><span class="s">port</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">writes</span><span class="w"> </span><span class="s">144</span><span class="w"> </span><span class="s">marker</span><span class="w"> </span><span class="s">on</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">Biosignal</span><span class="w"> </span><span class="s">processor,</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">then</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">second</span><span class="w"> </span><span class="s">pulse</span><span class="w"> </span><span class="s">will</span><span class="w"> </span><span class="s">be</span><span class="w"> </span><span class="s">delivered</span><span class="w"> </span><span class="s">4</span><span class="w"> </span><span class="s">seconds</span><span class="w"> </span><span class="s">after</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">manualPulse</span><span class="w"> </span><span class="s">command</span><span class="w"> </span><span class="s">execution,</span><span class="w"> </span><span class="s">on</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">2nd</span><span class="w"> </span><span class="s">port</span><span class="w"> </span><span class="s">and</span><span class="w"> </span><span class="s">writes</span><span class="w"> </span><span class="s">128</span><span class="w"> </span><span class="s">event</span><span class="w"> </span><span class="s">marker</span><span class="w"> </span><span class="s">on</span><span class="w"> </span><span class="s">the</span><span class="w"> </span><span class="s">Biosignal</span><span class="w"> </span><span class="s">processor,</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -375,12 +381,12 @@ Each trigger in this vector has three elements , first index being time, second 
 <h2><span class="section-number">5.5. </span>stop<a class="headerlink" href="#stop" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id10">
 <h3><span class="section-number">5.5.1. </span>Description<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-<p>Quite often stopping of the trigger sequence is required before the sequence ends. the stop method allows you to stop further generation and delivery of any sequence loaded onto the trigger generator of the bossdevice.
-The last configured sequence can again be started by using “manualTrigger” method after the stop command.</p>
+<p>Quite often stopping the TTL output sequence is required before the already conigured and long sequence ends. The stop method allows you to stop further generation and delivery of any sequence loaded onto the TTL output generator of the bossdevice.
+The last configured sequence can again be started by using “manualPulse” method after the stop command.</p>
 </div>
 <div class="section" id="id11">
 <h3><span class="section-number">5.5.2. </span>Syntax<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">stop</span><span class="w"> </span><span class="c">% stops the generation of output triggers from bossdevice however the class object remain intact.</span><span class="w"></span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">stop</span><span class="w"> </span><span class="c">% stops the generation of output TTL pulses from bossdevice however the class object remain intact.</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -487,9 +493,9 @@ The last configured sequence can again be started by using “manualTrigger” m
 <span class="c">% [phase_angle_in_radians] is 0 for Peak, pi for Trough, -pi/2 for Rising Flank &amp; +pi/2 for Falling Flank</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="figure align-center" id="id51">
+<div class="figure align-center" id="id54">
 <img alt="_images/Figure10_phases.png" src="_images/Figure10_phases.png" />
-<p class="caption"><span class="caption-text">Radian values of several target phases in bossdevice research</span><a class="headerlink" href="#id51" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Radian values of several target phases in bossdevice research</span><a class="headerlink" href="#id54" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id25">
@@ -533,7 +539,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 <div class="section" id="id29">
 <h3><span class="section-number">5.11.1. </span>Description<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><p>Defining minimum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define minimum amplitude threshold in micro volts that must be reached along with other brain state associated conditions such as maximum amplitude, phase target, and phase tolerance in order to be able to declare the brain state as detected and trigger further sequence of events. bossdevice contains 3 built in Oscillatory minimum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time minimum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.</p>
+<div><p>Defining minimum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define minimum amplitude threshold in micro volts that must be reached along with other brain state associated conditions such as maximum amplitude, phase target, and phase tolerance in order to be able to declare the brain state as detected and generate TTL output sequence. The bossdevice contains 3 built in Oscillatory minimum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time minimum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.</p>
 </div></blockquote>
 </div>
 <div class="section" id="id30">
@@ -559,7 +565,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 <div class="section" id="id32">
 <h3><span class="section-number">5.12.1. </span>Description<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><p>Defining maximum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define maximum amplitude threshold in micro volts that must be not be reached in order to be able to declare the brain state as detected and trigger further sequence of events. The bossdevice contains 3 built in Oscillatory maximum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time maximum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.</p>
+<div><p>Defining maximum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define maximum amplitude threshold in micro volts that must be not be reached in order to be able to declare the brain state as detected and generare TTL output sequence. The bossdevice contains 3 built in Oscillatory maximum amplitude estimation models each for Theta (4-8 Hz), Alpha (8-14Hz) and Beta (14-30Hz) frequency bands. Real-time maximum amplitude detection can be performed for maximum of 2 different, pre-specified spatially filtered channels in parallel.</p>
 </div></blockquote>
 </div>
 <div class="section" id="id33">
@@ -652,7 +658,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 <h2><span class="section-number">5.15. </span>arm<a class="headerlink" href="#arm" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id42">
 <h3><span class="section-number">5.15.1. </span>Description<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h3>
-<p>Arming bossdevice would allow bossdevice to actively search for the Brain states already set into it and generate the trigger sequence configured using “configure_time_port_marker” upon every instance of detection.</p>
+<p>Arming bossdevice would allow bossdevice to actively search for the Brain states already set into it and generate the TTL output sequence configured using “configure_time_port_marker” upon every instance of detection.</p>
 </div>
 <div class="section" id="id43">
 <h3><span class="section-number">5.15.2. </span>Syntax<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
@@ -662,7 +668,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 </div>
 <div class="section" id="id44">
 <h3><span class="section-number">5.15.3. </span>Example<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">armed</span><span class="p">;</span><span class="w"> </span><span class="c">% will set bossdevice to detect the specified brain states and trigger sequence</span><span class="w"></span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">armed</span><span class="p">;</span><span class="w"> </span><span class="c">% will set bossdevice to detect the specified brain states and TTL output sequence</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -672,7 +678,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 <h2><span class="section-number">5.16. </span>disarm<a class="headerlink" href="#disarm" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id45">
 <h3><span class="section-number">5.16.1. </span>Description<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
-<p>Disarming bossdevice would allow bossdevice to stop search for the Brain states already by now “Armed’ into it and immediately stops the generation of the trigger sequence configured using “configure_time_port_marker” .</p>
+<p>Disarming bossdevice would allow bossdevice to stop search for the Brain states already by now “Armed’ into it and immediately stops the generation of the planned TTL output sequence configured using “configure_time_port_marker” .</p>
 </div>
 <div class="section" id="id46">
 <h3><span class="section-number">5.16.2. </span>Syntax<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
@@ -682,7 +688,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 </div>
 <div class="section" id="id47">
 <h3><span class="section-number">5.16.3. </span>Example<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">disarm</span><span class="p">;</span><span class="w"> </span><span class="c">% will stop bossdevice to detect the specified brain states and stop ongoing trigger sequence</span><span class="w"></span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">disarm</span><span class="p">;</span><span class="w"> </span><span class="c">% will stop bossdevice to detect the specified brain states and stop ongoing TTL output sequence</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -692,7 +698,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 <h2><span class="section-number">5.17. </span>sample_and_hold_period<a class="headerlink" href="#sample-and-hold-period" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id48">
 <h3><span class="section-number">5.17.1. </span>Description<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
-<p>Upon an artifactual trigger event such as Trans-cranial Magnetic Stimulation (TMS) pulse artifact etc., the data gets distorted and is accumulated with a lot of noise, in order to hold the samples for a specified period of time, sample and hold period method can be helpful. This is also helpful to keep the visual output of the bossdevice clean and tidy.</p>
+<p>Upon an artifactual event such as pulse artifact etc., the data gets distorted and is accumulated with a lot of noise, in order to hold the samples for a specified period of time, sample and hold period method can be helpful.</p>
 </div>
 <div class="section" id="id49">
 <h3><span class="section-number">5.17.2. </span>Syntax<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
@@ -703,6 +709,26 @@ The last configured sequence can again be started by using “manualTrigger” m
 <div class="section" id="id50">
 <h3><span class="section-number">5.17.3. </span>Example<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span><span class="p">.</span><span class="n">sample_and_hold_period</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span><span class="w"> </span><span class="c">% hold the samples for 100 ms</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="min-inter-pulse-interval">
+<h2><span class="section-number">5.18. </span>min_inter_pulse_interval<a class="headerlink" href="#min-inter-pulse-interval" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id51">
+<h3><span class="section-number">5.18.1. </span>Description<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
+<p>Minimum inter pulse interval allows you to define the time period for which the bossdevice should wait before generating another TTL output.</p>
+</div>
+<div class="section" id="id52">
+<h3><span class="section-number">5.18.2. </span>Syntax<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">min_inter_pulse_interval</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">time_in_secodns</span><span class="p">];</span><span class="w"> </span><span class="c">% Seconds to wait before generating another TTL output</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id53">
+<h3><span class="section-number">5.18.3. </span>Example<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span><span class="p">.</span><span class="n">min_inter_pulse_interval</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c">% bossdevivce will wait for 2 seconds before generating any TTL output</span><span class="w"></span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -726,7 +752,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, sync2brain GmbH.
+        &#169; Copyright Version 15-08-2021, sync2brain GmbH.
 
     </p>
   </div>

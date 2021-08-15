@@ -4,6 +4,11 @@
 \ifdefined\pdfpxdimen
    \let\sphinxpxdimen\pdfpxdimen\else\newdimen\sphinxpxdimen
 \fi \sphinxpxdimen=.75bp\relax
+\ifdefined\pdfimageresolution
+    \pdfimageresolution= \numexpr \dimexpr1in\relax/\sphinxpxdimen\relax
+\fi
+%% let collapsable pdf bookmarks panel have high depth per default
+\PassOptionsToPackage{bookmarksdepth=5}{hyperref}
 
 \PassOptionsToPackage{warn}{textcomp}
 \usepackage[utf8]{inputenc}
@@ -28,34 +33,16 @@
 
 
 
-\usepackage{times}
-\expandafter\ifx\csname T@LGR\endcsname\relax
-\else
-% LGR was declared as font encoding
-  \substitutefont{LGR}{\rmdefault}{cmr}
-  \substitutefont{LGR}{\sfdefault}{cmss}
-  \substitutefont{LGR}{\ttdefault}{cmtt}
-\fi
-\expandafter\ifx\csname T@X2\endcsname\relax
-  \expandafter\ifx\csname T@T2A\endcsname\relax
-  \else
-  % T2A was declared as font encoding
-    \substitutefont{T2A}{\rmdefault}{cmr}
-    \substitutefont{T2A}{\sfdefault}{cmss}
-    \substitutefont{T2A}{\ttdefault}{cmtt}
-  \fi
-\else
-% X2 was declared as font encoding
-  \substitutefont{X2}{\rmdefault}{cmr}
-  \substitutefont{X2}{\sfdefault}{cmss}
-  \substitutefont{X2}{\ttdefault}{cmtt}
-\fi
+\usepackage{tgtermes}
+\usepackage{tgheros}
+\renewcommand{\ttdefault}{txtt}
+
 
 
 \usepackage[Bjarne]{fncychap}
 \usepackage{sphinx}
 
-\fvset{fontsize=\small}
+\fvset{fontsize=auto}
 \usepackage{geometry}
 
 
@@ -74,8 +61,8 @@
 
 
 \title{User Manual \sphinxhyphen{} bossdevice research}
-\date{Jul 10, 2021}
-\release{1.0.0}
+\date{Aug 15, 2021}
+\release{15\sphinxhyphen{}08\sphinxhyphen{}2021}
 \author{sync2brain GmbH}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -93,10 +80,18 @@
 
 \chapter{Introduction to bossdevice research}
 \label{\detokenize{1_introduction_to_bossdevice_research:introduction-to-bossdevice-research}}\label{\detokenize{1_introduction_to_bossdevice_research::doc}}
-The bossdevice research is a real\sphinxhyphen{}time digital signal processor consisting of hardware and software algorithms. It is designed to read\sphinxhyphen{}in a real\sphinxhyphen{}time raw data stream from a biosignal amplifier (electroencephalography, EEG), to continuously analyze the data and to detect patterns in this data based on oscillations in different frequencies. When such a pattern is detected, the device indicates this through a standard output port. This enables a stimulation device (such as a sound generator) to be triggered in response to a specific biosignal pattern occurring. The device can be programmed by the user to detect different patterns.
+\sphinxAtStartPar
+bossdevice RESEARCH is a real\sphinxhyphen{}time digital signal processor consisting of hardware and software algorithms. It is designed to read\sphinxhyphen{}in a real\sphinxhyphen{}time raw data stream from a biosignal amplifier (electroencephalography, EEG), to continuously analyze this data and to detect patterns based on oscillations in different frequencies. When such a specific bio\sphinxhyphen{}signal pattern is detected, the device indicates this through a standard output port. This enables a connected device to know with millisecond accuracy when a specific bio\sphinxhyphen{}signal pattern occurs.
 
 \begin{sphinxadmonition}{important}{Important:}
-The bossdevice research is not a medical device. It may not be used outside of research and it may not be used in trials involving patients. It is not intended as an accessory to a medical device or to control a medical device. It may only be connected to a stimulation device if the stimulation device provides an input port for the purpose of receiving information regarding the desired timing of stimulation. Whether or not a stimulus is then generated in response to a signal from the bossdevice is determined by the stimulation device.
+\sphinxAtStartPar
+bossdevice RESEARCH is not a medical device. It may not be used outside of research
+and it may not be used in trials involving patients. It is not intended as an accessory
+to a medical device or to control a medical device. It may only be connected to a
+medical device through a connection that is not considered a “control” connection
+but only an information transmission. What the connected device does in response
+to information received from the bossdevice is determined by the connected device
+only.
 \end{sphinxadmonition}
 
 \begin{figure}[htbp]
@@ -104,16 +99,78 @@ The bossdevice research is not a medical device. It may not be used outside of r
 \capstart
 
 \noindent\sphinxincludegraphics{{Fig1_bossdeviceandneurone}.png}
-\caption{The bossdevice research placed along with Bittim NeurOne biosignal amplifier.}\label{\detokenize{1_introduction_to_bossdevice_research:id1}}\end{figure}
+\caption{The bossdevice research placed along with Bittium NeurOne biosignal amplifier.}\label{\detokenize{1_introduction_to_bossdevice_research:id1}}\end{figure}
+
+
+\chapter{Getting Started \sphinxhyphen{} Checklist}
+\label{\detokenize{1b_GettingStartedCheckList:getting-started-checklist}}\label{\detokenize{1b_GettingStartedCheckList::doc}}
+
+\section{Bittium NeurOne Users}
+\label{\detokenize{1b_GettingStartedCheckList:bittium-neurone-users}}
+\sphinxAtStartPar
+The checlist below helps in setting up the bossdevice.
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+The bossdevice and drivers USB have been received by you.
+
+\item {} 
+\sphinxAtStartPar
+NeurOne biosignal amplifier with firmware 1.4.30 or above.
+
+\item {} 
+\sphinxAtStartPar
+A computer running any windows 10 operating system.
+
+\item {} 
+\sphinxAtStartPar
+NeurOne software installed on the windows computer version 1.5.1 or above.
+
+\item {} 
+\sphinxAtStartPar
+MATLAB release 2021a installaled on the windows 10 computer.
+
+\item {} 
+\sphinxAtStartPar
+Install Simulink, Simulink Real\sphinxhyphen{}Time, Simulink Coder and MATLAB Coder under MathWorks 2021a products.
+
+\item {} 
+\sphinxAtStartPar
+1x LAN cable connecting NeurOne biosignal amplifier and the bossdevice as explained in section 3.1.
+
+\item {} 
+\sphinxAtStartPar
+1x LAN cable connecting bossdevice and windows 10 computer as described in section 3.2 of bossdevice usermanual.
+
+\item {} 
+\sphinxAtStartPar
+1x LAN cable connecting NeurOne biosignal amplifier and windows 10 computer, more details on this topic can be found in NeurOne usermanual.
+
+\item {} 
+\sphinxAtStartPar
+Setup NeurOne LAN connection on the windows 10 computer, more details on this topic can be found in NeurOne usermanual.
+
+\item {} 
+\sphinxAtStartPar
+Setup bossdevice LAN connection on the windows 10 computer as described in section 3.2 of bossdevice usermanual.
+
+\item {} 
+\sphinxAtStartPar
+Downlaod the bossdevice API and latest firmware (DBSP.mldatx file)from the sync2brain support website available at api.sync2brain.com
+
+\end{enumerate}
 
 
 \chapter{Setup bossdevice research}
 \label{\detokenize{2_setup_bossdevice_research:setup-bossdevice-research}}\label{\detokenize{2_setup_bossdevice_research::doc}}
-The bossdevice plugs into a compatible EEG amplifier on the input side and generates a fuzzy logic based binary signal on the output side. It reads a real\sphinxhyphen{}time biosignal data stream and generates trigger signal when a pre\sphinxhyphen{}defined EEG\sphinxhyphen{}state is detected. The bossdevice is programmable from Matlab and enables complex experiments to be fully automated. Setting up the device involves several steps and the next sections descibre their details.
+\sphinxAtStartPar
+The bossdevice plugs into a compatible EEG amplifier on the input side and generates a fuzzy logic based binary signal on the output side. It reads a real\sphinxhyphen{}time biosignal data stream and generates a  signal when a pre\sphinxhyphen{}defined EEG\sphinxhyphen{}state is detected. The bossdevice is programmable from Matlab and enables complex experiments to be fully automated. Setting up the device involves several steps and the next sections descibre their details.
 
 
 \section{Connecting with Biosignal Amplifier}
 \label{\detokenize{2_setup_bossdevice_research:connecting-with-biosignal-amplifier}}
+\sphinxAtStartPar
 The input of the bossdevice i.e. the EEG data is provided by connecting the Biosignal Amplifier (EEG device e.g. Bittium’s NeurOne or Brain Product’s actiCHamp) with the bossdevice using a standard LAN Cable. Search the “REAL TIME OUT” LAN port at the back plate of your EEG device and connect it to the “Biosignal” LAN port available at the bossdevice research. You can also see the “Biosignal” port on the bossdevice research in the figure shown below.
 
 \begin{figure}[htbp]
@@ -126,16 +183,20 @@ The input of the bossdevice i.e. the EEG data is provided by connecting the Bios
 
 \section{Connecting with Control PC}
 \label{\detokenize{2_setup_bossdevice_research:connecting-with-control-pc}}
+\sphinxAtStartPar
 In order to program the bossdevice research, it needs to be connected to any standard PC hosting a Matlab and other dependencies as described in the “Downloads \& Dependencies” chapter. The “Control PC” LAN port at the backplate of the bossdevice research is connected to any standard LAN/Ethernet port on the backplate of Control PC. Then in order to open the network IP address, follow these steps:
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
+\sphinxAtStartPar
 On Microsoft Windows 7/8/10 Click Start Menu \textgreater{} Control Panel \textgreater{} Network and Sharing Centre or Network and Internet \textgreater{} Network and Sharing Centre.
 
 \item {} 
+\sphinxAtStartPar
 Click Change adapter settings.
 
 \item {} 
+\sphinxAtStartPar
 Right\sphinxhyphen{}click on Local Area Connection corresponding to LAN/Ethernet port where the “Control PC” LAN cable is connected and click Properties.
 
 \end{enumerate}
@@ -150,6 +211,7 @@ Right\sphinxhyphen{}click on Local Area Connection corresponding to LAN/Ethernet
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \setcounter{enumi}{3}
 \item {} 
+\sphinxAtStartPar
 Select Internet Protocol Version 4 (TCP/IPv4) and click Properties.
 
 \end{enumerate}
@@ -161,6 +223,7 @@ Select Internet Protocol Version 4 (TCP/IPv4) and click Properties.
 \noindent\sphinxincludegraphics{{Figure4_controlpc2}.png}
 \caption{Step 4: Local Area Connection setup of Control PC and bossdevice research}\label{\detokenize{2_setup_bossdevice_research:id3}}\end{figure}
 
+\sphinxAtStartPar
 5. Select Use the following IP address. Then enter the following IP address, Subnet mask, Default gateway, and DNS server.
 .. code\sphinxhyphen{}block:
 
@@ -181,25 +244,29 @@ Select Internet Protocol Version 4 (TCP/IPv4) and click Properties.
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \setcounter{enumi}{5}
 \item {} 
+\sphinxAtStartPar
 Click OK and OK on your way out of the wizard.
 
 \end{enumerate}
 
+\sphinxAtStartPar
 Similar approach can also be used on Linux/MAC OS to setup the requried IP network for communciation between the bossdevice research and any control PC.
 
 
 \section{Connecting with Synchronizing Devices}
 \label{\detokenize{2_setup_bossdevice_research:connecting-with-synchronizing-devices}}
-The bossdevice research can send up to 4 TTL trigger signals to connected synchronizing devices from its output port. Search the “TRIGGER OUT 1\sphinxhyphen{}4” BNC ports at back plate of the bossdevice research and connect it to the BNC ports of your intended device.
+\sphinxAtStartPar
+The bossdevice research can send up to 4 TTL output signals to connected synchronizing devices from its output port. Search the TTL OUT 1\sphinxhyphen{}4” BNC ports at back plate of the bossdevice research and connect it to the BNC ports of your intended device.
 
 \begin{figure}[htbp]
 \centering
 \capstart
 
 \noindent\sphinxincludegraphics{{Figure6_ttlports}.png}
-\caption{Ports available on the bossdevice (see the BNC output ports 1\sphinxhyphen{}4 named as TRIGGER OUT 1 till 4).}\label{\detokenize{2_setup_bossdevice_research:id5}}\end{figure}
+\caption{Ports available on the bossdevice (see the BNC output ports 1\sphinxhyphen{}4 named as TTL OUT 1 till 4).}\label{\detokenize{2_setup_bossdevice_research:id5}}\end{figure}
 
-In addition to the TTL output the 8 bit trigger LPT marker ports can also be connected to the bossdevice research for a numerical input or can also be output from bossdevice research to write synchronizing markers to the raw EEG data or for any other purpose.
+\sphinxAtStartPar
+In addition to the TTL output the 8 bit LPT marker ports can also be connected to the bossdevice research for a numerical input or can also be output from bossdevice research to write synchronizing markers to the raw EEG data or for any other purpose.
 
 \begin{figure}[htbp]
 \centering
@@ -211,6 +278,7 @@ In addition to the TTL output the 8 bit trigger LPT marker ports can also be con
 
 \section{Connecting with Monitor}
 \label{\detokenize{2_setup_bossdevice_research:connecting-with-monitor}}
+\sphinxAtStartPar
 Monitor setup is optional but recommended and it shows the useful information and analytics of the bossdevice research time of execution and errors (if any). The Display Port from backplate of the bossdevice research may be connected to the monitor.
 
 \begin{figure}[htbp]
@@ -223,6 +291,7 @@ Monitor setup is optional but recommended and it shows the useful information an
 
 \section{Power Supply}
 \label{\detokenize{2_setup_bossdevice_research:power-supply}}
+\sphinxAtStartPar
 The power supply provided along with the bossdevice research can be plugged into the “DC IN 12V” port at the back plate of the bossdevice research as shown in figure below.
 
 \begin{figure}[htbp]
@@ -235,6 +304,7 @@ The power supply provided along with the bossdevice research can be plugged into
 
 \section{Switching ON and OFF}
 \label{\detokenize{2_setup_bossdevice_research:switching-on-and-off}}
+\sphinxAtStartPar
 Since the device is all setup, the device can be switched on using the push button at on of the sides of bossdevice. When switched off, the LED present on the button is not illuminated while when it is switched on, a blue LED is illuminated.
 
 
@@ -244,24 +314,29 @@ Since the device is all setup, the device can be switched on using the push butt
 \section{Bittium NeurOne}
 \label{\detokenize{3_setup_biosignal_amplifier:bittium-neurone}}
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 bossdevice research accepts a 5kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out of NeurOne must be 5kHz.
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 In your NeurOne protocol, keep all the EEG channels on the top and other Aux/bipolar/EMG/ECG channels at the bottom.
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 If two 32 channels preamplifiers are used, do not use the Aux/bipolar inputs/EMG/ECG channels numberd from 33\sphinxhyphen{}40, but only the last 8 of the 2nd amplifier i.e. 73 to 80. Similar pattern applies to other combinition of preamplifiers.
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 bossdevice research can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels.
 \end{sphinxadmonition}
 
 
 \subsection{Software Version}
 \label{\detokenize{3_setup_biosignal_amplifier:software-version}}
+\sphinxAtStartPar
 The NeurOne software version should be v1.5.1 or higher.
 
 \begin{figure}[htbp]
@@ -273,11 +348,13 @@ The NeurOne software version should be v1.5.1 or higher.
 
 \subsection{Firmware Version}
 \label{\detokenize{3_setup_biosignal_amplifier:firmware-version}}
+\sphinxAtStartPar
 The firmware version should be 1.4.30 or higher.
 
 
 \subsection{Real Time Out Channels}
 \label{\detokenize{3_setup_biosignal_amplifier:real-time-out-channels}}
+\sphinxAtStartPar
 The Target UDP Port should be changed to 25000 from default of 50000, and the rest of details as shown in the figure below.
 
 \begin{figure}[htbp]
@@ -289,10 +366,12 @@ The Target UDP Port should be changed to 25000 from default of 50000, and the re
 
 \chapter{Matlab API Documentation}
 \label{\detokenize{4_api_documentation:matlab-api-documentation}}\label{\detokenize{4_api_documentation::doc}}
-The bossdevice API is a set of low\sphinxhyphen{}level functions that allows user to control the BOSS device in a user\sphinxhyphen{}friendly programmable manner. The combined execution of such low level functions allows the bossdevice to perform certain high level tasks that could be amongst but not limited to generating various number of trigger outputs, timed in a certain fashion, triggering at a certain Phase of an ongoing EEG Oscillation and guided by the Oscillation Amplitude Thresholds.
+\sphinxAtStartPar
+The bossdevice API is a set of low\sphinxhyphen{}level functions that allows user to control the bossdevice in a user\sphinxhyphen{}friendly programmable manner. The combined execution of such low level functions allows the bossdevice to perform certain high level tasks that could be amongst but not limited to generating various number and combination of TTL outputs, timed in a certain fashion, TTL output at a certain Phase of an ongoing EEG Oscillation and guided by the Oscillation Amplitude Thresholds.
 
 \begin{sphinxadmonition}{important}{Important:}
-Please downloaded Matlab 2021a, Simulink Real\sphinxhyphen{}Time and Simulink Coder Adds\sphinxhyphen{}On from Matlab toolboxes, download the repository from master branch as detailed on “Downloads \& Dependencies” chapter of the user manual. Add the bossdevice firmware and repository to the search path of Matlab 2021a. Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and Matlab 2021a is confused about choosing one therefore it is recommended to change the current directory of Matlab 2021a to the correct path of bossdevice latest API.
+\sphinxAtStartPar
+Please downloaded Matlab 2021a, Simulink Real\sphinxhyphen{}Time and Simulink Coder, Simulink and MATLAB Coder Adds\sphinxhyphen{}On from Matlab toolboxes, download the repository from master branch as detailed on “Downloads \& Dependencies” chapter of the user manual. Add the bossdevice firmware and repository to the search path of Matlab 2021a. Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and Matlab 2021a is confused about choosing one therefore it is recommended to change the current directory of Matlab 2021a to the correct path of bossdevice latest API.
 \end{sphinxadmonition}
 
 
@@ -301,20 +380,21 @@ Please downloaded Matlab 2021a, Simulink Real\sphinxhyphen{}Time and Simulink Co
 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:description}}
-BOSS Device API can be initialized as a MATLAB Class object and provides access to its methods and functions to generate various trigger outputs and define multiple brain states upon which the predefined triggers to be released.
+\sphinxAtStartPar
+The bossdevice API can be initialized as a MATLAB Class object and provides access to its methods and functions to generate various TTL outputs and define multiple brain states upon which the predefined TTL output sequence to be released.
 
 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:syntax}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{p}{[}\PYG{n}{MATLAB\PYGZus{}class\PYGZus{}object}\PYG{p}{]} \PYG{p}{=} \PYG{n}{bossdevice}\PYG{p}{;}
+\PYG{p}{[}\PYG{n}{MATLAB\PYGZus{}class\PYGZus{}object}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bossdevice}\PYG{p}{;}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:example}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;} \PYG{c}{\PYGZpc{} \PYGZdq{}bd\PYGZdq{} class object is created in MATLAB workspace}
+\PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} \PYGZdq{}bd\PYGZdq{} class object is created in MATLAB workspace}
 \end{sphinxVerbatim}
 
 
@@ -327,21 +407,22 @@ BOSS Device API can be initialized as a MATLAB Class object and provides access 
 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id1}}
-sendPulse method of the bossdevice class allows you to generate 1 pulse at a specified Output port (out of 4) of the bossdevice.
+\sphinxAtStartPar
+sendPulse method of the bossdevice class allows you to generate 1 TTL pusle at a specified Output port (out of 4) of the bossdevice.
 
 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id2}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{sendPulse}\PYG{p}{(}\PYG{p}{[}\PYG{n}{bossdevice\PYGZus{}port\PYGZus{}number}\PYG{p}{]}\PYG{p}{)} \PYG{c}{\PYGZpc{} [bossdevice\PYGZus{}port\PYGZus{}number] is non\PYGZhy{}zero positive integer less than or equal to 4}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{sendPulse}\PYG{p}{(}\PYG{p}{[}\PYG{n}{bossdevice\PYGZus{}port\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [bossdevice\PYGZus{}port\PYGZus{}number] is non\PYGZhy{}zero positive integer less than or equal to 4}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id3}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sendPulse}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{c}{\PYGZpc{} delivers a single pulse at the Output port 1}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sendPulse}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)} \PYG{c}{\PYGZpc{} delivers a single pulse at the Output port 3}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sendPulse}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{c}{\PYGZpc{} delivers a single pulse at the Output port 1}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sendPulse}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{+w}{ }\PYG{c}{\PYGZpc{} delivers a single pulse at the Output port 3}
 \end{sphinxVerbatim}
 
 
@@ -349,26 +430,27 @@ sendPulse method of the bossdevice class allows you to generate 1 pulse at a spe
 
 
 
-\section{manualTrigger}
-\label{\detokenize{4_api_documentation:manualtrigger}}
+\section{manualPulse}
+\label{\detokenize{4_api_documentation:manualpulse}}
 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id4}}
-manualTrigger method of bossdevice allows you to deliver a pre\sphinxhyphen{}built sequence of up to 1500 triggers where each trigger is timed relative to the onset of manualTrigger command, delivers on a specified Output port and also delivers an 8\sphinxhyphen{}bit marker assigned to each trigger as well.
-The pre\sphinxhyphen{}built sequence is generated using another command (see below: configure\_time\_port\_marker) however the bossdevice starts delivering the pulses configured before when manualTrigger method is executed.
+\sphinxAtStartPar
+manualPulse method of bossdevice allows you to deliver a pre\sphinxhyphen{}built sequence of up to 1500 TTL outputs where each TTL output is timed relative to the onset of manualPulse command, delivers on a specified Output port and also delivers an 8\sphinxhyphen{}bit marker assigned to each TTL output as well.
+The pre\sphinxhyphen{}built sequence is generated using another command (see below: configure\_time\_port\_marker) however the bossdevice starts delivering the pulses configured before when manualPulse method is executed.
 
 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id5}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{manualTrigger} \PYG{c}{\PYGZpc{} start the previously configured trigger sequences in [time port marker] style.}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{manualPulse}\PYG{+w}{ }\PYG{c}{\PYGZpc{} start the previously configured TTL pulse sequences in [time port marker] style.}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id6}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualTrigger}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualPulse}
 \end{sphinxVerbatim}
 
 
@@ -381,23 +463,24 @@ The pre\sphinxhyphen{}built sequence is generated using another command (see bel
 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id7}}
-configure\_time\_port\_marker method of bossdevice allows you to prepare a sequence of triggers in {[}time port marker{]} vector style. Maximum of 1500 triggers can be loaded onto this configuration method. In order to prepare a single trigger in {[}time port marker{]} style, just give input argument as {[}0 1 1{]} vector.
-Each trigger in this vector has three elements , first index being time, second index being the port number of bossdevice to deliver the output pulse and the last index being the 8\sphinxhyphen{}bit event marker to be generated and written to the Biosignal processor for respective trigger.
+\sphinxAtStartPar
+configure\_time\_port\_marker method of bossdevice allows you to prepare a sequence of TTL output in {[}time port marker{]} vector style. Maximum of 1500 TTL outputs can be loaded onto this configuration method. In order to prepare a single TTL output in {[}time port marker{]} style, just give input argument as {[}0 1 1{]} vector.
+Each TTL output in this vector has three elements , first index being time, second index being the port number of bossdevice to deliver the output pulse and the last index being the 8\sphinxhyphen{}bit event marker to be generated and written to the Biosignal processor for respective TTL output.
 
 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id8}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{n}{trigger\PYGZus{}sequence\PYGZus{}vector}\PYG{p}{]}
-\PYG{c}{\PYGZpc{} [trigger\PYGZus{}sequence vector] is an Nx3 vector , whereas N is number of triggers and the three elements being the time onset, port number and event marker}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{n}{ttloutput\PYGZus{}sequence\PYGZus{}vector}\PYG{p}{]}
+\PYG{c}{\PYGZpc{} [ttloutput\PYGZus{}sequence vector] is an Nx3 vector , whereas N is number of TTL outputs and the three elements being the time onset, port number and event marker}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id9}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{2} \PYG{l+m+mi}{3} \PYG{l+m+mi}{144}\PYG{p}{]}\PYG{p}{)} \PYG{c}{\PYGZpc{}configures a trigger sequence in which the pulse will be delivered 2 seconds after the manualTrigger command execution, on the 3rd port and event writes 144 marker on the Biosignal processor}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{3} \PYG{l+m+mi}{3} \PYG{l+m+mi}{144}\PYG{p}{;}\PYG{n}{4} \PYG{l+s}{2} \PYG{l+s}{128])}  \PYG{l+s}{\PYGZpc{}configures} \PYG{l+s}{2} \PYG{l+s}{trigger} \PYG{l+s}{sequence} \PYG{l+s}{in} \PYG{l+s}{which} \PYG{l+s}{the} \PYG{l+s}{first} \PYG{l+s}{pulse} \PYG{l+s}{will} \PYG{l+s}{be} \PYG{l+s}{delivered} \PYG{l+s}{3} \PYG{l+s}{seconds} \PYG{l+s}{after} \PYG{l+s}{the} \PYG{l+s}{manualTrigger} \PYG{l+s}{command} \PYG{l+s}{execution,} \PYG{l+s}{on} \PYG{l+s}{the} \PYG{l+s}{3rd} \PYG{l+s}{port} \PYG{l+s}{and} \PYG{l+s}{will} \PYG{l+s}{writes} \PYG{l+s}{144} \PYG{l+s}{marker} \PYG{l+s}{on} \PYG{l+s}{the} \PYG{l+s}{Biosignal} \PYG{l+s}{processor,} \PYG{l+s}{and} \PYG{l+s}{then} \PYG{l+s}{the} \PYG{l+s}{second} \PYG{l+s}{pulse} \PYG{l+s}{will} \PYG{l+s}{be} \PYG{l+s}{delivered} \PYG{l+s}{4} \PYG{l+s}{seconds} \PYG{l+s}{after} \PYG{l+s}{the} \PYG{l+s}{manualTrigger} \PYG{l+s}{command} \PYG{l+s}{execution,} \PYG{l+s}{on} \PYG{l+s}{the} \PYG{l+s}{2nd} \PYG{l+s}{port} \PYG{l+s}{and} \PYG{l+s}{writes} \PYG{l+s}{128} \PYG{l+s}{event} \PYG{l+s}{marker} \PYG{l+s}{on} \PYG{l+s}{the} \PYG{l+s}{Biosignal} \PYG{l+s}{processor,}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{l+m+mi}{144}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{c}{\PYGZpc{}configures a TTL output sequence in which the pulse will be delivered 2 seconds after the manualPulse command execution, on the 3rd port and event writes 144 marker on the Biosignal processor}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{+w}{ }\PYG{l+m+mi}{144}\PYG{p}{;}\PYG{n}{4}\PYG{+w}{ }\PYG{l+s}{2}\PYG{+w}{ }\PYG{l+s}{128])}\PYG{+w}{  }\PYG{l+s}{\PYGZpc{}configures}\PYG{+w}{ }\PYG{l+s}{2}\PYG{+w}{ }\PYG{l+s}{TTL}\PYG{+w}{ }\PYG{l+s}{output}\PYG{+w}{ }\PYG{l+s}{sequences}\PYG{+w}{ }\PYG{l+s}{in}\PYG{+w}{ }\PYG{l+s}{which}\PYG{+w}{ }\PYG{l+s}{the}\PYG{+w}{ }\PYG{l+s}{first}\PYG{+w}{ }\PYG{l+s}{pulse}\PYG{+w}{ }\PYG{l+s}{will}\PYG{+w}{ }\PYG{l+s}{be}\PYG{+w}{ }\PYG{l+s}{delivered}\PYG{+w}{ }\PYG{l+s}{3}\PYG{+w}{ }\PYG{l+s}{seconds}\PYG{+w}{ }\PYG{l+s}{after}\PYG{+w}{ }\PYG{l+s}{the}\PYG{+w}{ }\PYG{l+s}{manualPulse}\PYG{+w}{ }\PYG{l+s}{command}\PYG{+w}{ }\PYG{l+s}{execution,}\PYG{+w}{ }\PYG{l+s}{on}\PYG{+w}{ }\PYG{l+s}{the}\PYG{+w}{ }\PYG{l+s}{3rd}\PYG{+w}{ }\PYG{l+s}{port}\PYG{+w}{ }\PYG{l+s}{and}\PYG{+w}{ }\PYG{l+s}{will}\PYG{+w}{ }\PYG{l+s}{writes}\PYG{+w}{ }\PYG{l+s}{144}\PYG{+w}{ }\PYG{l+s}{marker}\PYG{+w}{ }\PYG{l+s}{on}\PYG{+w}{ }\PYG{l+s}{the}\PYG{+w}{ }\PYG{l+s}{Biosignal}\PYG{+w}{ }\PYG{l+s}{processor,}\PYG{+w}{ }\PYG{l+s}{and}\PYG{+w}{ }\PYG{l+s}{then}\PYG{+w}{ }\PYG{l+s}{the}\PYG{+w}{ }\PYG{l+s}{second}\PYG{+w}{ }\PYG{l+s}{pulse}\PYG{+w}{ }\PYG{l+s}{will}\PYG{+w}{ }\PYG{l+s}{be}\PYG{+w}{ }\PYG{l+s}{delivered}\PYG{+w}{ }\PYG{l+s}{4}\PYG{+w}{ }\PYG{l+s}{seconds}\PYG{+w}{ }\PYG{l+s}{after}\PYG{+w}{ }\PYG{l+s}{the}\PYG{+w}{ }\PYG{l+s}{manualPulse}\PYG{+w}{ }\PYG{l+s}{command}\PYG{+w}{ }\PYG{l+s}{execution,}\PYG{+w}{ }\PYG{l+s}{on}\PYG{+w}{ }\PYG{l+s}{the}\PYG{+w}{ }\PYG{l+s}{2nd}\PYG{+w}{ }\PYG{l+s}{port}\PYG{+w}{ }\PYG{l+s}{and}\PYG{+w}{ }\PYG{l+s}{writes}\PYG{+w}{ }\PYG{l+s}{128}\PYG{+w}{ }\PYG{l+s}{event}\PYG{+w}{ }\PYG{l+s}{marker}\PYG{+w}{ }\PYG{l+s}{on}\PYG{+w}{ }\PYG{l+s}{the}\PYG{+w}{ }\PYG{l+s}{Biosignal}\PYG{+w}{ }\PYG{l+s}{processor,}
 \end{sphinxVerbatim}
 
 
@@ -410,14 +493,15 @@ Each trigger in this vector has three elements , first index being time, second 
 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id10}}
-Quite often stopping of the trigger sequence is required before the sequence ends. the stop method allows you to stop further generation and delivery of any sequence loaded onto the trigger generator of the bossdevice.
-The last configured sequence can again be started by using “manualTrigger” method after the stop command.
+\sphinxAtStartPar
+Quite often stopping the TTL output sequence is required before the already conigured and long sequence ends. The stop method allows you to stop further generation and delivery of any sequence loaded onto the TTL output generator of the bossdevice.
+The last configured sequence can again be started by using “manualPulse” method after the stop command.
 
 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id11}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{stop} \PYG{c}{\PYGZpc{} stops the generation of output triggers from bossdevice however the class object remain intact.}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{stop}\PYG{+w}{ }\PYG{c}{\PYGZpc{} stops the generation of output TTL pulses from bossdevice however the class object remain intact.}
 \end{sphinxVerbatim}
 
 
@@ -438,6 +522,7 @@ The last configured sequence can again be started by using “manualTrigger” m
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id13}}\begin{quote}
 
+\sphinxAtStartPar
 bossdevice can work on maximum of 128 EEG channels, however the minimum number of channels required to work with EEG associated features of bossdevice have been kept flexible and can be defined as in number of EEG cannnels being streamed from your Biosignal Processor.
 \end{quote}
 
@@ -445,17 +530,17 @@ bossdevice can work on maximum of 128 EEG channels, however the minimum number o
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id14}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{p}{[}\PYG{n}{number\PYGZus{}of\PYGZus{}streaming\PYGZus{}eeg\PYGZus{}channels}\PYG{p}{]} \PYG{c}{\PYGZpc{} [number\PYGZus{}of\PYGZus{}streaming\PYGZus{}eeg\PYGZus{}channels] is an integer from 1 up till 128.}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{p}{[}\PYG{n}{number\PYGZus{}of\PYGZus{}streaming\PYGZus{}eeg\PYGZus{}channels}\PYG{p}{]}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [number\PYGZus{}of\PYGZus{}streaming\PYGZus{}eeg\PYGZus{}channels] is an integer from 1 up till 128.}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id15}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{32}\PYG{p}{;} \PYG{c}{\PYGZpc{} informing bossbox that 32 EEG channels are being streamed frm your Biosignal Processor}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{64}\PYG{p}{;} \PYG{c}{\PYGZpc{} informing bossbox that 64 EEG channels are being streamed frm your Biosignal Processor}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{128}\PYG{p}{;} \PYG{c}{\PYGZpc{} informing bossbox that 128 EEG channels are being streamed frm your Biosignal Processor}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;} \PYG{c}{\PYGZpc{} informing bossbox that 5 EEG channels are being streamed frm your Biosignal Processor}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{32}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} informing bossbox that 32 EEG channels are being streamed frm your Biosignal Processor}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{64}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} informing bossbox that 64 EEG channels are being streamed frm your Biosignal Processor}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{128}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} informing bossbox that 128 EEG channels are being streamed frm your Biosignal Processor}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} informing bossbox that 5 EEG channels are being streamed frm your Biosignal Processor}
 \end{sphinxVerbatim}
 
 
@@ -469,10 +554,12 @@ bossdevice can work on maximum of 128 EEG channels, however the minimum number o
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id16}}\begin{quote}
 
+\sphinxAtStartPar
 bossdevice can work on maximum of 8 Auxiliary/Biopolar/EMG channels, however the minimum number of channels required to work with Auxiliary Channels associated features of bossdevice have been kept flexible and can be defined as in number of Aux cannnels being streamed from your Biosignal Processor.
 \end{quote}
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 Auxiliary channels should always be the last 8 or N channels in your Protocol of Biosignal Processor otherwise bossdevice will assume them to be EEG channels
 \end{sphinxadmonition}
 
@@ -480,15 +567,15 @@ Auxiliary channels should always be the last 8 or N channels in your Protocol of
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id17}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{aux\PYGZus{}channels}\PYG{p}{=}\PYG{p}{[}\PYG{n}{number\PYGZus{}of\PYGZus{}streaming\PYGZus{}aux\PYGZus{}channels}\PYG{p}{]} \PYG{c}{\PYGZpc{} [number\PYGZus{}of\PYGZus{}streaming\PYGZus{}eeg\PYGZus{}channels] is an integer from 1 up till 8.}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{aux\PYGZus{}channels}\PYG{p}{=}\PYG{p}{[}\PYG{n}{number\PYGZus{}of\PYGZus{}streaming\PYGZus{}aux\PYGZus{}channels}\PYG{p}{]}\PYG{+w}{ }\PYG{c}{\PYGZpc{} [number\PYGZus{}of\PYGZus{}streaming\PYGZus{}eeg\PYGZus{}channels] is an integer from 1 up till 8.}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id18}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{8}\PYG{p}{;} \PYG{c}{\PYGZpc{} informing bossbox that 8 aux/Emg/Bipolar channels are being streamed frm your Biosignal Processor}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{2}\PYG{p}{;} \PYG{c}{\PYGZpc{} informing bossbox that 2 aux/EMG/Bipolar channels are being}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{8}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} informing bossbox that 8 aux/Emg/Bipolar channels are being streamed frm your Biosignal Processor}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} informing bossbox that 2 aux/EMG/Bipolar channels are being}
 \end{sphinxVerbatim}
 
 
@@ -502,6 +589,7 @@ Auxiliary channels should always be the last 8 or N channels in your Protocol of
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id20}}\begin{quote}
 
+\sphinxAtStartPar
 Spatial filtering of the signals is an important step before commencing real\sphinxhyphen{}time brain states detection. The bossdevice allows to specify two different spatially filtered channels and can detect brain states (based on the target phase \& amplitude) for both of these spatial filtered channels in parallel. If any one of them is specified then the other one is ignored and assigned 0 weights. The index of eeg\_channels being streamed from the Biosignal processor e.g. ActiCHamp or NeurOne corrosponds to the index of the weights matrix explained below.
 \end{quote}
 
@@ -518,9 +606,9 @@ Spatial filtering of the signals is an important step before commencing real\sph
 \label{\detokenize{4_api_documentation:id22}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c}{\PYGZpc{} assume that there are 5 EEG channels}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{;} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{;} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{} the channel 1 will be assigned the given weights and all the eeg\PYGZus{}channels for 2nd spatially filtered channel would have 0 weights.}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} the channel 1 will be assigned the given weights and all the eeg\PYGZus{}channels for 2nd spatially filtered channel would have 0 weights.}
 \PYG{c}{\PYGZpc{} assume that there are 3 EEG channels}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{0} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{;} \PYG{n}{1} \PYG{l+s}{1}\PYG{p}{;} \PYG{n}{0} \PYG{l+s}{\PYGZhy{}0.5]}\PYG{p}{;} \PYG{c}{\PYGZpc{} the channel 1 will be assigned the weights given on first column and channel 2 will be assigned the weights given on 2nd column.}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{1}\PYG{+w}{ }\PYG{l+s}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.5}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} the channel 1 will be assigned the weights given on first column and channel 2 will be assigned the weights given on 2nd column.}
 \end{sphinxVerbatim}
 
 
@@ -534,6 +622,7 @@ Spatial filtering of the signals is an important step before commencing real\sph
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id23}}\begin{quote}
 
+\sphinxAtStartPar
 bossdevice contains 3 built in Oscillatory phase prediction models each for Theta (4\sphinxhyphen{}8 Hz), Alpha (8\sphinxhyphen{}14Hz) and Beta (14\sphinxhyphen{}30Hz) frequency bands. Real\sphinxhyphen{}time phase detection can be performed for maximum of 2 different, pre\sphinxhyphen{}specified spatially filtered channels in parallel. This method allows to define a target phase in radians for a particular frequency band.
 \end{quote}
 
@@ -541,9 +630,9 @@ bossdevice contains 3 built in Oscillatory phase prediction models each for Thet
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id24}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}angle\PYGZus{}in\PYGZus{}radians} \PYG{c}{\PYGZpc{} sets target phase of Alpha Oscillation}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}angle\PYGZus{}in\PYGZus{}radians} \PYG{c}{\PYGZpc{} sets target phase of Theta Oscillation}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}angle\PYGZus{}in\PYGZus{}radians} \PYG{c}{\PYGZpc{} sets target phase of Beta Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}angle\PYGZus{}in\PYGZus{}radians}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets target phase of Alpha Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}angle\PYGZus{}in\PYGZus{}radians}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets target phase of Theta Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}angle\PYGZus{}in\PYGZus{}radians}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets target phase of Beta Oscillation}
 \PYG{c}{\PYGZpc{} [spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number] is an integer having value 1 or 2.}
 \PYG{c}{\PYGZpc{} [phase\PYGZus{}angle\PYGZus{}in\PYGZus{}radians] is 0 for Peak, pi for Trough, \PYGZhy{}pi/2 for Rising Flank \PYGZam{} +pi/2 for Falling Flank}
 \end{sphinxVerbatim}
@@ -553,14 +642,14 @@ bossdevice contains 3 built in Oscillatory phase prediction models each for Thet
 \capstart
 
 \noindent\sphinxincludegraphics{{Figure10_phases}.png}
-\caption{Radian values of several target phases in bossdevice research}\label{\detokenize{4_api_documentation:id51}}\end{figure}
+\caption{Radian values of several target phases in bossdevice research}\label{\detokenize{4_api_documentation:id54}}\end{figure}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id25}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c}{\PYGZpc{} bossdevice is loaded to detect peak (0 radians) from first spatially filtered channel  with the assumption that the Oscillation is in Alpha frequency band}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{p}{;} \PYG{c}{\PYGZpc{} bossdevice is loaded to detect trough(pi radians) from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} bossdevice is loaded to detect peak (0 radians) from first spatially filtered channel  with the assumption that the Oscillation is in Alpha frequency band}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} bossdevice is loaded to detect trough(pi radians) from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band}
 \end{sphinxVerbatim}
 
 
@@ -574,6 +663,7 @@ bossdevice contains 3 built in Oscillatory phase prediction models each for Thet
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id26}}\begin{quote}
 
+\sphinxAtStartPar
 Defining absolute target phase angles in order to detect a brain state is often prone to error mainly due to the resolution of data obtained after sampling rate transition. In order to overcome this digitization resolution error another parameter has to be defined such that the vicinities of the target phase shall be made clear to the detection algorithm. For an instance, while detecting a 0 radians phase, the phase vector would probably look like this {[}\sphinxhyphen{}0.001324 \sphinxhyphen{}0.00234 0.00243 0.004324{]}, and since none of them are mathematically equivalent to zero therefore in order to not allow to skip such Oscillatory Peak events and to increase the accuracy of the phase detection, a tolerance value is to be provided.
 \end{quote}
 
@@ -581,9 +671,9 @@ Defining absolute target phase angles in order to detect a brain state is often 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id27}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}tolerance\PYGZus{}in\PYGZus{}radians} \PYG{c}{\PYGZpc{} sets target phase tolerance of Alpha Oscillation}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}tolerance\PYGZus{}in\PYGZus{}radians} \PYG{c}{\PYGZpc{} sets target phase tolerance of Theta Oscillation}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}tolerance\PYGZus{}in\PYGZus{}radians} \PYG{c}{\PYGZpc{} sets target phase of Beta Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}tolerance\PYGZus{}in\PYGZus{}radians}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets target phase tolerance of Alpha Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}tolerance\PYGZus{}in\PYGZus{}radians}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets target phase tolerance of Theta Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{phase\PYGZus{}tolerance\PYGZus{}in\PYGZus{}radians}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets target phase of Beta Oscillation}
 \PYG{c}{\PYGZpc{} [spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number] is an integer having value 1 or 2.}
 \PYG{c}{\PYGZpc{}Note: While targeting a random phase, the tolerance could go as high as possible i.e. pi radians or Nxpi radians e.g. 2pi etc}
 \end{sphinxVerbatim}
@@ -592,8 +682,8 @@ Defining absolute target phase angles in order to detect a brain state is often 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id28}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{40}\PYG{p}{;} \PYG{c}{\PYGZpc{} bossdevice is loaded to detect the setted target phase with a tolerance of pi/40 radians from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{70}\PYG{p}{;} \PYG{c}{\PYGZpc{} ossdevice is loaded to detect the setted target phase with a tolerance of pi/70 radians from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{40}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} bossdevice is loaded to detect the setted target phase with a tolerance of pi/40 radians from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{70}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} ossdevice is loaded to detect the setted target phase with a tolerance of pi/70 radians from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band}
 \end{sphinxVerbatim}
 
 
@@ -607,16 +697,17 @@ Defining absolute target phase angles in order to detect a brain state is often 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id29}}\begin{quote}
 
-Defining minimum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define minimum amplitude threshold in micro volts that must be reached along with other brain state associated conditions such as maximum amplitude, phase target, and phase tolerance in order to be able to declare the brain state as detected and trigger further sequence of events. bossdevice contains 3 built in Oscillatory minimum amplitude estimation models each for Theta (4\sphinxhyphen{}8 Hz), Alpha (8\sphinxhyphen{}14Hz) and Beta (14\sphinxhyphen{}30Hz) frequency bands. Real\sphinxhyphen{}time minimum amplitude detection can be performed for maximum of 2 different, pre\sphinxhyphen{}specified spatially filtered channels in parallel.
+\sphinxAtStartPar
+Defining minimum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define minimum amplitude threshold in micro volts that must be reached along with other brain state associated conditions such as maximum amplitude, phase target, and phase tolerance in order to be able to declare the brain state as detected and generate TTL output sequence. The bossdevice contains 3 built in Oscillatory minimum amplitude estimation models each for Theta (4\sphinxhyphen{}8 Hz), Alpha (8\sphinxhyphen{}14Hz) and Beta (14\sphinxhyphen{}30Hz) frequency bands. Real\sphinxhyphen{}time minimum amplitude detection can be performed for maximum of 2 different, pre\sphinxhyphen{}specified spatially filtered channels in parallel.
 \end{quote}
 
 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id30}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{min\PYGZus{}amplitude\PYGZus{}microV} \PYG{c}{\PYGZpc{} sets minimum amplitude threshold of Alpha Oscillation}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{min\PYGZus{}amplitude\PYGZus{}microV} \PYG{c}{\PYGZpc{} sets minimum amplitude threshold of Theta Oscillation}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{min\PYGZus{}amplitude\PYGZus{}microV} \PYG{c}{\PYGZpc{} sets minimum amplitude threshold of Beta Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{min\PYGZus{}amplitude\PYGZus{}microV}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets minimum amplitude threshold of Alpha Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{min\PYGZus{}amplitude\PYGZus{}microV}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets minimum amplitude threshold of Theta Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{min\PYGZus{}amplitude\PYGZus{}microV}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets minimum amplitude threshold of Beta Oscillation}
 \PYG{c}{\PYGZpc{} [spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number] is an integer having value 1 or 2.}
 \end{sphinxVerbatim}
 
@@ -624,8 +715,8 @@ Defining minimum amplitude threshold in order to match a specific brain state is
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id31}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{1000}\PYG{p}{;} \PYG{c}{\PYGZpc{} bossdevice is loaded to monitor the specified minimum amplitude threshold from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mf}{1e5}\PYG{p}{;} \PYG{c}{\PYGZpc{} bossdevice is loaded to monitor the specified minimum amplitude threshold from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{1000}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} bossdevice is loaded to monitor the specified minimum amplitude threshold from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mf}{1e5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} bossdevice is loaded to monitor the specified minimum amplitude threshold from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band}
 \end{sphinxVerbatim}
 
 
@@ -639,16 +730,17 @@ Defining minimum amplitude threshold in order to match a specific brain state is
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id32}}\begin{quote}
 
-Defining maximum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define maximum amplitude threshold in micro volts that must be not be reached in order to be able to declare the brain state as detected and trigger further sequence of events. The bossdevice contains 3 built in Oscillatory maximum amplitude estimation models each for Theta (4\sphinxhyphen{}8 Hz), Alpha (8\sphinxhyphen{}14Hz) and Beta (14\sphinxhyphen{}30Hz) frequency bands. Real\sphinxhyphen{}time maximum amplitude detection can be performed for maximum of 2 different, pre\sphinxhyphen{}specified spatially filtered channels in parallel.
+\sphinxAtStartPar
+Defining maximum amplitude threshold in order to match a specific brain state is important. The bossdevice allows to define maximum amplitude threshold in micro volts that must be not be reached in order to be able to declare the brain state as detected and generare TTL output sequence. The bossdevice contains 3 built in Oscillatory maximum amplitude estimation models each for Theta (4\sphinxhyphen{}8 Hz), Alpha (8\sphinxhyphen{}14Hz) and Beta (14\sphinxhyphen{}30Hz) frequency bands. Real\sphinxhyphen{}time maximum amplitude detection can be performed for maximum of 2 different, pre\sphinxhyphen{}specified spatially filtered channels in parallel.
 \end{quote}
 
 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id33}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{max\PYGZus{}amplitude\PYGZus{}microV} \PYG{c}{\PYGZpc{} sets maximum amplitude threshold of Alpha Oscillation}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{max\PYGZus{}amplitude\PYGZus{}microV} \PYG{c}{\PYGZpc{} sets maximum amplitude threshold of Theta Oscillation}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{max\PYGZus{}amplitude\PYGZus{}microV} \PYG{c}{\PYGZpc{} sets maximum amplitude threshold of Beta Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{max\PYGZus{}amplitude\PYGZus{}microV}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets maximum amplitude threshold of Alpha Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{max\PYGZus{}amplitude\PYGZus{}microV}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets maximum amplitude threshold of Theta Oscillation}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{p}{[}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number}\PYG{p}{]}\PYG{p}{)}\PYG{p}{=}\PYG{n}{max\PYGZus{}amplitude\PYGZus{}microV}\PYG{+w}{ }\PYG{c}{\PYGZpc{} sets maximum amplitude threshold of Beta Oscillation}
 \PYG{c}{\PYGZpc{} [spatial\PYGZus{}filter\PYGZus{}channel\PYGZus{}number] is an integer having value 1 or 2.}
 \end{sphinxVerbatim}
 
@@ -656,8 +748,8 @@ Defining maximum amplitude threshold in order to match a specific brain state is
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id34}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{1000}\PYG{p}{;} \PYG{c}{\PYGZpc{} bossdevice is loaded to monitor the specified maximum amplitude threshold from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mf}{1e5}\PYG{p}{;} \PYG{c}{\PYGZpc{} bossdevice is loaded to monitor the specified maximum amplitude threshold from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{1000}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} bossdevice is loaded to monitor the specified maximum amplitude threshold from first spatially filtered channel with the assumption that the Oscillation is in Alpha frequency band}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mf}{1e5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} bossdevice is loaded to monitor the specified maximum amplitude threshold from second spatially filtered channel with the assumption that the Oscillation is in Beta frequency band}
 \end{sphinxVerbatim}
 
 
@@ -671,6 +763,7 @@ Defining maximum amplitude threshold in order to match a specific brain state is
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id35}}\begin{quote}
 
+\sphinxAtStartPar
 Spatially filtered channel’s signals described in the “spatial\_filter\_weights” function are passed through a low pass FIR filter for anti\sphinxhyphen{}aliasing. The coefficients of this filter can be specified using this function provided that the filter has an order of 100 at maximum.
 \end{quote}
 
@@ -678,27 +771,27 @@ Spatially filtered channel’s signals described in the “spatial\_filter\_weig
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id36}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}for Alpha}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}for Theta}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}for Beta}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}for Alpha}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}for Theta}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}for Beta}
 \end{sphinxVerbatim}
 
 
 \subsection{Sampling Rates}
 \label{\detokenize{4_api_documentation:sampling-rates}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{Oscillation}         \PYG{l+s}{Sampling} \PYG{l+s}{Rate}
-\PYG{n}{Alpha} \PYG{p}{(}\PYG{l+m+mi}{8}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{14} \PYG{n}{Hz}\PYG{p}{)}         \PYG{l+m+mi}{500} \PYG{n}{Hz}
-\PYG{n}{Theta} \PYG{p}{(}\PYG{l+m+mi}{4}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{8} \PYG{n}{Hz}\PYG{p}{)}          \PYG{l+m+mi}{250} \PYG{n}{Hz}
-\PYG{n}{Beta}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{30} \PYG{n}{Hz}\PYG{p}{)}          \PYG{l+m+mi}{1000} \PYG{n}{Hz}
+\PYG{n}{Oscillation}\PYG{+w}{         }\PYG{l+s}{Sampling}\PYG{+w}{ }\PYG{l+s}{Rate}
+\PYG{n}{Alpha}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{14}\PYG{+w}{ }\PYG{n}{Hz}\PYG{p}{)}\PYG{+w}{         }\PYG{l+m+mi}{500}\PYG{+w}{ }\PYG{n}{Hz}
+\PYG{n}{Theta}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{8}\PYG{+w}{ }\PYG{n}{Hz}\PYG{p}{)}\PYG{+w}{          }\PYG{l+m+mi}{250}\PYG{+w}{ }\PYG{n}{Hz}
+\PYG{n}{Beta}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{30}\PYG{+w}{ }\PYG{n}{Hz}\PYG{p}{)}\PYG{+w}{          }\PYG{l+m+mi}{1000}\PYG{+w}{ }\PYG{n}{Hz}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id37}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=}  \PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=}  \PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{  }\PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{lpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{  }\PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}
 \end{sphinxVerbatim}
 
 
@@ -712,6 +805,7 @@ Spatially filtered channel’s signals described in the “spatial\_filter\_weig
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id38}}\begin{quote}
 
+\sphinxAtStartPar
 Low pass filtered channel’s signal described in the “lpf\_fir\_coeffs” function is then pass through an FIR Band Pass filter. The coefficients of this filter can be specified using this function provided that the filter has an order of 100 at maximum.
 \end{quote}
 
@@ -719,27 +813,27 @@ Low pass filtered channel’s signal described in the “lpf\_fir\_coeffs” fun
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id39}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}for Alpha}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}for Theta}
-\PYG{n}{obj}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}for Beta}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}for Alpha}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}for Theta}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{filter\PYGZus{}coefficients}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}for Beta}
 \end{sphinxVerbatim}
 
 
 \subsection{Sampling Rates}
 \label{\detokenize{4_api_documentation:id40}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{Oscillation}         \PYG{l+s}{Sampling} \PYG{l+s}{Rate}
-\PYG{n}{Alpha} \PYG{p}{(}\PYG{l+m+mi}{8}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{14} \PYG{n}{Hz}\PYG{p}{)}         \PYG{l+m+mi}{500} \PYG{n}{Hz}
-\PYG{n}{Theta} \PYG{p}{(}\PYG{l+m+mi}{4}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{8} \PYG{n}{Hz}\PYG{p}{)}          \PYG{l+m+mi}{250} \PYG{n}{Hz}
-\PYG{n}{Beta}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{30} \PYG{n}{Hz}\PYG{p}{)}          \PYG{l+m+mi}{1000} \PYG{n}{Hz}
+\PYG{n}{Oscillation}\PYG{+w}{         }\PYG{l+s}{Sampling}\PYG{+w}{ }\PYG{l+s}{Rate}
+\PYG{n}{Alpha}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{14}\PYG{+w}{ }\PYG{n}{Hz}\PYG{p}{)}\PYG{+w}{         }\PYG{l+m+mi}{500}\PYG{+w}{ }\PYG{n}{Hz}
+\PYG{n}{Theta}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{8}\PYG{+w}{ }\PYG{n}{Hz}\PYG{p}{)}\PYG{+w}{          }\PYG{l+m+mi}{250}\PYG{+w}{ }\PYG{n}{Hz}
+\PYG{n}{Beta}\PYG{p}{(}\PYG{l+m+mi}{14}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{30}\PYG{+w}{ }\PYG{n}{Hz}\PYG{p}{)}\PYG{+w}{          }\PYG{l+m+mi}{1000}\PYG{+w}{ }\PYG{n}{Hz}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id41}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{firls}\PYG{p}{(}\PYG{l+m+mi}{80}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{p}{(}\PYG{l+m+mi}{11} \PYG{o}{+} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)} \PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{0} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{0} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{}creates FIR Band Pass filter of order \PYGZdq{}80\PYGZdq{} , around peak frequency of 11 Hz and assigned it to Alpha model of bossdevice}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{firls}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{p}{(}\PYG{l+m+mi}{19} \PYG{o}{+} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)} \PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{0} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{0} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{}creates FIR Band Pass filter of order \PYGZdq{}100\PYGZdq{} , around peak frequency of 19 Hz and assigned it to Beta model of bossdevice}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{l+m+mi}{80}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{11}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}creates FIR Band Pass filter of order \PYGZdq{}80\PYGZdq{} , around peak frequency of 11 Hz and assigned it to Alpha model of bossdevice}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{19}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}creates FIR Band Pass filter of order \PYGZdq{}100\PYGZdq{} , around peak frequency of 19 Hz and assigned it to Beta model of bossdevice}
 \end{sphinxVerbatim}
 
 
@@ -752,7 +846,8 @@ Low pass filtered channel’s signal described in the “lpf\_fir\_coeffs” fun
 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id42}}
-Arming bossdevice would allow bossdevice to actively search for the Brain states already set into it and generate the trigger sequence configured using “configure\_time\_port\_marker” upon every instance of detection.
+\sphinxAtStartPar
+Arming bossdevice would allow bossdevice to actively search for the Brain states already set into it and generate the TTL output sequence configured using “configure\_time\_port\_marker” upon every instance of detection.
 
 
 \subsection{Syntax}
@@ -765,7 +860,7 @@ Arming bossdevice would allow bossdevice to actively search for the Brain states
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id44}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{;} \PYG{c}{\PYGZpc{} will set bossdevice to detect the specified brain states and trigger sequence}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} will set bossdevice to detect the specified brain states and TTL output sequence}
 \end{sphinxVerbatim}
 
 
@@ -778,7 +873,8 @@ Arming bossdevice would allow bossdevice to actively search for the Brain states
 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id45}}
-Disarming bossdevice would allow bossdevice to stop search for the Brain states already by now “Armed’ into it and immediately stops the generation of the trigger sequence configured using “configure\_time\_port\_marker” .
+\sphinxAtStartPar
+Disarming bossdevice would allow bossdevice to stop search for the Brain states already by now “Armed’ into it and immediately stops the generation of the planned TTL output sequence configured using “configure\_time\_port\_marker” .
 
 
 \subsection{Syntax}
@@ -791,7 +887,7 @@ Disarming bossdevice would allow bossdevice to stop search for the Brain states 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id47}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{disarm}\PYG{p}{;} \PYG{c}{\PYGZpc{} will stop bossdevice to detect the specified brain states and stop ongoing trigger sequence}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{disarm}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} will stop bossdevice to detect the specified brain states and stop ongoing TTL output sequence}
 \end{sphinxVerbatim}
 
 
@@ -804,20 +900,48 @@ Disarming bossdevice would allow bossdevice to stop search for the Brain states 
 
 \subsection{Description}
 \label{\detokenize{4_api_documentation:id48}}
-Upon an artifactual trigger event such as Trans\sphinxhyphen{}cranial Magnetic Stimulation (TMS) pulse artifact etc., the data gets distorted and is accumulated with a lot of noise, in order to hold the samples for a specified period of time, sample and hold period method can be helpful. This is also helpful to keep the visual output of the bossdevice clean and tidy.
+\sphinxAtStartPar
+Upon an artifactual event such as pulse artifact etc., the data gets distorted and is accumulated with a lot of noise, in order to hold the samples for a specified period of time, sample and hold period method can be helpful.
 
 
 \subsection{Syntax}
 \label{\detokenize{4_api_documentation:id49}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{obj}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period} \PYG{p}{=} \PYG{p}{[}\PYG{n}{no\PYGZus{}of\PYGZus{}sample\PYGZus{}to\PYGZus{}hold}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{} no\PYGZus{}of\PYGZus{}sample\PYGZus{}to\PYGZus{}hold are calculated at the rate of 5KHz}
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{no\PYGZus{}of\PYGZus{}sample\PYGZus{}to\PYGZus{}hold}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} no\PYGZus{}of\PYGZus{}sample\PYGZus{}to\PYGZus{}hold are calculated at the rate of 5KHz}
 \end{sphinxVerbatim}
 
 
 \subsection{Example}
 \label{\detokenize{4_api_documentation:id50}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period} \PYG{p}{=} \PYG{l+m+mi}{500}\PYG{p}{;} \PYG{c}{\PYGZpc{} hold the samples for 100 ms}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{500}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} hold the samples for 100 ms}
+\end{sphinxVerbatim}
+
+
+\bigskip\hrule\bigskip
+
+
+
+\section{min\_inter\_pulse\_interval}
+\label{\detokenize{4_api_documentation:min-inter-pulse-interval}}
+
+\subsection{Description}
+\label{\detokenize{4_api_documentation:id51}}
+\sphinxAtStartPar
+Minimum inter pulse interval allows you to define the time period for which the bossdevice should wait before generating another TTL output.
+
+
+\subsection{Syntax}
+\label{\detokenize{4_api_documentation:id52}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{time\PYGZus{}in\PYGZus{}secodns}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Seconds to wait before generating another TTL output}
+\end{sphinxVerbatim}
+
+
+\subsection{Example}
+\label{\detokenize{4_api_documentation:id53}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{obj}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} bossdevivce will wait for 2 seconds before generating any TTL output}
 \end{sphinxVerbatim}
 
 
@@ -828,39 +952,41 @@ Upon an artifactual trigger event such as Trans\sphinxhyphen{}cranial Magnetic S
 \chapter{Demo Scripts}
 \label{\detokenize{5_demo_scripts:demo-scripts}}\label{\detokenize{5_demo_scripts::doc}}
 
-\section{Open Loop Jittered Stimulation}
-\label{\detokenize{5_demo_scripts:open-loop-jittered-stimulation}}
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+\section{Open Loop Jittered TTL Output}
+\label{\detokenize{5_demo_scripts:open-loop-jittered-ttl-output}}
+\sphinxAtStartPar
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output.
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+\sphinxAtStartPar
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{NumberOfTrials}\PYG{p}{=}\PYG{l+m+mi}{10}\PYG{p}{;}
- \PYG{n}{ITI}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{4} \PYG{l+m+mi}{6}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}ITI is seconds \PYGZhy{} a random number between these two values}
- \PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
- \PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
- \PYG{c}{\PYGZpc{}\PYGZpc{} Approach 1 \PYGZhy{} For Loop Based Open Loop Stimulation}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{}Configuring Trigger Sequence in [Time Port Marker] format}
- \PYG{n}{for} \PYG{l+s}{TrialNumber=1:NumberOfTrials}
-     \PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualTrigger}
-     \PYG{n+nb}{disp}\PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Triggered Trial \PYGZsh{}\PYGZsq{}} \PYG{n}{num2str}\PYG{p}{(}\PYG{n}{TrialNumber}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
-     \PYG{n}{min\PYGZus{}inter\PYGZus{}trig\PYGZus{}interval}\PYG{p}{=} \PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{+} \PYG{p}{(}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.*}\PYG{n+nb}{rand}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{}Assigning New Random ITI for this Trial to the bossdevice research}
-     \PYG{n}{pause}\PYG{p}{(}\PYG{n}{min\PYGZus{}inter\PYGZus{}trig\PYGZus{}interval}\PYG{p}{)} \PYG{c}{\PYGZpc{}Wait for next trial start}
- \PYG{n}{end}
- \PYG{l+s}{disp(}\PYG{l+s}{\PYGZsq{}Trials Completed\PYGZsq{}}\PYG{l+s}{)}
- \PYG{c}{\PYGZpc{}\PYGZpc{} Approach 2 \PYGZhy{} bossdevice research Sequence Generator Based Open Loop Stimulation}
- \PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
- \PYG{n}{Time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{NumberOfTrials}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c}{\PYGZpc{}Pre filling the array}
- \PYG{n}{for} \PYG{l+s}{TrialNumber=1:NumberOfTrials}
-     \PYG{n}{Time}\PYG{p}{=}\PYG{n}{Time}\PYG{o}{+}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{+} \PYG{p}{(}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.*}\PYG{n+nb}{rand}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{}Generating Sequence of Jittered ITIs for all Trials}
-     \PYG{n}{Port}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{c}{\PYGZpc{}In order to generatre trigger always on first port , use 2 for 2nd port and 3 for third port}
-     \PYG{n}{Marker}\PYG{p}{=}\PYG{n}{TrialNumber}\PYG{p}{;}
-     \PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{TrialNumber}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{=}\PYG{p}{[}\PYG{n}{Time} \PYG{n}{Port} \PYG{n}{Marker}\PYG{p}{]}\PYG{p}{;}
- \PYG{n}{end}
- \PYG{l+s}{bd.configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker(time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence)}\PYG{p}{;} \PYG{c}{\PYGZpc{}Assigning Pregenerated sequence to the bossdevice research}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualTrigger} \PYG{c}{\PYGZpc{} Triggering the bossdevice research to start sequence TTL Output Generation}
- \PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Trigger Sequence Started by bossdevice research\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{ }\PYG{n}{ITI}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}ITI is seconds \PYGZhy{} a random number between these two values}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Approach 1 \PYGZhy{} For Loop Based Open Loop TTL output generation}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Configuring TTL output Sequence in [Time Port Marker] format}
+\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{TrialNumber}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{NumberOfTrials}
+\PYG{+w}{     }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualPulse}
+\PYG{+w}{     }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Generated Trial \PYGZsh{}\PYGZsq{}}\PYG{+w}{ }\PYG{n+nb}{num2str}\PYG{p}{(}\PYG{n}{TrialNumber}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
+\PYG{+w}{     }\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{=}\PYG{+w}{ }\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.*}\PYG{n+nb}{rand}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning New Random ITI for this Trial to the bossdevice research}
+\PYG{+w}{     }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{)}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Wait for next trial start}
+\PYG{+w}{ }\PYG{k}{end}
+\PYG{+w}{ }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Trials Completed\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Approach 2 \PYGZhy{} bossdevice research Sequence Generator Based Open Loop TTL output}
+\PYG{+w}{ }\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{Time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{NumberOfTrials}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Pre filling the array}
+\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{TrialNumber}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{NumberOfTrials}
+\PYG{+w}{     }\PYG{n}{Time}\PYG{p}{=}\PYG{n}{Time}\PYG{o}{+}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.*}\PYG{n+nb}{rand}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Generating Sequence of Jittered ITIs for all Trials}
+\PYG{+w}{     }\PYG{n}{Port}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}In order to generatre TTL output always on first port , use 2 for 2nd port and 3 for third port}
+\PYG{+w}{     }\PYG{n}{Marker}\PYG{p}{=}\PYG{n}{TrialNumber}\PYG{p}{;}
+\PYG{+w}{     }\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{TrialNumber}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{=}\PYG{p}{[}\PYG{n}{Time}\PYG{+w}{ }\PYG{n}{Port}\PYG{+w}{ }\PYG{n}{Marker}\PYG{p}{]}\PYG{p}{;}
+\PYG{+w}{ }\PYG{k}{end}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning Pregenerated sequence to the bossdevice research}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualPulse}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Generating the TTL output of the bossdevice research to start sequence TTL Output Generation}
+\PYG{+w}{ }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{TTL output Sequence Started by bossdevice research\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 
@@ -868,69 +994,69 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 
 
-\section{mu\sphinxhyphen{}Rhythm Phase Locked Triggering}
-\label{\detokenize{5_demo_scripts:mu-rhythm-phase-locked-triggering}}
-This demo script uses bossdevice to deliver mu Rising or Falling Flank Phase locked Trigger outputs
+\section{mu\sphinxhyphen{}Rhythm Phase Locked TTL Output}
+\label{\detokenize{5_demo_scripts:mu-rhythm-phase-locked-ttl-output}}
+\sphinxAtStartPar
+This demo script uses bossdevice to deliver mu Rising or Falling Flank Phase locked TTL outputs
 Resources: 1) bossdevice Switched On
 2) bossdevice Open Source MATLAB API
 3) Biosignal Amplifier streaming atleast 5 EEG Channels
-4) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{=}\PYG{l+m+mi}{10}\PYG{p}{;}
- \PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;} \PYG{c}{\PYGZpc{}s}
- \PYG{n}{phase}\PYG{p}{=}\PYG{p}{[}\PYG{o}{+}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{2} \PYG{o}{\PYGZhy{}}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}[falling\PYGZus{}flank rising\PYGZus{}flank]}
- \PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{40}\PYG{p}{;}
- \PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{p}{=}\PYG{l+m+mi}{11}\PYG{p}{;} \PYG{c}{\PYGZpc{} Hz}
- \PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{=} \PYG{l+m+mi}{75}\PYG{p}{;}
- \PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;} \PYG{c}{\PYGZpc{}Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor}
- \PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{]}\PYG{o}{\PYGZsq{}}\PYG{p}{;} \PYG{c}{\PYGZpc{}Column Vector of Spatial Filter Indexed wrt corrosponding Channels}
+\PYG{+w}{ }\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}s}
+\PYG{+w}{ }\PYG{n}{phase}\PYG{p}{=}\PYG{p}{[}\PYG{o}{+}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}[falling\PYGZus{}flank rising\PYGZus{}flank]}
+\PYG{+w}{ }\PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{40}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{p}{=}\PYG{l+m+mi}{11}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Hz}
+\PYG{+w}{ }\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{75}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor}
+\PYG{+w}{ }\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{]}\PYG{o}{\PYGZsq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Column Vector of Spatial Filter Indexed wrt corrosponding Channels}
 
- \PYG{n}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n+nb}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
 
- \PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
- \PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{;}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{;}
 
- \PYG{c}{\PYGZpc{}\PYGZpc{} Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha}
- \PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency} \PYG{o}{+} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)} \PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{0} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{0} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha}
+\PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
 
- \PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice research}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice research}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
 
- \PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked Triggering}
- \PYG{n}{condition\PYGZus{}index}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{k}{while} \PYG{p}{(}\PYG{n}{condition\PYGZus{}index} \PYG{o}{\PYGZlt{}=} \PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
-     \PYG{k}{if}\PYG{p}{(}\PYG{n}{strcmp}\PYG{p}{(}\PYG{n}{bb}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
-         \PYG{n}{bb}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
-         \PYG{n}{bb}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{phase}\PYG{p}{(}\PYG{n}{randi}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{phase}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
-         \PYG{n}{bb}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{;}
-         \PYG{n}{bb}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
-         \PYG{n}{bb}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}trig\PYGZus{}interval} \PYG{p}{=} \PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{;}
-         \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
-         \PYG{n}{bb}\PYG{p}{.}\PYG{n}{arm}\PYG{p}{;}
-     \PYG{n}{end}
-     \PYG{l+s}{\PYGZpc{}} \PYG{l+s}{trigger} \PYG{l+s}{has} \PYG{l+s}{been} \PYG{l+s}{executed,} \PYG{l+s}{move} \PYG{l+s}{to} \PYG{l+s}{the} \PYG{l+s}{next} \PYG{l+s}{condition}
-     \PYG{k}{if}\PYG{p}{(}\PYG{n}{bb}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
-         \PYG{n}{condition\PYGZus{}index} \PYG{p}{=} \PYG{n}{condition\PYGZus{}index} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
-         \PYG{n}{bb}\PYG{p}{.}\PYG{n}{disarm}\PYG{p}{;}
-         \PYG{n+nb}{disp} \PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Triggered around \PYGZsq{}} \PYG{p}{(}\PYG{n}{num2str}\PYG{p}{(}\PYG{n}{rad2deg}\PYG{p}{(}\PYG{n}{bb}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ degrees Phase angle.\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
-         \PYG{n}{pause}\PYG{p}{(}\PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{)}
-     \PYG{n}{end}
-     \PYG{l+s}{pause(0.01)}\PYG{p}{;}
- \PYG{n}{end}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked TTL Output}
+\PYG{+w}{ }\PYG{n}{condition\PYGZus{}index}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
+\PYG{+w}{     }\PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{bb}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{bb}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bb}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{phase}\PYG{p}{(}\PYG{n+nb}{randi}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{phase}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bb}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bb}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{bb}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{bb}\PYG{p}{.}\PYG{n}{arm}\PYG{p}{;}
+\PYG{+w}{     }\PYG{k}{end}
+\PYG{+w}{     }\PYG{c}{\PYGZpc{} trigger has been executed, move to the next condition}
+\PYG{+w}{     }\PYG{k}{if}\PYG{p}{(}\PYG{n}{bb}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bb}\PYG{p}{.}\PYG{n}{disarm}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n+nb}{disp}\PYG{+w}{ }\PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Triggered around \PYGZsq{}}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{num2str}\PYG{p}{(}\PYG{n+nb}{rad2deg}\PYG{p}{(}\PYG{n}{bb}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ degrees Phase angle.\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{)}
+\PYG{+w}{     }\PYG{k}{end}
+\PYG{+w}{     }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.01}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{ }\PYG{k}{end}
 
- \PYG{l+s}{\PYGZpc{}\PYGZpc{}} \PYG{l+s}{End}
- \PYG{n+nb}{disp} \PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Protocol has been completed\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} End}
+\PYG{+w}{ }\PYG{n+nb}{disp}\PYG{+w}{ }\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Protocol has been completed\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
 
@@ -938,97 +1064,99 @@ Resources: 1) bossdevice Switched On
 
 
 
-\section{Phase Triggered Plasticity Protocol}
-\label{\detokenize{5_demo_scripts:phase-triggered-plasticity-protocol}}
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+\section{Phase Locked Plasticity Protocol}
+\label{\detokenize{5_demo_scripts:phase-locked-plasticity-protocol}}
+\sphinxAtStartPar
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loopTTL output
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+\sphinxAtStartPar
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{=}\PYG{l+m+mi}{25}\PYG{p}{;}
- \PYG{n}{no\PYGZus{}of\PYGZus{}pulses}\PYG{p}{=}\PYG{l+m+mi}{100}\PYG{p}{;}
- \PYG{n}{pulse\PYGZus{}frequency}\PYG{p}{=}\PYG{l+m+mi}{100}\PYG{p}{;} \PYG{c}{\PYGZpc{}Hz}
- \PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;} \PYG{c}{\PYGZpc{}s}
- \PYG{n}{phase}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c}{\PYGZpc{}peak}
- \PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{40}\PYG{p}{;}
- \PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{p}{=}\PYG{l+m+mi}{11}\PYG{p}{;} \PYG{c}{\PYGZpc{} Hz}
- \PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{=} \PYG{l+m+mi}{75}\PYG{p}{;}
- \PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;} \PYG{c}{\PYGZpc{}Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor}
- \PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{]}\PYG{o}{\PYGZsq{}}\PYG{p}{;} \PYG{c}{\PYGZpc{}Column Vector of Spatial Filter Indexed wrt corrosponding Channels}
+\PYG{+w}{ }\PYG{n}{no\PYGZus{}of\PYGZus{}pulses}\PYG{p}{=}\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{pulse\PYGZus{}frequency}\PYG{p}{=}\PYG{l+m+mi}{100}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Hz}
+\PYG{+w}{ }\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}s}
+\PYG{+w}{ }\PYG{n}{phase}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}peak}
+\PYG{+w}{ }\PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{40}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{p}{=}\PYG{l+m+mi}{11}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Hz}
+\PYG{+w}{ }\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{75}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor}
+\PYG{+w}{ }\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{]}\PYG{o}{\PYGZsq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Column Vector of Spatial Filter Indexed wrt corrosponding Channels}
 
- \PYG{n}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n+nb}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
 
- \PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
- \PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{;}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{;}
 
- \PYG{c}{\PYGZpc{}\PYGZpc{} Preparing a Plasticity Protocol Seqeuence for bossdevice research}
- \PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{no\PYGZus{}of\PYGZus{}pulses}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c}{\PYGZpc{}Pre filling the array}
- \PYG{n}{for} \PYG{l+s}{iPulse=1:no\PYGZus{}of\PYGZus{}pulses}
-     \PYG{n}{time}\PYG{p}{=}\PYG{n}{time}\PYG{o}{+}\PYG{l+m+mf}{0.01}\PYG{p}{;}
-     \PYG{n}{port}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
-     \PYG{n}{marker}\PYG{p}{=}\PYG{n}{iPulse}\PYG{p}{;}
-     \PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{iPulse}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{=}\PYG{p}{[}\PYG{n}{time} \PYG{n}{port} \PYG{n}{marker}\PYG{p}{]}\PYG{p}{;}
- \PYG{n}{end}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Preparing a Plasticity Protocol Seqeuence for bossdevice research}
+\PYG{+w}{ }\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{no\PYGZus{}of\PYGZus{}pulses}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Pre filling the array}
+\PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{iPulse}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{no\PYGZus{}of\PYGZus{}pulses}
+\PYG{+w}{     }\PYG{n+nb}{time}\PYG{p}{=}\PYG{n+nb}{time}\PYG{o}{+}\PYG{l+m+mf}{0.01}\PYG{p}{;}
+\PYG{+w}{     }\PYG{n}{port}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{     }\PYG{n}{marker}\PYG{p}{=}\PYG{n}{iPulse}\PYG{p}{;}
+\PYG{+w}{     }\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{iPulse}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{=}\PYG{p}{[}\PYG{n+nb}{time}\PYG{+w}{ }\PYG{n}{port}\PYG{+w}{ }\PYG{n}{marker}\PYG{p}{]}\PYG{p}{;}
+\PYG{+w}{ }\PYG{k}{end}
 
- \PYG{l+s}{\PYGZpc{}\PYGZpc{}} \PYG{l+s}{Preparing} \PYG{l+s}{an} \PYG{l+s}{Individual} \PYG{l+s}{Peak} \PYG{l+s}{Frequency} \PYG{l+s}{based} \PYG{l+s}{Band} \PYG{l+s}{Pass} \PYG{l+s}{Filter} \PYG{l+s}{for} \PYG{l+s}{mu} \PYG{l+s}{Alpha}
- \PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency} \PYG{o}{+} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)} \PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{0} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{0} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha}
+\PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
 
- \PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice research}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{;}
- \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
-
-
-
- \PYG{c}{\PYGZpc{}\PYGZpc{} For plasticitz, we have the same condition, multiple times, we can run everything on the device:}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining} \PYG{p}{=} \PYG{l+m+mi}{100}\PYG{p}{;}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{phase}\PYG{p}{;}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{;}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{)}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}trig\PYGZus{}interval} \PYG{p}{=} \PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{;}
-         \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{arm}\PYG{p}{;}
-
-         \PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nSystem running, pulses remaining: \PYGZpc{}03i\PYGZsq{}}\PYG{p}{,} \PYG{n}{bd}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining}\PYG{p}{)}
-         \PYG{k}{while} \PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
-             \PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}b\PYGZbs{}b\PYGZbs{}b\PYGZpc{}03i\PYGZsq{}}\PYG{p}{,} \PYG{n}{bd}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining}\PYG{p}{)}\PYG{p}{;}
-             \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
-         \PYG{n}{end}
-         \PYG{l+s}{fprintf(}\PYG{l+s}{\PYGZsq{}\PYGZbs{}b\PYGZbs{}b\PYGZbs{}bDone\PYGZbs{}n\PYGZsq{}}\PYG{l+s}{)}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice research}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{;}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
 
 
- \PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked Triggering \PYGZpc{} this could be for excitability, where we have interleaved different conditions}
- \PYG{n}{condition\PYGZus{}index}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
- \PYG{k}{while} \PYG{p}{(}\PYG{n}{condition\PYGZus{}index} \PYG{o}{\PYGZlt{}=} \PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
-     \PYG{k}{if}\PYG{p}{(}\PYG{n}{strcmp}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{phase}\PYG{p}{;}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{;}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{)}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}trig\PYGZus{}interval} \PYG{p}{=} \PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{;}
-         \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{arm}\PYG{p}{;}
-     \PYG{n}{end}
-     \PYG{l+s}{\PYGZpc{}} \PYG{l+s}{trigger} \PYG{l+s}{has} \PYG{l+s}{been} \PYG{l+s}{executed,} \PYG{l+s}{move} \PYG{l+s}{to} \PYG{l+s}{the} \PYG{l+s}{next} \PYG{l+s}{condition}
-     \PYG{k}{if}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
-         \PYG{n}{condition\PYGZus{}index} \PYG{p}{=} \PYG{n}{condition\PYGZus{}index} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
-         \PYG{n}{bd}\PYG{p}{.}\PYG{n}{disarm}\PYG{p}{;}
-         \PYG{n}{disp} \PYG{l+s}{Triggered!}
-         \PYG{n}{pause}\PYG{p}{(}\PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{)}
-     \PYG{n}{end}
-     \PYG{l+s}{pause(0.01)}\PYG{p}{;}
- \PYG{n}{end}
 
- \PYG{l+s}{\PYGZpc{}\PYGZpc{}} \PYG{l+s}{End}
- \PYG{n+nb}{disp} \PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Plasticity Protocol has been completed\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} For plasticitz, we have the same condition, multiple times, we can run everything on the device:}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{phase}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{arm}\PYG{p}{;}
+
+\PYG{+w}{         }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nSystem running, pulses remaining: \PYGZpc{}03i\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{p}{)}
+\PYG{+w}{         }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{             }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}b\PYGZbs{}b\PYGZbs{}b\PYGZpc{}03i\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{             }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{         }\PYG{k}{end}
+\PYG{+w}{         }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}b\PYGZbs{}b\PYGZbs{}bDone\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}
+
+
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked TTL Ouput \PYGZpc{} this could be for excitability, where we have interleaved different conditions}
+\PYG{+w}{ }\PYG{n}{condition\PYGZus{}index}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{ }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
+\PYG{+w}{     }\PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{phase}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{arm}\PYG{p}{;}
+\PYG{+w}{     }\PYG{k}{end}
+\PYG{+w}{     }\PYG{c}{\PYGZpc{} TTL output has been generated, move to the next condition}
+\PYG{+w}{     }\PYG{k}{if}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{         }\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{disarm}\PYG{p}{;}
+\PYG{+w}{         }\PYG{n}{disp}\PYG{+w}{ }\PYG{l+s}{TTL\PYGZus{}Output\PYGZus{}Generated!}
+\PYG{+w}{         }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{)}
+\PYG{+w}{     }\PYG{k}{end}
+\PYG{+w}{     }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.01}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{ }\PYG{k}{end}
+
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} End}
+\PYG{+w}{ }\PYG{n+nb}{disp}\PYG{+w}{ }\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Plasticity Protocol has been completed\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
 \end{sphinxVerbatim}
 
 
@@ -1038,176 +1166,178 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 \section{Real\sphinxhyphen{}Time Oscillation Amplitude Threshold Tracking}
 \label{\detokenize{5_demo_scripts:real-time-oscillation-amplitude-threshold-tracking}}
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+\sphinxAtStartPar
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+\sphinxAtStartPar
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{=}\PYG{l+m+mi}{25}\PYG{p}{;}
-\PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{=}\PYG{l+m+mi}{4}\PYG{p}{;} \PYG{c}{\PYGZpc{}s}
-\PYG{n}{phase}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c}{\PYGZpc{}[positive]}
+\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{=}\PYG{l+m+mi}{4}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}s}
+\PYG{n}{phase}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}[positive]}
 \PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{=}\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{40}\PYG{p}{;}
-\PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{25} \PYG{l+m+mi}{75}\PYG{p}{]}\PYG{p}{;} \PYG{c}{\PYGZpc{}[min max] in percentile}
-\PYG{n}{amplitude\PYGZus{}assignment\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{60}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{;} \PYG{c}{\PYGZpc{}s}
-\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{p}{=}\PYG{l+m+mi}{11}\PYG{p}{;} \PYG{c}{\PYGZpc{} Hz}
-\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{=} \PYG{l+m+mi}{75}\PYG{p}{;}
-\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;} \PYG{c}{\PYGZpc{}Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor}
-\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{]}\PYG{o}{\PYGZsq{}}\PYG{p}{;} \PYG{c}{\PYGZpc{}Column Vector of Spatial Filter Indexed wrt corrosponding Channels}
-\PYG{n}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{25}\PYG{+w}{ }\PYG{l+m+mi}{75}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}[min max] in percentile}
+\PYG{n}{amplitude\PYGZus{}assignment\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{60}\PYG{o}{*}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}s}
+\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{p}{=}\PYG{l+m+mi}{11}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Hz}
+\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{75}\PYG{p}{;}
+\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning Number of channels as equivalent to Num of Channels streamed by Biosignal Processor}
+\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{0.25}\PYG{p}{]}\PYG{o}{\PYGZsq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Column Vector of Spatial Filter Indexed wrt corrosponding Channels}
+\PYG{n+nb}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
 \PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n+nb}{beta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{theta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{beta}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{;}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{} Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha}
-\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency} \PYG{o}{+} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{2} \PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)} \PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{0} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{0} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{p}{)}\PYG{p}{;}
+\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice research}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{;}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{} Configuring Real\PYGZhy{}Time Scopes for Amplitude Tracking}
-\PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS} \PYG{p}{=} \PYG{p}{[}\PYG{l+m+mi}{101} \PYG{l+m+mi}{102}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{101}\PYG{+w}{ }\PYG{l+m+mi}{102}\PYG{p}{]}\PYG{p}{;}
 
 \PYG{c}{\PYGZpc{} remove any pre\PYGZhy{}existing scopes with these ids}
-\PYG{k}{for} \PYG{n}{id} \PYG{p}{=} \PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}
-    \PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{.}\PYG{n}{Scopes} \PYG{o}{==} \PYG{n}{id}\PYG{p}{)}\PYG{p}{)}
-        \PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nRemoving scope \PYGZpc{}i\PYGZsq{}}\PYG{p}{,} \PYG{n}{id}\PYG{p}{)}
-        \PYG{n}{remscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{n}{id}\PYG{p}{)}\PYG{p}{;}
-    \PYG{n}{end}
-\PYG{l+s}{end}
+\PYG{k}{for}\PYG{+w}{ }\PYG{n}{id}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{.}\PYG{n}{Scopes}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{id}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nRemoving scope \PYGZpc{}i\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{id}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{remscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{id}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{k}{end}
 
-\PYG{n}{sig\PYGZus{}id\PYGZus{}amp} \PYG{p}{=} \PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{OSC/alpha/IA\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{}amplitude}
-\PYG{n}{sig\PYGZus{}id\PYGZus{}qly} \PYG{p}{=} \PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{QLY/Logical Operator2\PYGZsq{}}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{}eeg\PYGZus{}is\PYGZus{}clean}
+\PYG{n}{sig\PYGZus{}id\PYGZus{}amp}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{OSC/alpha/IA\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}amplitude}
+\PYG{n}{sig\PYGZus{}id\PYGZus{}qly}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{QLY/Logical Operator2\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}eeg\PYGZus{}is\PYGZus{}clean}
 
-\PYG{n}{sc} \PYG{p}{=} \PYG{n}{addscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{host\PYGZsq{}}\PYG{p}{,} \PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,} \PYG{p}{[}\PYG{n}{sig\PYGZus{}id\PYGZus{}amp} \PYG{n}{sig\PYGZus{}id\PYGZus{}qly}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{sc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{addscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{host\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{sig\PYGZus{}id\PYGZus{}amp}\PYG{+w}{ }\PYG{n}{sig\PYGZus{}id\PYGZus{}qly}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{NumSamples} \PYG{p}{=} \PYG{l+m+mi}{500}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Decimation} \PYG{p}{=} \PYG{l+m+mi}{10}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerSample} \PYG{p}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{NumSamples}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{500}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Decimation}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerSample}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
 
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{NumSamples} \PYG{p}{=} \PYG{l+m+mi}{500}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Decimation} \PYG{p}{=} \PYG{l+m+mi}{10}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerSample} \PYG{p}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{NumSamples}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{500}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Decimation}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerSample}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
 
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerMode} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Scope\PYGZsq{}}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerScope} \PYG{p}{=} \PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerMode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Scope\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerScope}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerMode} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Scope\PYGZsq{}}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerScope} \PYG{p}{=} \PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerMode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Scope\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{.}\PYG{n}{TriggerScope}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{AMP\PYGZus{}TRACING\PYGZus{}SCOPES\PYGZus{}IDS}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{} now they are ready for being triggered}
+\PYG{n+nb}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} now they are ready for TTL output generation}
 
-\PYG{n}{activeScope} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
-\PYG{n}{mAmplitudeScopeCircBufTotalBlocks} \PYG{p}{=} \PYG{n}{amplitude\PYGZus{}assignment\PYGZus{}period}\PYG{p}{;}
-\PYG{n}{mAmplitudeScopeCircBufCurrentBlock} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
-\PYG{n}{mAmplitudeScopeCircBuf} \PYG{p}{=} \PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
-\PYG{n}{hAmplitudeHistoryAxes} \PYG{p}{=} \PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{hAmplitudeDistributionAxes} \PYG{p}{=} \PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{activeScope}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{mAmplitudeScopeCircBufTotalBlocks}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{amplitude\PYGZus{}assignment\PYGZus{}period}\PYG{p}{;}
+\PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{mAmplitudeScopeCircBuf}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{hAmplitudeHistoryAxes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{hAmplitudeDistributionAxes}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{subplot}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
 
 \PYG{n}{trigger}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked Triggering}
+\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked TTL Output}
 \PYG{n}{condition\PYGZus{}index}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
-\PYG{k}{while} \PYG{p}{(}\PYG{n}{condition\PYGZus{}index} \PYG{o}{\PYGZlt{}=} \PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
-    \PYG{k}{if} \PYG{p}{(}\PYG{n}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Finished\PYGZsq{}}\PYG{p}{)} \PYG{o}{||} \PYG{c}{...}
-            \PYG{n}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interrupted\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Finished\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{k}{...}
+\PYG{+w}{            }\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Interrupted\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
 
-        \PYG{n}{time} \PYG{p}{=} \PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Time}\PYG{p}{;}
-        \PYG{n}{data} \PYG{p}{=} \PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{;}
-        \PYG{n}{plot}\PYG{p}{(}\PYG{n}{hAmplitudeHistoryAxes}\PYG{p}{,} \PYG{n}{time}\PYG{p}{,} \PYG{n}{data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{time}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Time}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{hAmplitudeHistoryAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{time}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 
-        \PYG{n}{fprintf}\PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Restarting Scope \PYGZsq{}} \PYG{n}{num2str}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Restarting Scope \PYGZsq{}}\PYG{+w}{ }\PYG{n+nb}{num2str}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
 
-        \PYG{c}{\PYGZpc{} Restart this scope.}
-        \PYG{n}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Restart this scope.}
+\PYG{+w}{        }\PYG{n+nb}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 
-        \PYG{c}{\PYGZpc{} Switch to the next scope.}
-        \PYG{k}{if}\PYG{p}{(}\PYG{n}{activeScope} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)}
-            \PYG{n}{activeScope} \PYG{p}{=} \PYG{l+m+mi}{2}\PYG{p}{;}
-        \PYG{n}{else}
-            \PYG{l+s}{activeScope} \PYG{l+s}{=} \PYG{l+s}{1}\PYG{p}{;}
-        \PYG{n}{end}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Switch to the next scope.}
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{n}{activeScope}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n}{activeScope}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n}{activeScope}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
 
-        \PYG{l+s}{\PYGZpc{}} \PYG{l+s}{append} \PYG{l+s}{data} \PYG{l+s}{in} \PYG{l+s}{circular} \PYG{l+s}{buffer}
-        \PYG{n}{mAmplitudeScopeCircBuf}\PYG{p}{\PYGZob{}}\PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{p}{\PYGZcb{}} \PYG{p}{=} \PYG{n}{data}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} append data in circular buffer}
+\PYG{+w}{        }\PYG{n}{mAmplitudeScopeCircBuf}\PYG{p}{\PYGZob{}}\PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{data}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
 
-        \PYG{n}{maxmindata} \PYG{p}{=} \PYG{n}{cell2mat}\PYG{p}{(}\PYG{n}{cellfun}\PYG{p}{(}\PYG{p}{@}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)} \PYG{n}{quantile}\PYG{p}{(}\PYG{n}{data}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{data}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{100} \PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{]}\PYG{p}{)}\PYG{o}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{mAmplitudeScopeCircBuf}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{UniformOutput\PYGZsq{}}\PYG{p}{,} \PYG{n}{false}\PYG{p}{)}\PYG{p}{)}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
-        \PYG{n}{maxmindata} \PYG{p}{=} \PYG{n+nb}{circshift}\PYG{p}{(}\PYG{n}{maxmindata}\PYG{p}{,} \PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{p}{)}\PYG{p}{;}
-        \PYG{n}{plot}\PYG{p}{(}\PYG{n}{hAmplitudeHistoryAxes}\PYG{p}{,} \PYG{n}{maxmindata}\PYG{p}{)}
-        \PYG{n}{xlim}\PYG{p}{(}\PYG{n}{hAmplitudeHistoryAxes}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{n}{mAmplitudeScopeCircBufTotalBlocks}\PYG{p}{]}\PYG{p}{)}
-        \PYG{n}{set}\PYG{p}{(}\PYG{n}{hAmplitudeHistoryAxes}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Xdir\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{reverse\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{maxmindata}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell2mat}\PYG{p}{(}\PYG{n+nb}{cellfun}\PYG{p}{(}\PYG{p}{@}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{quantile}\PYG{p}{(}\PYG{n}{data}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{+w}{ }\PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{]}\PYG{p}{)}\PYG{o}{\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mAmplitudeScopeCircBuf}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{UniformOutput\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{)}\PYG{p}{)}\PYG{o}{\PYGZsq{}}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{maxmindata}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{circshift}\PYG{p}{(}\PYG{n}{maxmindata}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{hAmplitudeHistoryAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{maxmindata}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{xlim}\PYG{p}{(}\PYG{n}{hAmplitudeHistoryAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{n}{mAmplitudeScopeCircBufTotalBlocks}\PYG{p}{]}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{set}\PYG{p}{(}\PYG{n}{hAmplitudeHistoryAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Xdir\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{reverse\PYGZsq{}}\PYG{p}{)}
 
-        \PYG{n}{circular\PYGZus{}buffer\PYGZus{}data} \PYG{p}{=} \PYG{n}{cell2mat}\PYG{p}{(}\PYG{n}{mAmplitudeScopeCircBuf}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{circular\PYGZus{}buffer\PYGZus{}data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{cell2mat}\PYG{p}{(}\PYG{n}{mAmplitudeScopeCircBuf}\PYG{p}{)}\PYG{p}{;}
 
-        \PYG{c}{\PYGZpc{} Switch to the next data block}
-        \PYG{k}{if}\PYG{p}{(}\PYG{n}{mAmplitudeScopeCircBufCurrentBlock} \PYG{o}{\PYGZlt{}} \PYG{n}{mAmplitudeScopeCircBufTotalBlocks}\PYG{p}{)}
-            \PYG{n}{mAmplitudeScopeCircBufCurrentBlock} \PYG{p}{=} \PYG{n}{mAmplitudeScopeCircBufCurrentBlock} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
-        \PYG{n}{else}
-            \PYG{l+s}{mAmplitudeScopeCircBufCurrentBlock} \PYG{l+s}{=} \PYG{l+s}{1}\PYG{p}{;}
-        \PYG{n}{end}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} Switch to the next data block}
+\PYG{+w}{        }\PYG{k}{if}\PYG{p}{(}\PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{mAmplitudeScopeCircBufTotalBlocks}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{else}
+\PYG{+w}{            }\PYG{n}{mAmplitudeScopeCircBufCurrentBlock}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
 
-        \PYG{l+s}{\PYGZpc{}tic}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{}tic}
 
-        \PYG{c}{\PYGZpc{} remove post\PYGZhy{}stimulus data}
-        \PYG{n}{amplitude\PYGZus{}clean} \PYG{p}{=} \PYG{n}{circular\PYGZus{}buffer\PYGZus{}data}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{circular\PYGZus{}buffer\PYGZus{}data}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} remove post\PYGZhy{}TTL pulse data}
+\PYG{+w}{        }\PYG{n}{amplitude\PYGZus{}clean}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{circular\PYGZus{}buffer\PYGZus{}data}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{circular\PYGZus{}buffer\PYGZus{}data}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
 
-        \PYG{c}{\PYGZpc{} calculate percentiles}
-        \PYG{n}{amplitude\PYGZus{}sorted} \PYG{p}{=} \PYG{n}{sort}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{)}\PYG{p}{;}
-        \PYG{n}{plot}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,} \PYG{n}{amplitude\PYGZus{}sorted}\PYG{p}{)}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} calculate percentiles}
+\PYG{+w}{        }\PYG{n}{amplitude\PYGZus{}sorted}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{sort}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{amplitude\PYGZus{}sorted}\PYG{p}{)}
 
-        \PYG{n}{amp\PYGZus{}lower} \PYG{p}{=} \PYG{n}{quantile}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{,} \PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{} TODO: INCLUDE THIS IN INFO STRUCT}
-        \PYG{n}{amp\PYGZus{}upper} \PYG{p}{=} \PYG{n}{quantile}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{,} \PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{} TODO: INCLUDE THIS IN INFO STRUCT}
+\PYG{+w}{        }\PYG{n}{amp\PYGZus{}lower}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{quantile}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} TODO: INCLUDE THIS IN INFO STRUCT}
+\PYG{+w}{        }\PYG{n}{amp\PYGZus{}upper}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{quantile}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{amplitude\PYGZus{}threshold}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{100}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} TODO: INCLUDE THIS IN INFO STRUCT}
 
-        \PYG{n}{hold}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{on\PYGZsq{}}\PYG{p}{)}
-        \PYG{n}{plot}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{n}{amp\PYGZus{}lower} \PYG{n}{amp\PYGZus{}upper}\PYG{p}{;} \PYG{n}{amp\PYGZus{}lower} \PYG{l+s}{amp\PYGZus{}upper])}\PYG{p}{;}
-        \PYG{n}{hold}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{hold}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{on\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{amp\PYGZus{}lower}\PYG{+w}{ }\PYG{n}{amp\PYGZus{}upper}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{amp\PYGZus{}lower}\PYG{+w}{ }\PYG{l+s}{amp\PYGZus{}upper])}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{hold}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{off\PYGZsq{}}\PYG{p}{)}
 
-        \PYG{n}{if} \PYG{l+s}{length(amplitude\PYGZus{}clean)} \PYG{l+s}{\PYGZgt{}} \PYG{l+s}{1}
-            \PYG{n}{xlim}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
-        \PYG{n}{end}
-        \PYG{l+s}{if} \PYG{l+s}{(amplitude\PYGZus{}sorted(end)} \PYG{l+s}{\PYGZgt{}} \PYG{l+s}{amplitude\PYGZus{}sorted(1))}
-            \PYG{n}{ylim}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,} \PYG{p}{[}\PYG{n}{amplitude\PYGZus{}sorted}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{amplitude\PYGZus{}sorted}\PYG{p}{(}\PYG{k}{end}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
-        \PYG{n}{end}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{            }\PYG{n+nb}{xlim}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{n+nb}{length}\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}clean}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{amplitude\PYGZus{}sorted}\PYG{p}{(}\PYG{k}{end}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{amplitude\PYGZus{}sorted}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n+nb}{ylim}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{amplitude\PYGZus{}sorted}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{amplitude\PYGZus{}sorted}\PYG{p}{(}\PYG{k}{end}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{end}
 
-        \PYG{l+s}{\PYGZpc{}toc}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{}toc}
 
-        \PYG{c}{\PYGZpc{} set amplitude threshold}
-        \PYG{n}{mDbsp}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{amp\PYGZus{}lower}\PYG{p}{;}
-        \PYG{n}{mDbsp}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{amp\PYGZus{}upper}\PYG{p}{;}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{n}{amp\PYGZus{}lower}\PYG{p}{;}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{n}{amp\PYGZus{}upper}\PYG{p}{;}
-        \PYG{n}{title}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,} \PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Min Amplitude: \PYGZsq{}}\PYG{p}{,} \PYG{n}{num2str}\PYG{p}{(}\PYG{n}{amp\PYGZus{}lower}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{c}{\PYGZpc{} set amplitude threshold}
+\PYG{+w}{        }\PYG{n}{mDbsp}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{amp\PYGZus{}lower}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{mDbsp}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{amp\PYGZus{}upper}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}min}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{n}{amp\PYGZus{}lower}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{amplitude\PYGZus{}max}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{=}\PYG{n}{amp\PYGZus{}upper}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{title}\PYG{p}{(}\PYG{n}{hAmplitudeDistributionAxes}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Min Amplitude: \PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{num2str}\PYG{p}{(}\PYG{n}{amp\PYGZus{}lower}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
 
-    \PYG{n}{end} \PYG{l+s}{\PYGZpc{}} \PYG{l+s}{handle} \PYG{l+s}{the} \PYG{l+s}{amplitude} \PYG{l+s}{tracking}
-    \PYG{k}{if}\PYG{p}{(}\PYG{n}{strcmp}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{phase}\PYG{p}{(}\PYG{n}{randi}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{phase}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{=} \PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{;}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}trig\PYGZus{}interval} \PYG{p}{=} \PYG{n}{minimium\PYGZus{}inter\PYGZus{}trigger\PYGZus{}interval}\PYG{p}{;}
-        \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{arm}\PYG{p}{;}
-    \PYG{n}{end}
-    \PYG{l+s}{\PYGZpc{}} \PYG{l+s}{trigger} \PYG{l+s}{has} \PYG{l+s}{been} \PYG{l+s}{executed,} \PYG{l+s}{move} \PYG{l+s}{to} \PYG{l+s}{the} \PYG{l+s}{next} \PYG{l+s}{condition}
-    \PYG{k}{if}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{triggers\PYGZus{}remaining} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
-        \PYG{n}{condition\PYGZus{}index} \PYG{p}{=} \PYG{n}{condition\PYGZus{}index} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
-        \PYG{n}{bd}\PYG{p}{.}\PYG{n}{disarm}\PYG{p}{;}
-        \PYG{n}{disp} \PYG{l+s}{Triggered!}
-    \PYG{n}{end}
-    \PYG{l+s}{pause(0.01)}\PYG{p}{;}
-\PYG{n}{end}
+\PYG{+w}{    }\PYG{k}{end}\PYG{+w}{ }\PYG{c}{\PYGZpc{} handle the amplitude tracking}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}target}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{phase}\PYG{p}{(}\PYG{n+nb}{randi}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n+nb}{numel}\PYG{p}{(}\PYG{n}{phase}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{phase\PYGZus{}plusminus}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{phase\PYGZus{}tolerance}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{minimium\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{arm}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{+w}{    }\PYG{c}{\PYGZpc{} TTL output has been generated, move to the next condition}
+\PYG{+w}{    }\PYG{k}{if}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{pulses\PYGZus{}remaining}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{+w}{        }\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{disarm}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{disp}\PYG{+w}{ }\PYG{l+s}{TTL\PYGZus{}Output\PYGZus{}Has\PYGZus{}Been\PYGZus{}Generated!}
+\PYG{+w}{    }\PYG{k}{end}
+\PYG{+w}{    }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.01}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{end}
 
-\PYG{l+s}{\PYGZpc{}\PYGZpc{}} \PYG{l+s}{End}
+\PYG{c}{\PYGZpc{}\PYGZpc{} End}
 \end{sphinxVerbatim}
 
 
@@ -1217,70 +1347,72 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 \section{Phase Prediction Error Measurement}
 \label{\detokenize{5_demo_scripts:phase-prediction-error-measurement}}
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+\sphinxAtStartPar
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+\sphinxAtStartPar
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{ang\PYGZus{}diff} \PYG{p}{=} \PYG{p}{@}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)} \PYG{n+nb}{angle}\PYG{p}{(}\PYG{n+nb}{exp}\PYG{p}{(}1\PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{x}\PYG{p}{)}\PYG{o}{./}\PYG{n+nb}{exp}\PYG{p}{(}1\PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{y}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{ang\PYGZus{}var} \PYG{p}{=} \PYG{p}{@}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n}{mean}\PYG{p}{(}\PYG{n+nb}{exp}\PYG{p}{(}1\PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{x}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ang\PYGZus{}diff}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{@}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{y}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nb}{angle}\PYG{p}{(}\PYG{n+nb}{exp}\PYG{p}{(}1\PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{x}\PYG{p}{)}\PYG{o}{./}\PYG{n+nb}{exp}\PYG{p}{(}1\PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{y}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ang\PYGZus{}var}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{@}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n+nb}{abs}\PYG{p}{(}\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n+nb}{exp}\PYG{p}{(}1\PYG{n+nb}{i}\PYG{o}{*}\PYG{n}{x}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 \PYG{c}{\PYGZpc{}ang\PYGZus{}var2dev = @(v) sqrt(2*v); \PYGZpc{} circstat preferred formula uses angular deviation (bounded from 0 to sqrt(2)) which is sqrt(2*(1\PYGZhy{}r))}
-\PYG{n}{ang\PYGZus{}var2dev} \PYG{p}{=} \PYG{p}{@}\PYG{p}{(}\PYG{n}{v}\PYG{p}{)} \PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{v}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{} formula for circular standard deviation is sqrt(\PYGZhy{}2*ln(r))}
+\PYG{n}{ang\PYGZus{}var2dev}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{@}\PYG{p}{(}\PYG{n}{v}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{v}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} formula for circular standard deviation is sqrt(\PYGZhy{}2*ln(r))}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{}  Initializing bossdevice research API}
-\PYG{n}{bb} \PYG{p}{=} \PYG{n}{bossdevice}\PYG{p}{;}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{aux\PYGZus{}channels} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{bb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bossdevice}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{aux\PYGZus{}channels}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
 
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{offset\PYGZus{}samples} \PYG{p}{=} \PYG{l+m+mi}{5}\PYG{p}{;} \PYG{c}{\PYGZpc{}this depends on the loop\PYGZhy{}delay}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{offset\PYGZus{}samples}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}this depends on the loop\PYGZhy{}delay}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters to bossdevice research}
 \PYG{c}{\PYGZpc{} this allows calibrating the oscillation analysis to an individual peak frequency}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs} \PYG{p}{=} \PYG{n}{firls}\PYG{p}{(}\PYG{l+m+mi}{70}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{6} \PYG{l+m+mi}{9} \PYG{l+m+mi}{13} \PYG{l+m+mi}{16} \PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{0} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{0} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+m+mi}{1} \PYG{l+m+mi}{1} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{l+m+mi}{70}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{+w}{ }\PYG{l+m+mi}{9}\PYG{+w}{ }\PYG{l+m+mi}{13}\PYG{+w}{ }\PYG{l+m+mi}{16}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
 \PYG{c}{\PYGZpc{}fvtool(bd.alpha.bpf\PYGZus{}fir\PYGZus{}coeffs, \PYGZsq{}Fs\PYGZsq{}, 500) \PYGZpc{} visualize filter}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{} Configuring a scope to acquire data}
-\PYG{n}{sc} \PYG{p}{=} \PYG{n}{addscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{host\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{101}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,} \PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SPF/Matrix Multiply\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{} this signals goes into the oscillation analysis}
-\PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,} \PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{OSC/alpha/IP\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{} instantaneous phase estimate for alpha}
+\PYG{n}{sc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{addscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{host\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{101}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SPF/Matrix Multiply\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} this signals goes into the oscillation analysis}
+\PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{OSC/alpha/IP\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} instantaneous phase estimate for alpha}
 
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{NumSamples} \PYG{p}{=} \PYG{l+m+mi}{10} \PYG{o}{*} \PYG{l+m+mi}{5000}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Decimation} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{NumSamples}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{l+m+mi}{5000}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Decimation}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
 
-\PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nAcquiring data ...\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{)}\PYG{p}{;}
-\PYG{k}{while}\PYG{p}{(}\PYG{n}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Acquiring\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,} \PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{.\PYGZsq{}}\PYG{p}{)}\PYG{p}{,} \PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{k}{end}
-\PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ done\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nAcquiring data ...\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{)}\PYG{p}{;}
+\PYG{k}{while}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Acquiring\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{.\PYGZsq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{end}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{ done\PYGZsq{}}\PYG{p}{)}
 
-\PYG{n}{data} \PYG{p}{=} \PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{ip\PYGZus{}estimate\PYGZus{}causal} \PYG{p}{=} \PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{k}{end}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{fs} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{o}{/}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{diff}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ip\PYGZus{}estimate\PYGZus{}causal}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{k}{end}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{fs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n+nb}{diff}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nDetermining phase using standard non\PYGZhy{}causal methods ...\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nDetermining phase using standard non\PYGZhy{}causal methods ...\PYGZsq{}}\PYG{p}{)}
 \PYG{c}{\PYGZpc{} demean}
-\PYG{n}{data} \PYG{p}{=} \PYG{n}{data} \PYG{o}{\PYGZhy{}} \PYG{n}{mean}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{data}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n+nb}{mean}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}\PYG{p}{;}
 \PYG{c}{\PYGZpc{} zero phase band\PYGZhy{}pass filter}
-\PYG{n}{D} \PYG{p}{=} \PYG{n}{designfilt}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bandpassfir\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FilterOrder\PYGZsq{}}\PYG{p}{,} \PYG{n+nb}{round}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{*}\PYG{n}{fs}\PYG{p}{)}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{CutoffFrequency1\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{9}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{CutoffFrequency2\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{13}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SampleRate\PYGZsq{}}\PYG{p}{,} \PYG{n}{fs}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{data} \PYG{p}{=} \PYG{n}{filtfilt}\PYG{p}{(}\PYG{n}{D}\PYG{p}{,} \PYG{n}{data}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{}demean}
+\PYG{n}{D}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{designfilt}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bandpassfir\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{FilterOrder\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{round}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{*}\PYG{n}{fs}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{CutoffFrequency1\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{9}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{CutoffFrequency2\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{13}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{SampleRate\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{fs}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{data}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{filtfilt}\PYG{p}{(}\PYG{n}{D}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}demean}
 
-\PYG{n}{ip\PYGZus{}estimate\PYGZus{}noncausal} \PYG{p}{=} \PYG{n+nb}{angle}\PYG{p}{(}\PYG{n}{hilbert}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{phase\PYGZus{}error} \PYG{p}{=} \PYG{n}{ang\PYGZus{}diff}\PYG{p}{(}\PYG{n}{ip\PYGZus{}estimate\PYGZus{}noncausal}\PYG{p}{,} \PYG{n}{ip\PYGZus{}estimate\PYGZus{}causal}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{ip\PYGZus{}estimate\PYGZus{}noncausal}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{angle}\PYG{p}{(}\PYG{n}{hilbert}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{phase\PYGZus{}error}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{ang\PYGZus{}diff}\PYG{p}{(}\PYG{n}{ip\PYGZus{}estimate\PYGZus{}noncausal}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ip\PYGZus{}estimate\PYGZus{}causal}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{} Visualize}
-\PYG{n}{figure}
-\PYG{l+s}{ax1} \PYG{l+s}{=} \PYG{l+s}{subplot(2,2,1)}\PYG{p}{;}
-\PYG{n}{plot}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{o}{\PYGZhy{}}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{data}\PYG{p}{]}\PYG{p}{)}
-\PYG{n}{ax2} \PYG{p}{=} \PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{plot}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{o}{\PYGZhy{}}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{p}{[}\PYG{n}{ip\PYGZus{}estimate\PYGZus{}causal} \PYG{n}{ip\PYGZus{}estimate\PYGZus{}noncausal}\PYG{p}{]}\PYG{p}{)}
-\PYG{n}{linkaxes}\PYG{p}{(}\PYG{p}{[}\PYG{n}{ax1} \PYG{n}{ax2}\PYG{p}{]}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{x\PYGZsq{}}\PYG{p}{)}
-\PYG{n}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{n}{polaraxes}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{polarhistogram}\PYG{p}{(}\PYG{n}{phase\PYGZus{}error}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Normalization\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{probability\PYGZsq{}}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{BinWidth\PYGZsq{}}\PYG{p}{,} \PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{36}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{title}\PYG{p}{(}\PYG{n}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{circular standard deviation = \PYGZpc{}.1f°\PYGZsq{}}\PYG{p}{,} \PYG{n}{rad2deg}\PYG{p}{(}\PYG{n}{ang\PYGZus{}var2dev}\PYG{p}{(}\PYG{n}{ang\PYGZus{}var}\PYG{p}{(}\PYG{n}{phase\PYGZus{}error}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nb}{figure}
+\PYG{n}{ax1}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{o}{\PYGZhy{}}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{data}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{ax2}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{plot}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{o}{\PYGZhy{}}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Time}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{n}{ip\PYGZus{}estimate\PYGZus{}causal}\PYG{+w}{ }\PYG{n}{ip\PYGZus{}estimate\PYGZus{}noncausal}\PYG{p}{]}\PYG{p}{)}
+\PYG{n+nb}{linkaxes}\PYG{p}{(}\PYG{p}{[}\PYG{n}{ax1}\PYG{+w}{ }\PYG{n}{ax2}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{x\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{subplot}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{n+nb}{polaraxes}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{polarhistogram}\PYG{p}{(}\PYG{n}{phase\PYGZus{}error}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Normalization\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{probability\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{BinWidth\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{pi}\PYG{o}{/}\PYG{l+m+mi}{36}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{title}\PYG{p}{(}\PYG{n+nb}{sprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{circular standard deviation = \PYGZpc{}.1f°\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{rad2deg}\PYG{p}{(}\PYG{n}{ang\PYGZus{}var2dev}\PYG{p}{(}\PYG{n}{ang\PYGZus{}var}\PYG{p}{(}\PYG{n}{phase\PYGZus{}error}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}
 
 \PYG{c}{\PYGZpc{} remove the scope}
-\PYG{n}{remscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+m+mi}{101}\PYG{p}{)}
+\PYG{n}{remscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{101}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 
@@ -1290,44 +1422,46 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 \section{Loop Latency Measurement}
 \label{\detokenize{5_demo_scripts:loop-latency-measurement}}
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop stimulus
+\sphinxAtStartPar
+This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
 
-Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) The stimulator is Switched On, External Trigger mode is turned on and the Stimulator is Enabled
+\sphinxAtStartPar
+Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{bd} \PYG{p}{=} \PYG{n}{bossdevice}\PYG{p}{;}
+\PYG{n}{bd}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bossdevice}\PYG{p}{;}
 
 \PYG{c}{\PYGZpc{}\PYGZpc{} Configuring Scope}
-\PYG{n}{sc} \PYG{p}{=} \PYG{n}{addscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{host\PYGZsq{}}\PYG{p}{,} \PYG{l+m+mi}{255}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{sc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{addscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{host\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{255}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{mrk\PYGZus{}signal\PYGZus{}id} \PYG{p}{=} \PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{UDP/raw\PYGZus{}mrk\PYGZsq{}}\PYG{p}{)} \PYG{o}{+} \PYG{n}{int32}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0} \PYG{l+m+mi}{1} \PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{mrk\PYGZus{}signal\PYGZus{}id}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{UDP/raw\PYGZus{}mrk\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{int32}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,} \PYG{n}{mrk\PYGZus{}signal\PYGZus{}id}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{NumSamples} \PYG{p}{=} \PYG{l+m+mi}{100}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{NumPrePostSamples} \PYG{p}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{50}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Decimation} \PYG{p}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{TriggerMode} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Signal\PYGZsq{}}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{TriggerSignal} \PYG{p}{=} \PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{gen\PYGZus{}running\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{TriggerLevel} \PYG{p}{=} \PYG{l+m+mf}{0.5}\PYG{p}{;}
-\PYG{n}{sc}\PYG{p}{.}\PYG{n}{TriggerSlope} \PYG{p}{=} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Rising\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mrk\PYGZus{}signal\PYGZus{}id}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{NumSamples}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{NumPrePostSamples}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{50}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Decimation}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{TriggerMode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Signal\PYGZsq{}}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{TriggerSignal}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{gen\PYGZus{}running\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{TriggerLevel}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mf}{0.5}\PYG{p}{;}
+\PYG{n}{sc}\PYG{p}{.}\PYG{n}{TriggerSlope}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Rising\PYGZsq{}}\PYG{p}{;}
 
-\PYG{c}{\PYGZpc{}\PYGZpc{} Generating Trigger}
+\PYG{c}{\PYGZpc{}\PYGZpc{} Generating TTL Output}
 
-\PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nTesting... \PYGZsq{}}\PYG{p}{)}
-\PYG{n}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{)}\PYG{p}{;}
-\PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}\PYG{p}{;} \PYG{c}{\PYGZpc{} give the scope time to pre\PYGZhy{}aquire}
-\PYG{n}{assert}\PYG{p}{(}\PYG{n}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ready for being Triggered\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nTesting... \PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} give the scope time to pre\PYGZhy{}aquire}
+\PYG{n+nb}{assert}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ready for TTL Output generation\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{s} \PYG{p}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;}
-\PYG{n}{s}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)} \PYG{p}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c}{\PYGZpc{} fill with zeros (TODO: this should be done in the API)}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{generator\PYGZus{}sequence} \PYG{p}{=} \PYG{n}{s}\PYG{p}{;}
+\PYG{n}{s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{s}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} fill with zeros (TODO: this should be done in the API)}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{generator\PYGZus{}sequence}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{;}
 
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualTrigger}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{p}{;}
 
-\PYG{n}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
-\PYG{n}{assert}\PYG{p}{(}\PYG{n}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,} \PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Finished\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{n+nb}{assert}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Finished\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
 
-\PYG{n}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{loop delay is \PYGZpc{}2.1f ms\PYGZbs{}n\PYGZsq{}}\PYG{p}{,} \PYG{p}{(}\PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)}
+\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{loop delay is \PYGZpc{}2.1f ms\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 
@@ -1340,6 +1474,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API, 3) T
 
 \section{Download \& Setup API}
 \label{\detokenize{6_downloads_n_dependencies:download-setup-api}}
+\sphinxAtStartPar
 bossdevice research API is an open source MATLAB repository incubated at sync2brain’s GitHub account and is linked below:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -1353,6 +1488,7 @@ bossdevice research API is an open source MATLAB repository incubated at sync2br
 
 \section{Download bossdevice firmware}
 \label{\detokenize{6_downloads_n_dependencies:download-bossdevice-firmware}}
+\sphinxAtStartPar
 bossdevice research simulink frmware is also incubated at sync2brain’s GitHub account and is linked below:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -1367,22 +1503,27 @@ bossdevice research simulink frmware is also incubated at sync2brain’s GitHub 
 \section{Requirements:}
 \label{\detokenize{6_downloads_n_dependencies:requirements}}
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 Matlab 2021a downloaded and installed
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 Simulink Real\sphinxhyphen{}Time and Simulink Coder to be installed as an Adds\sphinxhyphen{}On from MATLAB Toolboxes
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 Download the repository from master branch
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 Add the bossdevice firmware and repository to the search path of MATLAB
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 Observe from command line that if bossdevice firmware has been loaded from intended path, otherwise many copies of API are available on your device and MATLAB is confused about choosing one therefore it is recommended to change the current directory of MATLAB to the correct path of bossdevice latest API.
 \end{sphinxadmonition}
 
@@ -1392,15 +1533,18 @@ Observe from command line that if bossdevice firmware has been loaded from inten
 
 \section{Issues | Bugs | Requests}
 \label{\detokenize{7_issues_bugs_requests:issues-bugs-requests}}
+\sphinxAtStartPar
 You first have to sign up for an account or log in on GitHub, subsequently you can report the issue on the GitHub repositroty linked below:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{ttps}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{github}\PYG{p}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{sync2brain}\PYG{o}{/}\PYG{n}{bossdevice}\PYG{o}{\PYGZhy{}}\PYG{n}{api}\PYG{o}{\PYGZhy{}}\PYG{n}{matlab}\PYG{o}{/}\PYG{n}{issues}
 \end{sphinxVerbatim}
 
+\sphinxAtStartPar
 We automatically will receive an email and will follow up and keep you updated; i.e., you will get an email through GitHub whenever someone works on your issue.
 
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 Alternatively, you can also write an email to sync2brain support team for a quick response to your questions.
 \end{sphinxadmonition}
 
@@ -1411,8 +1555,10 @@ Alternatively, you can also write an email to sync2brain support team for a quic
 
 \section{Issues \& Bugs Details}
 \label{\detokenize{7_issues_bugs_requests:issues-bugs-details}}
+\sphinxAtStartPar
 The easier it is for one of the developers to reproduce your bug, the more likely it is that we’ll fix the problem. Good bug reports include a small test script and the data (i.e. mat file) required to reproduce the bug.
 
+\sphinxAtStartPar
 Please create a small test script and a piece of data that are both as small and simple as possible to reproduce the problem. For example: a .mat file containing the bossdevice API class object and some screenshots can lead us to solve the issue.
 
 
@@ -1423,6 +1569,7 @@ Please create a small test script and a piece of data that are both as small and
 \section{Use Case Scenarios}
 \label{\detokenize{7_issues_bugs_requests:use-case-scenarios}}
 \begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
 Use cases, previous research papers that might have implemented those methods or a brief description about the feature requests can help our developers to create the smartest solution for you.
 \end{sphinxadmonition}
 
