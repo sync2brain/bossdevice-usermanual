@@ -6,7 +6,7 @@
 
 
 ============================================
-Introduction to bossdevice research
+Introduction to bossdevice RESEARCH
 ============================================
 
 
@@ -26,6 +26,6 @@ bossdevice RESEARCH is a real-time digital signal processor consisting of hardwa
 .. figure:: figures/Fig1_bossdeviceandneurone.png
     :align: center
 
-    The bossdevice research placed along with Bittium NeurOne biosignal amplifier.
+    The bossdevice RESEARCH placed along with Bittium NeurOne biosignal amplifier.
 
 .. toctree::

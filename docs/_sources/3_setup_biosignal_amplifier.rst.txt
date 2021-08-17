@@ -18,7 +18,7 @@ Bittium NeurOne
 
 .. important::
 
-    bossdevice research accepts a 5kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out of NeurOne must be 5kHz.
+    bossdevice RESEARCH accepts a 1kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out of NeurOne must be 1kHz.
 
 .. important::
 
@@ -30,7 +30,7 @@ Bittium NeurOne
 
 .. important::
 
-    bossdevice research can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels. 
+    bossdevice RESEARCH can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels. 
 
 Software Version
 -----------------------------------

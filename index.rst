@@ -6,7 +6,7 @@
 
 
 ============================================
-User Manual - bossdevice research
+User Manual - bossdevice RESEARCH
 ============================================
 
 

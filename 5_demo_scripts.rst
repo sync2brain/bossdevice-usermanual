@@ -1,4 +1,4 @@
-.. User Manual - bossdevice research documentation master file, created by
+.. User Manual - bossdevice RESEARCH documentation master file, created by
    sphinx-quickstart on Fri Jul  9 21:52:50 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -16,7 +16,7 @@ Demo Scripts
 
 Open Loop Jittered TTL Output
 ===============================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output.
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loop TTL output.
 
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
@@ -24,18 +24,18 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
    NumberOfTrials=10; 
     ITI=[4 6]; %ITI is seconds - a random number between these two values
-    %% Initializing bossdevice research API 
+    %% Initializing bossdevice RESEARCH API 
     bd=bossdevice;
     %% Approach 1 - For Loop Based Open Loop TTL output generation
     bd.configure_time_port_marker([0 1 1]); %Configuring TTL output Sequence in [Time Port Marker] format  
     for TrialNumber=1:NumberOfTrials
         bd.manualPulse
         disp(['Generated Trial #' num2str(TrialNumber)])
-        min_inter_pulse_interval= ITI(1)+ (ITI(2)-ITI(1)).*rand(1,1); %Assigning New Random ITI for this Trial to the bossdevice research
+        min_inter_pulse_interval= ITI(1)+ (ITI(2)-ITI(1)).*rand(1,1); %Assigning New Random ITI for this Trial to the bossdevice RESEARCH
         pause(min_inter_pulse_interval) %Wait for next trial start
     end
     disp('Trials Completed')
-    %% Approach 2 - bossdevice research Sequence Generator Based Open Loop TTL output
+    %% Approach 2 - bossdevice RESEARCH Sequence Generator Based Open Loop TTL output
     time_port_marker_sequence=[];
     Time=0;
     time_port_marker_sequence(NumberOfTrials,3)=0; %Pre filling the array 
@@ -45,9 +45,9 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
         Marker=TrialNumber; 
         time_port_marker_sequence(TrialNumber,:)=[Time Port Marker];
     end
-    bd.configure_time_port_marker(time_port_marker_sequence); %Assigning Pregenerated sequence to the bossdevice research 
-    bd.manualPulse % Generating the TTL output of the bossdevice research to start sequence TTL Output Generation
-    disp('TTL output Sequence Started by bossdevice research')
+    bd.configure_time_port_marker(time_port_marker_sequence); %Assigning Pregenerated sequence to the bossdevice RESEARCH 
+    bd.manualPulse % Generating the TTL output of the bossdevice RESEARCH to start sequence TTL Output Generation
+    disp('TTL output Sequence Started by bossdevice RESEARCH')
 
 -----
 
@@ -72,7 +72,7 @@ Resources: 1) bossdevice Switched On
     time=0;
     plasticity_protocol_sequence=[];
 
-    %% Initializing bossdevice research API
+    %% Initializing bossdevice RESEARCH API
     bd=bossdevice;
     bd.sample_and_hold_period=0;
     bd.calibration_mode = 'no';
@@ -86,11 +86,11 @@ Resources: 1) bossdevice Switched On
     %% Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha
     bpf_fir_coeffs = firls(bandpassfilter_order, [0 (individual_peak_frequency + [-5 -2 +2 +5]) (500/2)]/(500/2), [0 0 1 1 0 0], [1 1 1] );
 
-    %% Setting Filters on bossdevice research
+    %% Setting Filters on bossdevice RESEARCH
     bd.spatial_filter_weights=spatial_filter_weights;
     bd.alpha.bpf_fir_coeffs = bpf_fir_coeffs;
 
-    %% Controlling bossdevice research for mu Alpha Phase Locked TTL Output
+    %% Controlling bossdevice RESEARCH for mu Alpha Phase Locked TTL Output
     condition_index=0;
     while (condition_index <= no_of_trials)
         if(strcmp(bb.armed, 'no'))
@@ -119,7 +119,7 @@ Resources: 1) bossdevice Switched On
 
 Phase Locked Plasticity Protocol
 ===================================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loopTTL output
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loopTTL output
 
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
@@ -139,7 +139,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
     time=0;
     plasticity_protocol_sequence=[];
 
-    %% Initializing bossdevice research API
+    %% Initializing bossdevice RESEARCH API
     bd=bossdevice;
     bd.sample_and_hold_period=0;
     bd.calibration_mode = 'no';
@@ -150,7 +150,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
     bd.alpha.ignore; pause(0.1)
     bd.eeg_channels=eeg_channels; 
 
-    %% Preparing a Plasticity Protocol Seqeuence for bossdevice research
+    %% Preparing a Plasticity Protocol Seqeuence for bossdevice RESEARCH
     plasticity_protocol_sequence(no_of_pulses,3)=0; %Pre filling the array 
     for iPulse=1:no_of_pulses
         time=time+0.01;
@@ -162,7 +162,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
     %% Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha
     bpf_fir_coeffs = firls(bandpassfilter_order, [0 (individual_peak_frequency + [-5 -2 +2 +5]) (500/2)]/(500/2), [0 0 1 1 0 0], [1 1 1] );
 
-    %% Setting Filters on bossdevice research
+    %% Setting Filters on bossdevice RESEARCH
     bd.spatial_filter_weights=spatial_filter_weights;
     bd.alpha.bpf_fir_coeffs = bpf_fir_coeffs;
 
@@ -185,7 +185,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
             fprintf('\b\b\bDone\n')
 
 
-    %% Controlling bossdevice research for mu Alpha Phase Locked TTL Ouput % this could be for excitability, where we have interleaved different conditions
+    %% Controlling bossdevice RESEARCH for mu Alpha Phase Locked TTL Ouput % this could be for excitability, where we have interleaved different conditions
     condition_index=0;
     while (condition_index <= no_of_trials)
         if(strcmp(bd.armed, 'no'))
@@ -214,7 +214,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 Real-Time Oscillation Amplitude Threshold Tracking
 ==================================================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loop TTL output
 
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
@@ -233,7 +233,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
     time=0;
     plasticity_protocol_sequence=[];
 
-    %% Initializing bossdevice research API
+    %% Initializing bossdevice RESEARCH API
     bd=bossdevice;
     bd.sample_and_hold_period=0;
     bd.calibration_mode = 'no';
@@ -247,7 +247,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
     %% Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha
     bpf_fir_coeffs = firls(bandpassfilter_order, [0 (individual_peak_frequency + [-5 -2 +2 +5]) (500/2)]/(500/2), [0 0 1 1 0 0], [1 1 1] );
 
-    %% Setting Filters on bossdevice research
+    %% Setting Filters on bossdevice RESEARCH
     bd.spatial_filter_weights=spatial_filter_weights;
     bd.alpha.bpf_fir_coeffs = bpf_fir_coeffs;
 
@@ -293,7 +293,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
     trigger(sc(activeScope));
 
-    %% Controlling bossdevice research for mu Alpha Phase Locked TTL Output
+    %% Controlling bossdevice RESEARCH for mu Alpha Phase Locked TTL Output
     condition_index=0;
     while (condition_index <= no_of_trials)
         if (strcmp(sc(activeScope).Status, 'Finished') || ...
@@ -390,7 +390,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 Phase Prediction Error Measurement
 ==================================================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loop TTL output
 
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
@@ -401,7 +401,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
     %ang_var2dev = @(v) sqrt(2*v); % circstat preferred formula uses angular deviation (bounded from 0 to sqrt(2)) which is sqrt(2*(1-r))
     ang_var2dev = @(v) sqrt(-2*log(1-v)); % formula for circular standard deviation is sqrt(-2*ln(r))
 
-    %%  Initializing bossdevice research API
+    %%  Initializing bossdevice RESEARCH API
     bb = bossdevice;
     bd.eeg_channels = 1;
     bd.aux_channels = 1;
@@ -409,7 +409,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
     bd.alpha.offset_samples = 5; %this depends on the loop-delay
 
-    %% Setting Filters to bossdevice research
+    %% Setting Filters to bossdevice RESEARCH
     % this allows calibrating the oscillation analysis to an individual peak frequency
     bd.alpha.bpf_fir_coeffs = firls(70, [0 6 9 13 16 (500/2)]/(500/2), [0 0 1 1 0 0], [1 1 1]);
     %fvtool(bd.alpha.bpf_fir_coeffs, 'Fs', 500) % visualize filter
@@ -461,7 +461,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 Loop Latency Measurement
 ==================================================
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loop TTL output
 
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 

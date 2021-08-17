@@ -36,7 +36,7 @@ Issues & Bugs Details
 ===============================
 The easier it is for one of the developers to reproduce your bug, the more likely it is that we’ll fix the problem. Good bug reports include a small test script and the data (i.e. mat file) required to reproduce the bug.
 
-Please create a small test script and a piece of data that are both as small and simple as possible to reproduce the problem. For example: a .mat file containing the bossdevice API class object and some screenshots can lead us to solve the issue.
+Please create a small test script and a piece of data that are both as small and simple as possible to reproduce the problem. For example: a .mat file containing the bossdevice RESEARCH API class object and some screenshots can lead us to solve the issue.
 
 
 -----

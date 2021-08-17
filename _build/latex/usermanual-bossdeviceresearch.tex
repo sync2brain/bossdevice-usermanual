@@ -60,9 +60,9 @@
 
 
 
-\title{User Manual \sphinxhyphen{} bossdevice research}
-\date{Aug 15, 2021}
-\release{15\sphinxhyphen{}08\sphinxhyphen{}2021}
+\title{User Manual \sphinxhyphen{} bossdevice RESEARCH}
+\date{Aug 17, 2021}
+\release{17\sphinxhyphen{}08\sphinxhyphen{}2021}
 \author{sync2brain GmbH}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -78,7 +78,7 @@
 
 
 
-\chapter{Introduction to bossdevice research}
+\chapter{Introduction to bossdevice RESEARCH}
 \label{\detokenize{1_introduction_to_bossdevice_research:introduction-to-bossdevice-research}}\label{\detokenize{1_introduction_to_bossdevice_research::doc}}
 \sphinxAtStartPar
 bossdevice RESEARCH is a real\sphinxhyphen{}time digital signal processor consisting of hardware and software algorithms. It is designed to read\sphinxhyphen{}in a real\sphinxhyphen{}time raw data stream from a biosignal amplifier (electroencephalography, EEG), to continuously analyze this data and to detect patterns based on oscillations in different frequencies. When such a specific bio\sphinxhyphen{}signal pattern is detected, the device indicates this through a standard output port. This enables a connected device to know with millisecond accuracy when a specific bio\sphinxhyphen{}signal pattern occurs.
@@ -99,7 +99,7 @@ only.
 \capstart
 
 \noindent\sphinxincludegraphics{{Fig1_bossdeviceandneurone}.png}
-\caption{The bossdevice research placed along with Bittium NeurOne biosignal amplifier.}\label{\detokenize{1_introduction_to_bossdevice_research:id1}}\end{figure}
+\caption{The bossdevice RESEARCH placed along with Bittium NeurOne biosignal amplifier.}\label{\detokenize{1_introduction_to_bossdevice_research:id1}}\end{figure}
 
 
 \chapter{Getting Started \sphinxhyphen{} Checklist}
@@ -108,7 +108,7 @@ only.
 \section{Bittium NeurOne Users}
 \label{\detokenize{1b_GettingStartedCheckList:bittium-neurone-users}}
 \sphinxAtStartPar
-The checlist below helps in setting up the bossdevice.
+The checlist below helps in setting up the bossdevice RESEARCH.
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
@@ -161,8 +161,13 @@ Downlaod the bossdevice API and latest firmware (DBSP.mldatx file)from the sync2
 
 \end{enumerate}
 
+\begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
+It is possible to run the NeurOne EEG software and the Matlab control script both on the same computer. In this case, we recommend a computer with 3 network connections: (1) Wired ethernet connection to the NeurOne Main Unit; (2) Wired ethernet connection to the bossdevice; (3) Wired or wireless internet/local area network connection.
+\end{sphinxadmonition}
 
-\chapter{Setup bossdevice research}
+
+\chapter{Setup bossdevice RESEARCH}
 \label{\detokenize{2_setup_bossdevice_research:setup-bossdevice-research}}\label{\detokenize{2_setup_bossdevice_research::doc}}
 \sphinxAtStartPar
 The bossdevice plugs into a compatible EEG amplifier on the input side and generates a fuzzy logic based binary signal on the output side. It reads a real\sphinxhyphen{}time biosignal data stream and generates a  signal when a pre\sphinxhyphen{}defined EEG\sphinxhyphen{}state is detected. The bossdevice is programmable from Matlab and enables complex experiments to be fully automated. Setting up the device involves several steps and the next sections descibre their details.
@@ -170,9 +175,6 @@ The bossdevice plugs into a compatible EEG amplifier on the input side and gener
 
 \section{Connecting with Biosignal Amplifier}
 \label{\detokenize{2_setup_bossdevice_research:connecting-with-biosignal-amplifier}}
-\sphinxAtStartPar
-The input of the bossdevice i.e. the EEG data is provided by connecting the Biosignal Amplifier (EEG device e.g. Bittium’s NeurOne or Brain Product’s actiCHamp) with the bossdevice using a standard LAN Cable. Search the “REAL TIME OUT” LAN port at the back plate of your EEG device and connect it to the “Biosignal” LAN port available at the bossdevice research. You can also see the “Biosignal” port on the bossdevice research in the figure shown below.
-
 \begin{figure}[htbp]
 \centering
 \capstart
@@ -184,7 +186,7 @@ The input of the bossdevice i.e. the EEG data is provided by connecting the Bios
 \section{Connecting with Control PC}
 \label{\detokenize{2_setup_bossdevice_research:connecting-with-control-pc}}
 \sphinxAtStartPar
-In order to program the bossdevice research, it needs to be connected to any standard PC hosting a Matlab and other dependencies as described in the “Downloads \& Dependencies” chapter. The “Control PC” LAN port at the backplate of the bossdevice research is connected to any standard LAN/Ethernet port on the backplate of Control PC. Then in order to open the network IP address, follow these steps:
+In order to program the bossdevice RESEARCH, it needs to be connected to any standard PC hosting a Matlab and other dependencies as described in the “Downloads \& Dependencies” chapter. The “Control PC” LAN port at the backplate of the bossdevice RESEARCH is connected to any standard LAN/Ethernet port on the backplate of Control PC. Then in order to open the network IP address, follow these steps:
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \item {} 
@@ -206,7 +208,7 @@ Right\sphinxhyphen{}click on Local Area Connection corresponding to LAN/Ethernet
 \capstart
 
 \noindent\sphinxincludegraphics{{Fig3_controlpc1}.png}
-\caption{Step 3: Local Area Connection setup of Control PC and bossdevice research}\label{\detokenize{2_setup_bossdevice_research:id2}}\end{figure}
+\caption{Step 3: Local Area Connection setup of Control PC and bossdevice RESEARCH}\label{\detokenize{2_setup_bossdevice_research:id2}}\end{figure}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \setcounter{enumi}{3}
@@ -221,7 +223,7 @@ Select Internet Protocol Version 4 (TCP/IPv4) and click Properties.
 \capstart
 
 \noindent\sphinxincludegraphics{{Figure4_controlpc2}.png}
-\caption{Step 4: Local Area Connection setup of Control PC and bossdevice research}\label{\detokenize{2_setup_bossdevice_research:id3}}\end{figure}
+\caption{Step 4: Local Area Connection setup of Control PC and bossdevice RESEARCH}\label{\detokenize{2_setup_bossdevice_research:id3}}\end{figure}
 
 \sphinxAtStartPar
 5. Select Use the following IP address. Then enter the following IP address, Subnet mask, Default gateway, and DNS server.
@@ -239,7 +241,7 @@ Select Internet Protocol Version 4 (TCP/IPv4) and click Properties.
 \capstart
 
 \noindent\sphinxincludegraphics{{Figure5_controlpc3}.png}
-\caption{Step 5: Local Area Connection setup of Control PC and bossdevice research}\label{\detokenize{2_setup_bossdevice_research:id4}}\end{figure}
+\caption{Step 5: Local Area Connection setup of Control PC and bossdevice RESEARCH}\label{\detokenize{2_setup_bossdevice_research:id4}}\end{figure}
 \begin{enumerate}
 \sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
 \setcounter{enumi}{5}
@@ -250,13 +252,13 @@ Click OK and OK on your way out of the wizard.
 \end{enumerate}
 
 \sphinxAtStartPar
-Similar approach can also be used on Linux/MAC OS to setup the requried IP network for communciation between the bossdevice research and any control PC.
+Similar approach can also be used on Linux/MAC OS to setup the requried IP network for communciation between the bossdevice RESEARCH and any control PC.
 
 
 \section{Connecting with Synchronizing Devices}
 \label{\detokenize{2_setup_bossdevice_research:connecting-with-synchronizing-devices}}
 \sphinxAtStartPar
-The bossdevice research can send up to 4 TTL output signals to connected synchronizing devices from its output port. Search the TTL OUT 1\sphinxhyphen{}4” BNC ports at back plate of the bossdevice research and connect it to the BNC ports of your intended device.
+The bossdevice RESEARCH can send up to 4 TTL output signals to connected synchronizing devices from its output port. Search the TTL OUT 1\sphinxhyphen{}4” BNC ports at back plate of the bossdevice RESEARCH and connect it to the BNC ports of your intended device.
 
 \begin{figure}[htbp]
 \centering
@@ -266,7 +268,7 @@ The bossdevice research can send up to 4 TTL output signals to connected synchro
 \caption{Ports available on the bossdevice (see the BNC output ports 1\sphinxhyphen{}4 named as TTL OUT 1 till 4).}\label{\detokenize{2_setup_bossdevice_research:id5}}\end{figure}
 
 \sphinxAtStartPar
-In addition to the TTL output the 8 bit LPT marker ports can also be connected to the bossdevice research for a numerical input or can also be output from bossdevice research to write synchronizing markers to the raw EEG data or for any other purpose.
+In addition to the TTL output the 8 bit LPT marker ports can also be connected to the bossdevice RESEARCH for a numerical input or can also be output from bossdevice RESEARCH to write synchronizing markers to the raw EEG data or for any other purpose.
 
 \begin{figure}[htbp]
 \centering
@@ -279,7 +281,7 @@ In addition to the TTL output the 8 bit LPT marker ports can also be connected t
 \section{Connecting with Monitor}
 \label{\detokenize{2_setup_bossdevice_research:connecting-with-monitor}}
 \sphinxAtStartPar
-Monitor setup is optional but recommended and it shows the useful information and analytics of the bossdevice research time of execution and errors (if any). The Display Port from backplate of the bossdevice research may be connected to the monitor.
+Monitor setup is optional but recommended and it shows the useful information and analytics of the bossdevice RESEARCH time of execution and errors (if any). The Display Port from backplate of the bossdevice RESEARCH may be connected to the monitor.
 
 \begin{figure}[htbp]
 \centering
@@ -292,14 +294,14 @@ Monitor setup is optional but recommended and it shows the useful information an
 \section{Power Supply}
 \label{\detokenize{2_setup_bossdevice_research:power-supply}}
 \sphinxAtStartPar
-The power supply provided along with the bossdevice research can be plugged into the “DC IN 12V” port at the back plate of the bossdevice research as shown in figure below.
+The power supply provided along with the bossdevice research can be plugged into the “DC IN 12V” port at the back plate of the bossdevice RESEARCH as shown in figure below.
 
 \begin{figure}[htbp]
 \centering
 \capstart
 
 \noindent\sphinxincludegraphics{{Figure2_biosignallanport}.png}
-\caption{Ports available on the bossdevice (see the 12V DC power supply connection port).}\label{\detokenize{2_setup_bossdevice_research:id8}}\end{figure}
+\caption{Ports available on the bossdevice RESEARCH (see the 12V DC power supply connection port).}\label{\detokenize{2_setup_bossdevice_research:id8}}\end{figure}
 
 
 \section{Switching ON and OFF}
@@ -315,7 +317,7 @@ Since the device is all setup, the device can be switched on using the push butt
 \label{\detokenize{3_setup_biosignal_amplifier:bittium-neurone}}
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-bossdevice research accepts a 5kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out of NeurOne must be 5kHz.
+bossdevice RESEARCH accepts a 1kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out of NeurOne must be 1kHz.
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
@@ -330,7 +332,7 @@ If two 32 channels preamplifiers are used, do not use the Aux/bipolar inputs/EMG
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-bossdevice research can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels.
+bossdevice RESEARCH can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels.
 \end{sphinxadmonition}
 
 
@@ -955,7 +957,7 @@ Minimum inter pulse interval allows you to define the time period for which the 
 \section{Open Loop Jittered TTL Output}
 \label{\detokenize{5_demo_scripts:open-loop-jittered-ttl-output}}
 \sphinxAtStartPar
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output.
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loop TTL output.
 
 \sphinxAtStartPar
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
@@ -963,18 +965,18 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{NumberOfTrials}\PYG{p}{=}\PYG{l+m+mi}{10}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{ITI}\PYG{p}{=}\PYG{p}{[}\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{p}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}ITI is seconds \PYGZhy{} a random number between these two values}
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice RESEARCH API}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
 \PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Approach 1 \PYGZhy{} For Loop Based Open Loop TTL output generation}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Configuring TTL output Sequence in [Time Port Marker] format}
 \PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{TrialNumber}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{NumberOfTrials}
 \PYG{+w}{     }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualPulse}
 \PYG{+w}{     }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{p}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Generated Trial \PYGZsh{}\PYGZsq{}}\PYG{+w}{ }\PYG{n+nb}{num2str}\PYG{p}{(}\PYG{n}{TrialNumber}\PYG{p}{)}\PYG{p}{]}\PYG{p}{)}
-\PYG{+w}{     }\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{=}\PYG{+w}{ }\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.*}\PYG{n+nb}{rand}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning New Random ITI for this Trial to the bossdevice research}
+\PYG{+w}{     }\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{=}\PYG{+w}{ }\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{ITI}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.*}\PYG{n+nb}{rand}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning New Random ITI for this Trial to the bossdevice RESEARCH}
 \PYG{+w}{     }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{n}{min\PYGZus{}inter\PYGZus{}pulse\PYGZus{}interval}\PYG{p}{)}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Wait for next trial start}
 \PYG{+w}{ }\PYG{k}{end}
 \PYG{+w}{ }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Trials Completed\PYGZsq{}}\PYG{p}{)}
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Approach 2 \PYGZhy{} bossdevice research Sequence Generator Based Open Loop TTL output}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Approach 2 \PYGZhy{} bossdevice RESEARCH Sequence Generator Based Open Loop TTL output}
 \PYG{+w}{ }\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{Time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{NumberOfTrials}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Pre filling the array}
@@ -984,9 +986,9 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{+w}{     }\PYG{n}{Marker}\PYG{p}{=}\PYG{n}{TrialNumber}\PYG{p}{;}
 \PYG{+w}{     }\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{TrialNumber}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}\PYG{p}{=}\PYG{p}{[}\PYG{n}{Time}\PYG{+w}{ }\PYG{n}{Port}\PYG{+w}{ }\PYG{n}{Marker}\PYG{p}{]}\PYG{p}{;}
 \PYG{+w}{ }\PYG{k}{end}
-\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning Pregenerated sequence to the bossdevice research}
-\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualPulse}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Generating the TTL output of the bossdevice research to start sequence TTL Output Generation}
-\PYG{+w}{ }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{TTL output Sequence Started by bossdevice research\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{n}{time\PYGZus{}port\PYGZus{}marker\PYGZus{}sequence}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Assigning Pregenerated sequence to the bossdevice RESEARCH}
+\PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualPulse}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Generating the TTL output of the bossdevice RESEARCH to start sequence TTL Output Generation}
+\PYG{+w}{ }\PYG{n+nb}{disp}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{TTL output Sequence Started by bossdevice RESEARCH\PYGZsq{}}\PYG{p}{)}
 \end{sphinxVerbatim}
 
 
@@ -1015,7 +1017,7 @@ Resources: 1) bossdevice Switched On
 \PYG{+w}{ }\PYG{n+nb}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
 
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice RESEARCH API}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
@@ -1029,11 +1031,11 @@ Resources: 1) bossdevice Switched On
 \PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha}
 \PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
 
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice research}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice RESEARCH}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
 
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked TTL Output}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice RESEARCH for mu Alpha Phase Locked TTL Output}
 \PYG{+w}{ }\PYG{n}{condition\PYGZus{}index}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{+w}{ }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
 \PYG{+w}{     }\PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{bb}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
@@ -1067,7 +1069,7 @@ Resources: 1) bossdevice Switched On
 \section{Phase Locked Plasticity Protocol}
 \label{\detokenize{5_demo_scripts:phase-locked-plasticity-protocol}}
 \sphinxAtStartPar
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loopTTL output
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loopTTL output
 
 \sphinxAtStartPar
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
@@ -1087,7 +1089,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{+w}{ }\PYG{n+nb}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
 
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice RESEARCH API}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
@@ -1098,7 +1100,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{ignore}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{=}\PYG{n}{eeg\PYGZus{}channels}\PYG{p}{;}
 
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Preparing a Plasticity Protocol Seqeuence for bossdevice research}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Preparing a Plasticity Protocol Seqeuence for bossdevice RESEARCH}
 \PYG{+w}{ }\PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{(}\PYG{n}{no\PYGZus{}of\PYGZus{}pulses}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}Pre filling the array}
 \PYG{+w}{ }\PYG{k}{for}\PYG{+w}{ }\PYG{n}{iPulse}\PYG{p}{=}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{no\PYGZus{}of\PYGZus{}pulses}
 \PYG{+w}{     }\PYG{n+nb}{time}\PYG{p}{=}\PYG{n+nb}{time}\PYG{o}{+}\PYG{l+m+mf}{0.01}\PYG{p}{;}
@@ -1110,7 +1112,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha}
 \PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
 
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice research}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice RESEARCH}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{;}
 \PYG{+w}{ }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
 
@@ -1133,7 +1135,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{+w}{         }\PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}b\PYGZbs{}b\PYGZbs{}bDone\PYGZbs{}n\PYGZsq{}}\PYG{p}{)}
 
 
-\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked TTL Ouput \PYGZpc{} this could be for excitability, where we have interleaved different conditions}
+\PYG{+w}{ }\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice RESEARCH for mu Alpha Phase Locked TTL Ouput \PYGZpc{} this could be for excitability, where we have interleaved different conditions}
 \PYG{+w}{ }\PYG{n}{condition\PYGZus{}index}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{+w}{ }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
 \PYG{+w}{     }\PYG{k}{if}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{armed}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
@@ -1167,7 +1169,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \section{Real\sphinxhyphen{}Time Oscillation Amplitude Threshold Tracking}
 \label{\detokenize{5_demo_scripts:real-time-oscillation-amplitude-threshold-tracking}}
 \sphinxAtStartPar
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loop TTL output
 
 \sphinxAtStartPar
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
@@ -1186,7 +1188,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{n+nb}{time}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{n}{plasticity\PYGZus{}protocol\PYGZus{}sequence}\PYG{p}{=}\PYG{p}{[}\PYG{p}{]}\PYG{p}{;}
 
-\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice research API}
+\PYG{c}{\PYGZpc{}\PYGZpc{} Initializing bossdevice RESEARCH API}
 \PYG{n}{bd}\PYG{p}{=}\PYG{n}{bossdevice}\PYG{p}{;}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{sample\PYGZus{}and\PYGZus{}hold\PYGZus{}period}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{calibration\PYGZus{}mode}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{no\PYGZsq{}}\PYG{p}{;}
@@ -1200,7 +1202,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{c}{\PYGZpc{}\PYGZpc{} Preparing an Individual Peak Frequency based Band Pass Filter for mu Alpha}
 \PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{n}{bandpassfilter\PYGZus{}order}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{individual\PYGZus{}peak\PYGZus{}frequency}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{+w}{ }\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{)}\PYG{p}{;}
 
-\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice research}
+\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters on bossdevice RESEARCH}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{=}\PYG{n}{spatial\PYGZus{}filter\PYGZus{}weights}\PYG{p}{;}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{p}{;}
 
@@ -1246,7 +1248,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 \PYG{n}{trigger}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice research for mu Alpha Phase Locked TTL Output}
+\PYG{c}{\PYGZpc{}\PYGZpc{} Controlling bossdevice RESEARCH for mu Alpha Phase Locked TTL Output}
 \PYG{n}{condition\PYGZus{}index}\PYG{p}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{condition\PYGZus{}index}\PYG{+w}{ }\PYG{o}{\PYGZlt{}=}\PYG{+w}{ }\PYG{n}{no\PYGZus{}of\PYGZus{}trials}\PYG{p}{)}
 \PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{(}\PYG{n}{activeScope}\PYG{p}{)}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Finished\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{k}{...}
@@ -1348,7 +1350,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \section{Phase Prediction Error Measurement}
 \label{\detokenize{5_demo_scripts:phase-prediction-error-measurement}}
 \sphinxAtStartPar
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loop TTL output
 
 \sphinxAtStartPar
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
@@ -1359,7 +1361,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{c}{\PYGZpc{}ang\PYGZus{}var2dev = @(v) sqrt(2*v); \PYGZpc{} circstat preferred formula uses angular deviation (bounded from 0 to sqrt(2)) which is sqrt(2*(1\PYGZhy{}r))}
 \PYG{n}{ang\PYGZus{}var2dev}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{@}\PYG{p}{(}\PYG{n}{v}\PYG{p}{)}\PYG{+w}{ }\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n+nb}{log}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{v}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} formula for circular standard deviation is sqrt(\PYGZhy{}2*ln(r))}
 
-\PYG{c}{\PYGZpc{}\PYGZpc{}  Initializing bossdevice research API}
+\PYG{c}{\PYGZpc{}\PYGZpc{}  Initializing bossdevice RESEARCH API}
 \PYG{n}{bb}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{bossdevice}\PYG{p}{;}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{eeg\PYGZus{}channels}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{aux\PYGZus{}channels}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{;}
@@ -1367,7 +1369,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{offset\PYGZus{}samples}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{}this depends on the loop\PYGZhy{}delay}
 
-\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters to bossdevice research}
+\PYG{c}{\PYGZpc{}\PYGZpc{} Setting Filters to bossdevice RESEARCH}
 \PYG{c}{\PYGZpc{} this allows calibrating the oscillation analysis to an individual peak frequency}
 \PYG{n}{bd}\PYG{p}{.}\PYG{n}{alpha}\PYG{p}{.}\PYG{n}{bpf\PYGZus{}fir\PYGZus{}coeffs}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{firls}\PYG{p}{(}\PYG{l+m+mi}{70}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{6}\PYG{+w}{ }\PYG{l+m+mi}{9}\PYG{+w}{ }\PYG{l+m+mi}{13}\PYG{+w}{ }\PYG{l+m+mi}{16}\PYG{+w}{ }\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{]}\PYG{o}{/}\PYG{p}{(}\PYG{l+m+mi}{500}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
 \PYG{c}{\PYGZpc{}fvtool(bd.alpha.bpf\PYGZus{}fir\PYGZus{}coeffs, \PYGZsq{}Fs\PYGZsq{}, 500) \PYGZpc{} visualize filter}
@@ -1423,7 +1425,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \section{Loop Latency Measurement}
 \label{\detokenize{5_demo_scripts:loop-latency-measurement}}
 \sphinxAtStartPar
-This demo script uses bossdevice research and 2 different approaches to generate jittered open loop TTL output
+This demo script uses bossdevice RESEARCH and 2 different approaches to generate jittered open loop TTL output
 
 \sphinxAtStartPar
 Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
@@ -1475,7 +1477,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \section{Download \& Setup API}
 \label{\detokenize{6_downloads_n_dependencies:download-setup-api}}
 \sphinxAtStartPar
-bossdevice research API is an open source MATLAB repository incubated at sync2brain’s GitHub account and is linked below:
+bossdevice RESEARCH API is an open source MATLAB repository incubated at sync2brain’s GitHub account and is linked below:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{github}\PYG{p}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{sync2brain}\PYG{o}{/}\PYG{n}{bossdevice}\PYG{o}{\PYGZhy{}}\PYG{n}{api}\PYG{o}{\PYGZhy{}}\PYG{n}{matlab}
@@ -1489,7 +1491,7 @@ bossdevice research API is an open source MATLAB repository incubated at sync2br
 \section{Download bossdevice firmware}
 \label{\detokenize{6_downloads_n_dependencies:download-bossdevice-firmware}}
 \sphinxAtStartPar
-bossdevice research simulink frmware is also incubated at sync2brain’s GitHub account and is linked below:
+bossdevice RESEARCH simulink based frmware is also incubated at sync2brain’s GitHub account and is linked below:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{https}\PYG{p}{:}\PYG{o}{/}\PYG{o}{/}\PYG{n}{github}\PYG{p}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{sync2brain}\PYG{o}{/}\PYG{n}{bossdevice}\PYG{o}{\PYGZhy{}}\PYG{n}{api}\PYG{o}{\PYGZhy{}}\PYG{n}{matlab}
@@ -1519,7 +1521,7 @@ Download the repository from master branch
 
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-Add the bossdevice firmware and repository to the search path of MATLAB
+Add the bossdevice RESEARCH firmware and repository to the search path of MATLAB
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
@@ -1559,7 +1561,7 @@ Alternatively, you can also write an email to sync2brain support team for a quic
 The easier it is for one of the developers to reproduce your bug, the more likely it is that we’ll fix the problem. Good bug reports include a small test script and the data (i.e. mat file) required to reproduce the bug.
 
 \sphinxAtStartPar
-Please create a small test script and a piece of data that are both as small and simple as possible to reproduce the problem. For example: a .mat file containing the bossdevice API class object and some screenshots can lead us to solve the issue.
+Please create a small test script and a piece of data that are both as small and simple as possible to reproduce the problem. For example: a .mat file containing the bossdevice RESEARCH API class object and some screenshots can lead us to solve the issue.
 
 
 \bigskip\hrule\bigskip

@@ -15,7 +15,7 @@ Getting Started - Checklist
 
 Bittium NeurOne Users
 =====================
-The checlist below helps in setting up the bossdevice.
+The checlist below helps in setting up the bossdevice RESEARCH.
 
 1. The bossdevice and drivers USB have been received by you.
 2. NeurOne biosignal amplifier with firmware 1.4.30 or above.
