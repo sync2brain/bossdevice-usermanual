@@ -29,3 +29,7 @@ The checlist below helps in setting up the bossdevice.
 10. Setup NeurOne LAN connection on the windows 10 computer, more details on this topic can be found in NeurOne usermanual.
 11. Setup bossdevice LAN connection on the windows 10 computer as described in section 3.2 of bossdevice usermanual.
 12. Downlaod the bossdevice API and latest firmware (DBSP.mldatx file)from the sync2brain support website available at api.sync2brain.com
+
+.. important::
+
+    It is possible to run the NeurOne EEG software and the Matlab control script both on the same computer. In this case, we recommend a computer with 3 network connections: (1) Wired ethernet connection to the NeurOne Main Unit; (2) Wired ethernet connection to the bossdevice; (3) Wired or wireless internet/local area network connection.
