@@ -16,7 +16,7 @@ Downloads & Dependencies
 
 Download & Setup API
 ===============================
-bossdevice RESEARCH API is an open source MATLAB repository incubated at sync2brain’s GitHub account and is linked below:
+bossdevice RESEARCH API version 2021 is an open source MATLAB repository incubated at sync2brain’s GitHub account and is linked below:
 
 .. code-block:: matlab
 
@@ -26,11 +26,11 @@ bossdevice RESEARCH API is an open source MATLAB repository incubated at sync2br
 
 Download bossdevice firmware
 ===============================
-bossdevice RESEARCH simulink based frmware is also incubated at sync2brain’s GitHub account and is linked below:
+bossdevice RESEARCH simulink based frmware is also incubated at sync2brain’s download's area and is linked below:
 
 .. code-block:: matlab
 
-    https://github.com/sync2brain/bossdevice-api-matlab
+    https://sync2brain.com/downloads
 
 
 -----
@@ -43,7 +43,11 @@ Requirements:
 
 .. important::
 
-    Simulink Real-Time and Simulink Coder to be installed as an Adds-On from MATLAB Toolboxes
+    Simulink Real-Time and Simulink Coder, Simulink, Simulink Target Support package to be installed as an Adds-On from MATLAB Toolboxes
+
+.. important::
+
+    Download and install the hardware I/O blockset drivers from the downloads area of sync2brain.com/downloads
 
 .. important::
 

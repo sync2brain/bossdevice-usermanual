@@ -57,4 +57,19 @@ The Target UDP Port should be changed to 25000 from default of 50000, and the re
 
      On the Real Time Channels tab of NeurOne protocol, go to the Settings and then set the Target UDP Port and Send Triggers as Channels, copy all the settings as shown in this figure to the respective NeuroOne protocol.
 
+Brain Products actiCHamp (Turbolink)
+===================================
+
+.. important::
+
+    bossdevice RESEARCH accepts a 1kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out must be 1kHz.
+
+.. important::
+
+    bossdevice RESEARCH can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels.
+
+Please follow the instructions provided with turbolink from brain products in order to set it up correctly to be able to use it with bossdevice RESEARCH.
+
+
 .. toctree::
+

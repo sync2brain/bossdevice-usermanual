@@ -179,7 +179,7 @@ Example
 
 ----
 
-aux_channels
+spatial_filter_weights
 ===============================
 Description
 -----------

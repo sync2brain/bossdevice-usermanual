@@ -13,6 +13,10 @@ Demo Scripts
 
    5_demo_scripts
 
+.. important::
+
+    Please note that some of the features in the demo scripts may not be work proprely due to a transition from Matlab 2017b to Matlab 2021a. If you identify any difficulty in the respect, please contact the support team of sync2brain. 
+
 
 Open Loop Jittered TTL Output
 ===============================
