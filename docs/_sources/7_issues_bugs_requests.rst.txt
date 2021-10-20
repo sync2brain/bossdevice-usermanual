@@ -48,3 +48,12 @@ Use Case Scenarios
     Use cases, previous research papers that might have implemented those methods or a brief description about the feature requests can help our developers to create the smartest solution for you.
 
 .. toctree::
+
+-----
+
+Troubleshooting
+===============
+
+Q: I am not receiving correct/any markers. 
+A: Step 1: If using NeurOne, please check that the protocol is set properly and "Send Markers as Channels" is selected.
+   Step 2: Ensure that eeg_channels and aux_channels property is set according to the streaming protocol i.e. if there are no aux channels streaming then they should be set to 0.
