@@ -66,7 +66,7 @@ In order to program the bossdevice RESEARCH, it needs to be connected to any sta
 Simulink Real-Time Target Support Package
 =========================================
 When starting Matlab 2021 release 5 for the first time, additional installations are needed.
-In the Home tab, click on Add-Ons 🡪 Get Add-ons and look for Simulink Real-Time Support Package. Install it, it will ask you to log in with your MatLab credentials.
+In the Home tab, click on Add-Ons. Go to Get Add-ons and look for Simulink Real-Time Support Package. Install it, it will ask you to log in with your MatLab credentials.
 
 Download & Install Hardware Drivers
 ======================================

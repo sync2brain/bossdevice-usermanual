@@ -476,7 +476,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
     %% Configuring Scope
     sc = addscope(bd.tg, 'host', 255);
 
-    mrk_signal_id = getsignalid(bd.tg, 'UDP/raw_mrk') + int32([0 1 2]);
+    mrk_signal_id = getsignalid(bd.tg, 'MRK/mrk_masked') + int32([0]);
 
     addsignal(sc, mrk_signal_id);
     sc.NumSamples = 100;
@@ -491,16 +491,12 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
     fprintf('\nTesting... ')
     start(sc);
-    pause(0.1); % give the scope time to pre-aquire
-    assert(strcmp(sc.Status, 'Ready for TTL Output generation'));
+    pause(0.5); % give the scope time to pre-aquire
 
-    s = [0, 1, 0];
-    s(1000,3) = 0; % fill with zeros (TODO: this should be done in the API)
-    bd.generator_sequence = s;
+    bd.configure_time_port_marker([0 1 1])
+	bd.manualTrigger;
 
-    bd.;
-
-    pause(0.1)
+    pause(0.5)
     assert(strcmp(sc.Status, 'Finished'))
 
     fprintf('loop delay is %2.1f ms\n', (find(sc.Data(:,1), 1)-50)/5)
