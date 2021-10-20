@@ -39,9 +39,8 @@ The checlist below helps in setting up the bossdevice RESEARCH.
     It is possible to run the NeurOne EEG software and the Matlab control script both on the same computer. In this case, we recommend a computer with 3 network connections: (1) Wired ethernet connection to the NeurOne Main Unit; (2) Wired ethernet connection to the bossdevice; (3) Wired or wireless internet/local area network connection.
 
 
-
 Brainproducts actiCHamp/Turbolink Users
-======================================
+========================================
 The checlist below helps in setting up the bossdevice RESEARCH.
 
 1. The bossdevice have been received by you. The drivers have been installed from the sync2brain.com/downloads.
