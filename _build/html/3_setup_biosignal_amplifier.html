@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>4. Setup biosignal Amplifier &mdash; User Manual - bossdevice RESEARCH 20-10-2021 documentation</title>
+  <title>4. Setup biosignal Amplifier &mdash; User Manual - bossdevice RESEARCH 21-10-2021 documentation</title>
   
 
   
@@ -177,7 +177,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#real-time-out-channels">4.1.3. Real Time Out Channels</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#brain-products-actichamp-turbolink">4.2. Brain Products actiCHamp (Turbolink)</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="#brain-products-actichamp-turbolink">4.2. Brain Products actiCHamp (Turbolink)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-connect-all-the-components">4.2.1. Step # 1 - Connect all the components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-setup-a-fixed-ip-address-for-the-turbolink">4.2.2. Step # 2 - Setup a fixed IP address for the TurboLink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-switch-on-the-turbolink">4.2.3. Step # 3 - Switch On the TurboLink</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-optional-check-and-set-turbolink-connection-properties">4.2.4. Step # 4 (Optional) - Check and set TurboLink connection properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-5-start-brainvision-recorder-on-the-recorder-pc-in-admin-mode">4.2.5. Step # 5 - Start BrainVision Recorder on the Recorder PC (in Admin-mode)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-6-after-use">4.2.6. Step # 6 - After Use</a><ul class="simple">
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -231,8 +239,73 @@
 <p class="admonition-title">Important</p>
 <p>bossdevice RESEARCH can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels.</p>
 </div>
-<p>Please follow the instructions provided with turbolink from brain products in order to set it up correctly to be able to use it with bossdevice RESEARCH.</p>
+<div class="section" id="step-1-connect-all-the-components">
+<h3><span class="section-number">4.2.1. </span>Step # 1 - Connect all the components<a class="headerlink" href="#step-1-connect-all-the-components" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>TurboLink to the mains (via power cable)</p></li>
+<li><p>actiCHamp (Plus) with battery to the TurboLink (via USB cable)</p></li>
+<li><p>Recorder PC with plugged in BrainVision Recorder USB license dongle to the left Ethernet port of the TurboLink (via network cable)</p></li>
+<li><p>Data Client to the right Ethernet port of the TurboLink (via network cable)</p></li>
+<li><p>Plug the TurboLink USB license dongle in the TurboLink</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>BrainVision Recorder 1.23.0001 or higher must be installed on the Recorder PC.</p>
+</div>
+</div>
+<div class="section" id="step-2-setup-a-fixed-ip-address-for-the-turbolink">
+<h3><span class="section-number">4.2.2. </span>Step # 2 - Setup a fixed IP address for the TurboLink<a class="headerlink" href="#step-2-setup-a-fixed-ip-address-for-the-turbolink" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>On the Recorder PC, press Windows+[R], enter ncpa.cpl in the Run Window and hit [Enter]</p></li>
+<li><p>Right-click on “Ethernet”, click on “Properties” and set the fixed IP address to 192.168.5.1 as shown in the screenshot</p></li>
+</ul>
+<div class="figure align-center">
+<img alt="_images/TurboLink_SetUp_IMG-02.png" src="_images/TurboLink_SetUp_IMG-02.png" />
+</div>
+</div>
+<div class="section" id="step-3-switch-on-the-turbolink">
+<h3><span class="section-number">4.2.3. </span>Step # 3 - Switch On the TurboLink<a class="headerlink" href="#step-3-switch-on-the-turbolink" title="Permalink to this headline">¶</a></h3>
+<p>Switch on the TurboLink using the Power Button at the front. After the second set of beeps (~20 seconds), it’s ready to be used.</p>
+</div>
+<div class="section" id="step-4-optional-check-and-set-turbolink-connection-properties">
+<h3><span class="section-number">4.2.4. </span>Step # 4 (Optional) - Check and set TurboLink connection properties<a class="headerlink" href="#step-4-optional-check-and-set-turbolink-connection-properties" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>On the Recorder PC, open a browser and go to 192.168.5.21:8000</p></li>
+<li><p>Check if all connections are established</p></li>
+<li><p>Set a dedicated sampling rate for the data client output (one sample per packet). Default is 1000 Hz.</p></li>
+<li><p>Use the Packet rate option for a lower transmission rate (multiple samples per packet) to the data client. Recorder sampling rate is not affected.</p></li>
+</ul>
+<div class="figure align-center">
+<img alt="_images/TurboLink_SetUp_IMG-04.png" src="_images/TurboLink_SetUp_IMG-04.png" />
+</div>
+<div class="figure align-center">
+<img alt="_images/TurboLink_SetUp_IMG-Prerequisites.png" src="_images/TurboLink_SetUp_IMG-Prerequisites.png" />
+</div>
+</div>
+<div class="section" id="step-5-start-brainvision-recorder-on-the-recorder-pc-in-admin-mode">
+<h3><span class="section-number">4.2.5. </span>Step # 5 - Start BrainVision Recorder on the Recorder PC (in Admin-mode)<a class="headerlink" href="#step-5-start-brainvision-recorder-on-the-recorder-pc-in-admin-mode" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Go to Configuration &gt; Select Amplifier and select “actiCHamp-TurboLink”</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Leave the default IP address that is set here unchanged (i.e. 192.168.5.21).</p>
+</div>
+<ul class="simple">
+<li><p>Create a new (or edit an existing) workspace and “Scan for amplifier”</p></li>
+<li><p>Start monitoring or check impedances to ensure signal quality</p></li>
+<li><p>Optional: Start recording</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To send data to the data client, it’s sufficient to start monitoring.</p>
+</div>
+</div>
+<div class="section" id="step-6-after-use">
+<h3><span class="section-number">4.2.6. </span>Step # 6 - After Use<a class="headerlink" href="#step-6-after-use" title="Permalink to this headline">¶</a></h3>
+<p>Make sure to shut down the TurboLink using the Power Button at the front. The TurboLink status LED turns red.</p>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 </div>
@@ -251,7 +324,7 @@
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright Version 20-10-2021, sync2brain GmbH.
+        &#169; Copyright Version 21-10-2021, sync2brain GmbH.
 
     </p>
   </div>

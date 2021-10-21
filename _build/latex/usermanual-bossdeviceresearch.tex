@@ -61,8 +61,8 @@
 
 
 \title{User Manual \sphinxhyphen{} bossdevice RESEARCH}
-\date{Oct 20, 2021}
-\release{20\sphinxhyphen{}10\sphinxhyphen{}2021}
+\date{Oct 21, 2021}
+\release{21\sphinxhyphen{}10\sphinxhyphen{}2021}
 \author{sync2brain GmbH}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{Release}
@@ -518,8 +518,132 @@ bossdevice RESEARCH accepts a 1kHz sampling rate of the biosignal, therefore the
 bossdevice RESEARCH can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels.
 \end{sphinxadmonition}
 
+
+\subsection{Step \# 1 \sphinxhyphen{} Connect all the components}
+\label{\detokenize{3_setup_biosignal_amplifier:step-1-connect-all-the-components}}\begin{itemize}
+\item {} 
 \sphinxAtStartPar
-Please follow the instructions provided with turbolink from brain products in order to set it up correctly to be able to use it with bossdevice RESEARCH.
+TurboLink to the mains (via power cable)
+
+\item {} 
+\sphinxAtStartPar
+actiCHamp (Plus) with battery to the TurboLink (via USB cable)
+
+\item {} 
+\sphinxAtStartPar
+Recorder PC with plugged in BrainVision Recorder USB license dongle to the left Ethernet port of the TurboLink (via network cable)
+
+\item {} 
+\sphinxAtStartPar
+Data Client to the right Ethernet port of the TurboLink (via network cable)
+
+\item {} 
+\sphinxAtStartPar
+Plug the TurboLink USB license dongle in the TurboLink
+
+\end{itemize}
+
+\begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
+BrainVision Recorder 1.23.0001 or higher must be installed on the Recorder PC.
+\end{sphinxadmonition}
+
+
+\subsection{Step \# 2 \sphinxhyphen{} Setup a fixed IP address for the TurboLink}
+\label{\detokenize{3_setup_biosignal_amplifier:step-2-setup-a-fixed-ip-address-for-the-turbolink}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+On the Recorder PC, press Windows+{[}R{]}, enter ncpa.cpl in the Run Window and hit {[}Enter{]}
+
+\item {} 
+\sphinxAtStartPar
+Right\sphinxhyphen{}click on “Ethernet”, click on “Properties” and set the fixed IP address to 192.168.5.1 as shown in the screenshot
+
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{TurboLink_SetUp_IMG-02}.png}
+\end{figure}
+
+
+\subsection{Step \# 3 \sphinxhyphen{} Switch On the TurboLink}
+\label{\detokenize{3_setup_biosignal_amplifier:step-3-switch-on-the-turbolink}}
+\sphinxAtStartPar
+Switch on the TurboLink using the Power Button at the front. After the second set of beeps (\textasciitilde{}20 seconds), it’s ready to be used.
+
+
+\subsection{Step \# 4 (Optional) \sphinxhyphen{} Check and set TurboLink connection properties}
+\label{\detokenize{3_setup_biosignal_amplifier:step-4-optional-check-and-set-turbolink-connection-properties}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+On the Recorder PC, open a browser and go to 192.168.5.21:8000
+
+\item {} 
+\sphinxAtStartPar
+Check if all connections are established
+
+\item {} 
+\sphinxAtStartPar
+Set a dedicated sampling rate for the data client output (one sample per packet). Default is 1000 Hz.
+
+\item {} 
+\sphinxAtStartPar
+Use the Packet rate option for a lower transmission rate (multiple samples per packet) to the data client. Recorder sampling rate is not affected.
+
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{TurboLink_SetUp_IMG-04}.png}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+
+\noindent\sphinxincludegraphics{{TurboLink_SetUp_IMG-Prerequisites}.png}
+\end{figure}
+
+
+\subsection{Step \# 5 \sphinxhyphen{} Start BrainVision Recorder on the Recorder PC (in Admin\sphinxhyphen{}mode)}
+\label{\detokenize{3_setup_biosignal_amplifier:step-5-start-brainvision-recorder-on-the-recorder-pc-in-admin-mode}}\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Go to Configuration \textgreater{} Select Amplifier and select “actiCHamp\sphinxhyphen{}TurboLink”
+
+\end{itemize}
+
+\begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
+Leave the default IP address that is set here unchanged (i.e. 192.168.5.21).
+\end{sphinxadmonition}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+Create a new (or edit an existing) workspace and “Scan for amplifier”
+
+\item {} 
+\sphinxAtStartPar
+Start monitoring or check impedances to ensure signal quality
+
+\item {} 
+\sphinxAtStartPar
+Optional: Start recording
+
+\end{itemize}
+
+\begin{sphinxadmonition}{important}{Important:}
+\sphinxAtStartPar
+To send data to the data client, it’s sufficient to start monitoring.
+\end{sphinxadmonition}
+
+
+\subsection{Step \# 6 \sphinxhyphen{} After Use}
+\label{\detokenize{3_setup_biosignal_amplifier:step-6-after-use}}
+\sphinxAtStartPar
+Make sure to shut down the TurboLink using the Power Button at the front. The TurboLink status LED turns red.
 
 
 \chapter{Matlab API Documentation}
@@ -1597,7 +1721,7 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 \PYG{c}{\PYGZpc{}\PYGZpc{} Configuring Scope}
 \PYG{n}{sc}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{addscope}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{host\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{255}\PYG{p}{)}\PYG{p}{;}
 
-\PYG{n}{mrk\PYGZus{}signal\PYGZus{}id}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{UDP/raw\PYGZus{}mrk\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{int32}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{mrk\PYGZus{}signal\PYGZus{}id}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{getsignalid}\PYG{p}{(}\PYG{n}{bd}\PYG{p}{.}\PYG{n}{tg}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{MRK/mrk\PYGZus{}masked\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{int32}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
 
 \PYG{n}{addsignal}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{mrk\PYGZus{}signal\PYGZus{}id}\PYG{p}{)}\PYG{p}{;}
 \PYG{n}{sc}\PYG{p}{.}\PYG{n}{NumSamples}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{100}\PYG{p}{;}
@@ -1612,16 +1736,12 @@ Resources: 1) bossdevice Switched On, 2) bossdevice Open Source MATLAB API
 
 \PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{\PYGZbs{}nTesting... \PYGZsq{}}\PYG{p}{)}
 \PYG{n+nb}{start}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{)}\PYG{p}{;}
-\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} give the scope time to pre\PYGZhy{}aquire}
-\PYG{n+nb}{assert}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Ready for TTL Output generation\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.5}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} give the scope time to pre\PYGZhy{}aquire}
 
-\PYG{n}{s}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{;}
-\PYG{n}{s}\PYG{p}{(}\PYG{l+m+mi}{1000}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c}{\PYGZpc{} fill with zeros (TODO: this should be done in the API)}
-\PYG{n}{bd}\PYG{p}{.}\PYG{n}{generator\PYGZus{}sequence}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{s}\PYG{p}{;}
+\PYG{n}{bd}\PYG{p}{.}\PYG{n}{configure\PYGZus{}time\PYGZus{}port\PYGZus{}marker}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{bd}\PYG{p}{.}\PYG{n}{manualTrigger}\PYG{p}{;}
 
-\PYG{n}{bd}\PYG{p}{.}\PYG{p}{;}
-
-\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.1}\PYG{p}{)}
+\PYG{n+nb}{pause}\PYG{p}{(}\PYG{l+m+mf}{0.5}\PYG{p}{)}
 \PYG{n+nb}{assert}\PYG{p}{(}\PYG{n+nb}{strcmp}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Status}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{Finished\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
 
 \PYG{n+nb}{fprintf}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{loop delay is \PYGZpc{}2.1f ms\PYGZbs{}n\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nb}{find}\PYG{p}{(}\PYG{n}{sc}\PYG{p}{.}\PYG{n}{Data}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{50}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{5}\PYG{p}{)}

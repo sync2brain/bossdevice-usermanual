@@ -54,7 +54,7 @@ The Target UDP Port should be changed to 25000 from default of 50000, and the re
 
 .. figure:: figures/Figure9_N1.png
     :align: center
-
+	
      On the Real Time Channels tab of NeurOne protocol, go to the Settings and then set the Target UDP Port and Send Triggers as Channels, copy all the settings as shown in this figure to the respective NeuroOne protocol.
 
 Brain Products actiCHamp (Turbolink)
@@ -68,7 +68,70 @@ Brain Products actiCHamp (Turbolink)
 
     bossdevice RESEARCH can take maximum of 128 EEG channels only, and 8 Aux/Bipoloar/EMG/ECG channels.
 
-Please follow the instructions provided with turbolink from brain products in order to set it up correctly to be able to use it with bossdevice RESEARCH.
+Step # 1 - Connect all the components 
+-----------------------------------
+-  TurboLink to the mains (via power cable)
+-  actiCHamp (Plus) with battery to the TurboLink (via USB cable)
+-  Recorder PC with plugged in BrainVision Recorder USB license dongle to the left Ethernet port of the TurboLink (via network cable)
+-  Data Client to the right Ethernet port of the TurboLink (via network cable)
+-  Plug the TurboLink USB license dongle in the TurboLink
+
+.. important::
+
+    BrainVision Recorder 1.23.0001 or higher must be installed on the Recorder PC.
+	
+.. figure:: figures/TurboLink_SetUp_IMG-01.png
+    :align: center
+     Summarized infographics showing connection of all the components
+	
+Step # 2 - Setup a fixed IP address for the TurboLink
+--------------------------------------------
+-  On the Recorder PC, press Windows+[R], enter ncpa.cpl in the Run Window and hit [Enter]
+-  Right-click on “Ethernet”, click on “Properties” and set the fixed IP address to 192.168.5.1 as shown in the screenshot
+
+.. figure:: figures/TurboLink_SetUp_IMG-02.png
+    :align: center
+
+     Screenshots while setting up IP address for the TurboLink
+
+Step # 3 - Switch On the TurboLink
+--------------------------------------------
+Switch on the TurboLink using the Power Button at the front. After the second set of beeps (~20 seconds), it’s ready to be used.
+
+Step # 4 (Optional) - Check and set TurboLink connection properties
+---------------------------------------------------------------------
+-  On the Recorder PC, open a browser and go to 192.168.5.21:8000
+-  Check if all connections are established
+-  Set a dedicated sampling rate for the data client output (one sample per packet). Default is 1000 Hz.
+-  Use the Packet rate option for a lower transmission rate (multiple samples per packet) to the data client. Recorder sampling rate is not affected.
+
+.. figure:: figures/TurboLink_SetUp_IMG-04.png
+    :align: center
+
+     Highlights showing how to TurboLink setup
+	 
+.. figure:: figures/TurboLink_SetUp_IMG-Prerequisites.png
+    :align: center
+
+Step # 5 - Start BrainVision Recorder on the Recorder PC (in Admin-mode)
+--------------------------------------------------------------------------
+-  Go to Configuration > Select Amplifier and select “actiCHamp-TurboLink”
+
+.. important::
+
+    Leave the default IP address that is set here unchanged (i.e. 192.168.5.21).
+
+-  Create a new (or edit an existing) workspace and “Scan for amplifier”
+-  Start monitoring or check impedances to ensure signal quality
+-  Optional: Start recording
+
+.. important::
+
+    To send data to the data client, it’s sufficient to start monitoring.
+
+Step # 6 - After Use
+--------------------------------------------------------------------------
+Make sure to shut down the TurboLink using the Power Button at the front. The TurboLink status LED turns red.
 
 
 .. toctree::
