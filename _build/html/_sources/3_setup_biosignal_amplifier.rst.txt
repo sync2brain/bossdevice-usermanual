@@ -18,7 +18,7 @@ Bittium NeurOne
 
 .. important::
 
-    bossdevice RESEARCH accepts a 1kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out of NeurOne must be 1kHz.
+    bossdevice RESEARCH digital sampling rate is 5khz and it is assumed that a NeurOne protocol at 5Khz is being streamed and the sampling rate of real time UDP out of NeurOne is be 1kHz (i.e. 5 samples/packet).
 
 .. important::
 
@@ -62,7 +62,7 @@ Brain Products actiCHamp (Turbolink)
 
 .. important::
 
-    bossdevice RESEARCH accepts a 1kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out must be 1kHz.
+    bossdevice RESEARCH digital sampling rate is 5khz and it is assumed that a turbolink protocol at 5Khz is being streamed and the sampling rate of real time UDP out of turbolink is be 1kHz (i.e. 5 samples/packet).
 
 .. important::
 

@@ -61,7 +61,7 @@
 
 
 \title{User Manual \sphinxhyphen{} bossdevice RESEARCH}
-\date{Oct 21, 2021}
+\date{Oct 22, 2021}
 \release{21\sphinxhyphen{}10\sphinxhyphen{}2021}
 \author{sync2brain GmbH}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -457,7 +457,7 @@ The bossdevice can be switched on or off using the push button at on of the side
 \label{\detokenize{3_setup_biosignal_amplifier:bittium-neurone}}
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-bossdevice RESEARCH accepts a 1kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out of NeurOne must be 1kHz.
+bossdevice RESEARCH digital sampling rate is 5khz and it is assumed that a NeurOne protocol at 5Khz is being streamed and the sampling rate of real time UDP out of NeurOne is be 1kHz (i.e. 5 samples/packet).
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
@@ -510,7 +510,7 @@ The Target UDP Port should be changed to 25000 from default of 50000, and the re
 \label{\detokenize{3_setup_biosignal_amplifier:brain-products-actichamp-turbolink}}
 \begin{sphinxadmonition}{important}{Important:}
 \sphinxAtStartPar
-bossdevice RESEARCH accepts a 1kHz sampling rate of the biosignal, therefore the sampling rate from the real time UDP out must be 1kHz.
+bossdevice RESEARCH digital sampling rate is 5khz and it is assumed that a turbolink protocol at 5Khz is being streamed and the sampling rate of real time UDP out of turbolink is be 1kHz (i.e. 5 samples/packet).
 \end{sphinxadmonition}
 
 \begin{sphinxadmonition}{important}{Important:}
