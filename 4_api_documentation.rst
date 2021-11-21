@@ -179,7 +179,7 @@ Example
 
 ----
 
-spatial_filter_weights
+aux_channels
 ===============================
 Description
 -----------
@@ -223,7 +223,7 @@ Syntax
 .. figure:: figures/Figure10_phases.png
     :align: center
 
-    Radian values of several target phases in bossdevice research
+    Radian values of several target phases in bossdevice RESEARCH
 
 Example
 -------
@@ -447,6 +447,25 @@ Example
 .. code-block:: matlab
 
     obj.min_inter_pulse_interval = 2; % bossdevivce will wait for 2 seconds before generating any TTL output 
+----
+
+mep
+===============================
+Description
+-----------
+Get the auxillary channel data time locked to the trigger pulse for a given channel index, pre trigger period and post trigger period. 
+
+Syntax
+------
+.. code-block:: matlab
+
+    MEP_Data=obj.mep(Channel_Index,PreTriggerPeriodInMS,PostTriggerPeriodInMS;
+
+Example
+-------
+.. code-block:: matlab
+
+    mep_data=bd.mep(1,100,100); %bossdevice will output the 1st auxillary channel's data 100ms pre trigger time point and 100ms post trigger time point.
 ----
 
 .. toctree::
